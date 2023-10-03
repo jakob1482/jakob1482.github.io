@@ -42,12 +42,8 @@ include_section:
 
 # Build settings
 plugins:
-  - jekyll-liquify
   - jekyll-paginate
-  - jekyll-debug
   - jekyll-postcss
-  - jekyll-sitemap
-  - jekyll-seo-tag
 postcss:
   cache: false
 
