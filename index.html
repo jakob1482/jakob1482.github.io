@@ -1,0 +1,316 @@
+---
+layout: default
+title: Home
+---
+
+<!-- About -->
+<section id="about" class="mb-12">
+
+  {% if site.include_element.picture %}
+    <!-- Picture -->
+    <div class="grid grid-cols-1 justify-items-center mt-8">
+      <img src="assets/img/profile.jpg" alt="" class="rounded-full w-80">
+    </div>
+  {% endif %}
+
+  <!-- Author -->
+  <div class="grid grid-cols-1 justify-items-center mt-8 mb-12">
+    <h1 class="font-bold text-5xl">{{ site.author }}</h1>
+  </div>
+
+  {% if site.include_section.about %}
+    <!-- Header -->
+    <div class="flex justify-between pb-2 border-b-2 border-neutral-350 dark:border-neutral-550">
+      <span class="text-2xl font-light leading-none">{{ site.data.about.title }}</span>
+      
+      <ul class="flex space-x-2">
+        {% if site.include_element.contact %}
+          <!-- Email -->
+          <li>
+            <a href="mailto:{{ site.email }}" rel="noopener noreferrer" class="flex justify-center items-center h-6 w-6 rounded-full bg-neutral-350 dark:bg-neutral-550 text-neutral-100 dark:text-neutral-800 hover:bg-neutral-900 dark:hover:bg-neutral-100 transition duration-100 ease-in-out">
+              <i class="text-sm leading-none font-normal fa-solid fa-envelope"></i>
+            </a>
+          </li>
+        {% endif %}
+        {% if site.include_element.platforms %}
+          {% for platform in site.platforms %}
+            {% if platform.platform == "github" %}
+              <li>
+                <a href="{{ platform.link }}" target="_blank" rel="noopener noreferrer" class="flex justify-center items-center h-6 w-6 rounded-full text-neutral-350 dark:text-neutral-550 hover:text-neutral-900 dark:hover:text-neutral-100 transition duration-100 ease-in-out">
+                  <i class="text-2xl leading-none font-normal fa-brands fa-{{ platform.platform }}"></i>
+                </a>
+              </li>
+            {% else %}
+              <li>
+                <a href="{{ platform.link }}" target="_blank" rel="noopener noreferrer" class="flex justify-center items-center h-6 w-6 rounded-full bg-neutral-350 dark:bg-neutral-550 text-neutral-100 dark:text-neutral-800 hover:bg-neutral-900 dark:hover:bg-neutral-100 transition duration-100 ease-in-out">
+                  <i class="text-sm leading-none font-normal fa-brands fa-{{ platform.platform }}{% if platform.platform == 'linkedin' %}-in{% endif %}"></i>
+                </a>
+              </li>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      </ul>
+    </div>
+
+    <!-- Intro -->
+    <p class="mt-6 hyphen-auto leading-snug">
+      {{ site.data.about.intro }}
+    </p>
+  {% endif %}
+
+</section>
+
+{% if site.include_section.experience %}
+  <!-- Experience -->
+  <section id="experience" class="mb-12">
+
+    <!-- Header -->
+    <div class="pb-2 border-b-2 border-neutral-350 dark:border-neutral-550">
+      <span class="text-2xl font-bold leading-none">Experience</span>
+    </div>
+
+    <!-- Content -->
+    <div class="mt-6 leading-snug grid grid-cols-1 gap-4">
+      {% for job in site.data.experience %}
+        <div class="p-4 border dark:border-neutral-800 rounded shadow-sm bg-neutral-50 dark:bg-neutral-750">
+
+          <!-- Position -->
+          <h3 class="mb-2 text-xl font-normal leading-4">{{ job.position }}</h3>
+
+          <!-- Employer -->
+          <h4 class="text-lg font-bold mb-2">{{ job.company }}</h4>
+
+          <!-- Details -->
+          <div class="mb-3 grid grid-cols-3 gap-4">
+
+            {% if job.duration %}
+              <!-- Duration -->
+              <div class="grid grid-cols-[16px,auto] gap-1 leading-4">
+                <p><i class="fa-regular fa-calendar"></i></p>
+                <p>{{ job.duration }}</p>
+              </div>
+            {% endif %}
+
+            {% if job.location %}
+              <!-- Location -->
+              <div class="grid grid-cols-[16px,auto] gap-1 leading-4">
+                <p><i class="fa-solid fa-location-dot"></i></p>
+                <p>{{ job.location }}</p>
+              </div>
+            {% endif %}
+
+            {% if job.contract %}
+              <!-- Contract type -->
+              <div class="grid grid-cols-[16px,auto] gap-1 leading-4">
+                <p><i class="fa-solid fa-file-signature"></i></p>
+                <p>{{ job.contract }}</p>
+              </div>
+            {% endif %}
+          </div>
+
+          {% if job.summaries %}
+            <!-- Summary -->
+            <ul class="grid grid-cols-1 gap-1 list-disc pl-5">
+              {% for summary in job.summaries %}
+                <li class="leading-snug">{{ summary }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+
+          {% if job.url %}
+            <!-- Link -->
+            <div class="mt-2 flex justify-center items-center">
+              <a href="{{ job.url }}" target="_blank" class="select-none cursor-pointer inline-flex items-center px-4 py-2 border border-neutral-150 bg-neutral-150 hover:bg-neutral-200 hover:border-neutral-200 focus:outline-none focus:border-neutral-200 focus:shadow-outline-neutral active:border-neutral-350 rounded text-neutral-900 dark:border-neutral-700 dark:bg-neutral-700 dark:hover:neutral-650 dark:hover:bg-neutral-650 dark:focus:border-neutral-650 dark:focus:shadow-outline-dark dark:active:border-neutral-550 dark:text-neutral-100 transition duration-150 ease-in-out">
+                <i class="fa-solid fa-link mr-2"></i>
+                View Project
+              </a>
+            </div>
+          {% endif %}
+
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}
+
+{% if site.include_section.education %}
+  <!-- Education -->
+  <section id="education" class="mb-12">
+
+    <!-- Header -->
+    <div class="pb-2 border-b-2 border-neutral-350 dark:border-neutral-550">
+      <span class="text-2xl font-bold leading-none">Education</span>
+    </div>
+
+    <!-- Content -->
+    <div class="mt-6 leading-snug grid grid-cols-1 gap-4">
+      {% for degree in site.data.education %}
+        <div class="p-4 border dark:border-neutral-800 rounded shadow-sm bg-neutral-50 dark:bg-neutral-750">
+
+          <!-- Degree -->
+          <h3 class="mb-2 text-xl font-normal leading-4">{{ degree.degree }}</h3>
+
+          <!-- University -->
+          <h4 class="text-lg font-bold mb-2">{{ degree.uni }}</h4>
+
+          <!-- Details -->
+          <div class="mb-3 grid grid-cols-3 gap-4">
+
+            {% if degree.year %}
+              <!-- Year -->
+              <div class="grid grid-cols-[16px,auto] gap-1 leading-4">
+                <p><i class="fa-regular fa-calendar"></i></p>
+                <p>{{ degree.year }}</p>
+              </div>
+            {% endif %}
+
+            {% if degree.location %}
+              <!-- Location -->
+              <div class="grid grid-cols-[16px,auto] gap-1 leading-4">
+                <p><i class="fa-solid fa-location-dot"></i></p>
+                <p>{{ degree.location }}</p>
+              </div>
+            {% endif %}
+          </div>
+
+          <!-- Thesis details -->
+          <div class="grid grid-cols-[110px,auto] gap-1">
+            {% if degree.thesis.title %}
+              <!-- Thesis title -->
+              <p class="leading-snug"><b>Thesis title:</b></p>
+              <p class="leading-snug">"{{ degree.thesis.title }}"</p>
+            {% endif %}
+
+            {% if degree.thesis.supervisors %}
+              <!-- Thesis supervisors -->
+              <p class="leading-snug"><b>Supervisors:</b></p>
+              <p class="leading-snug">{{ degree.thesis.supervisors }}</p>
+            {% endif %}
+          </div>
+
+          {% if degree.thesis.pdf %}
+            <!-- Link -->
+            <div class="mt-2 flex justify-center items-center">
+              <a data-modal-id="modal_degree_{{ forloop.index }}" class="modal-identifier select-none cursor-pointer inline-flex items-center px-4 py-2 border border-neutral-150 bg-neutral-150 hover:bg-neutral-200 hover:border-neutral-200 focus:outline-none focus:border-neutral-200 focus:shadow-outline-neutral active:border-neutral-350 rounded text-neutral-900 dark:border-neutral-700 dark:bg-neutral-700 dark:hover:neutral-650 dark:hover:bg-neutral-650 dark:focus:border-neutral-650 dark:focus:shadow-outline-dark dark:active:border-neutral-550 dark:text-neutral-100 transition duration-150 ease-in-out">
+                <i class="fa-regular fa-file-pdf mr-2"></i>
+                View Thesis
+              </a>
+            </div>
+
+            <!-- Modal -->
+            <div id="modal_degree_{{ forloop.index }}" class="modal hidden fixed top-0 left-0 w-full h-full bg-black/70 z-[100]">
+              <div class="modal-overlay relative top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" style="width: calc(100vw - 100px); height: calc(100vh - 100px);">
+                <span data-modal-close-id="modal_degree_{{ forloop.index }}" class="modal-close-btn cursor-pointer absolute top-[-30px] right-0 text-3xl ease transform duration-100 text-white font-bold hover:text-red-500">&times;</span>
+                <iframe src="assets/pdf/{{ degree.thesis.pdf }}" width="100%" height="100%"></iframe>
+              </div>
+            </div>
+          {% endif %}
+
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}
+
+{% if site.include_section.projects %}
+  <!-- Projects -->
+  <section id="projects" class="mb-12">
+
+    <!-- Header -->
+    <div class="pb-2 border-b-2 border-neutral-350 dark:border-neutral-550">
+      <span class="text-2xl font-bold leading-none">Recent Projects</span>
+    </div>
+
+    <!-- Content -->
+    <div class="mt-6 grid grid-cols-1 gap-6">
+
+    </div>
+
+  </section>
+
+{% endif %}
+
+{% if site.include_section.skills %}
+  <!-- Skills -->
+  <section id="skills" class="mb-12">
+
+    <!-- Header -->
+    <div class="pb-2 border-b-2 border-neutral-350 dark:border-neutral-550">
+      <span class="text-2xl font-bold leading-none">Skills</span>
+    </div>
+
+    <!-- Content -->
+    <div class="mt-6 grid grid-cols-1 gap-6">
+      {% for category in site.data.skills %}
+        <div>
+
+          <!-- Category -->
+          <h3 class="mb-4 text-xl font-normal leading-4">{{ category.category }}</h3>
+
+          <!-- Skills -->
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+
+            <!-- Sort skills by proficiency in descending order -->
+            {% assign sorted_skills = category.items | sort: 'proficiency' | reverse %}
+            {% for skill in sorted_skills %}
+              <div class="p-8 border dark:border-neutral-800 rounded shadow-sm bg-neutral-50 dark:bg-neutral-750">
+
+                <!-- Skill -->
+                <div class="grid grid-cols-1 gap-3 justify-items-center">
+                  <img class="w-[90px] h-[90px]" src="assets/img/skills/{{ skill.icon }}">
+                  <h4 class="text-lg font-bold">{{ skill.skill }}</h4>
+                </div>
+
+                <!-- Proficiency bar -->
+                <div class="proficiency-bar bg-gray-200 dark:bg-gray-600 mt-2 rounded h-4">
+                  <div class="bg-lime-500 rounded-l h-full" style="width: {{ skill.proficiency }}%;"></div>
+                </div>
+
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}
+
+{% if site.include_section.recognition %}
+  <!-- Recognition -->
+  <section id="recognition" class="mb-12">
+
+    <!-- Header -->
+    <div class="pb-2 border-b-2 border-neutral-350 dark:border-neutral-550">
+      <span class="text-2xl font-bold leading-none">Recognition</span>
+    </div>
+
+    <!-- Content -->
+    <div class="grid grid-cols-1 gap-y-6 justify-items-center">
+      {% for recognition in site.data.recognitions %}
+        <div class="py-6">
+
+          <!-- Translation Button -->
+          <div class="relative h-[30px]">
+            {% if recognition.translation %}
+              <button class="translate-btn absolute bottom-[-1px] right-5 w-[145px] h-[30px] rounded-t border-x border-t border-neutral-175 bg-neutral-175 hover:bg-neutral-200 hover:border-neutral-200 focus:outline-none focus:border-neutral-200 focus:shadow-outline-neutral active:border-neutral-350 text-neutral-900 dark:border-neutral-700 dark:bg-neutral-700 dark:hover:neutral-650 dark:hover:bg-neutral-650 dark:focus:border-neutral-650 dark:focus:shadow-outline-dark dark:active:border-neutral-550 dark:text-neutral-100 transition duration-150 ease-in-out" iframe_recognition_id="iframe_recognition_id_{{ forloop.index }}">Show Translation</button>
+            {% endif %}
+          </div>
+<!-- select-none cursor-pointer inline-flex items-center px-4 py-2 border border-neutral-150 bg-neutral-150 hover:bg-neutral-200 hover:border-neutral-200 focus:outline-none focus:border-neutral-200 focus:shadow-outline-neutral active:border-neutral-300 rounded text-neutral-900 dark:border-neutral-700 dark:bg-neutral-700 dark:hover:neutral-650 dark:hover:bg-neutral-650 dark:focus:border-neutral-650 dark:focus:shadow-outline-dark dark:active:border-neutral-600 dark:text-neutral-100 transition duration-150 ease-in-out -->
+          <div class="relative border rounded shadow-sm bg-white dark:bg-white text-black dark:text-black" style="width: {{ recognition.width }}px; height: {{ recognition.height }}px;">
+
+            <!-- Post -->
+            <iframe src="{{ recognition.url }}" id="post_iframe_recognition_id_{{ forloop.index }}" class="absolute overflow-hidden inset-0 w-full h-full border-none rounded" scrolling="no"></iframe>
+
+            <!-- Translation -->
+            {% if recognition.translation %}
+              <div id="translation_iframe_recognition_id_{{ forloop.index }}" class="hidden absolute overflow-hidden inset-0 top-[76px] w-full border-none bg-white dark:bg-white text-black dark:text-black" style="height: {{ recognition.height_text }}px;" scrolling="no">
+                <p class="px-4 py-0 text-sm leading-normal font-sans">{{ recognition.translation }}</p>
+              </div>
+            {% endif %}
+            
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}

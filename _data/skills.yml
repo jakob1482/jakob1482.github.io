@@ -1,0 +1,38 @@
+# Skills
+- category: Programming Languages
+  items:
+    - skill: R
+      proficiency: 71
+      description: Data science.
+      icon: r.png
+    - skill: Python
+      proficiency: 77
+      description: Data science.
+      icon: python.png
+    - skill: Java
+      proficiency: 58
+      description: Data science.
+      icon: java.png
+
+- category: Tools & Platforms
+  items:
+    - skill: Snakemake
+      proficiency: 72
+      description: Data science.
+      icon: snakemake.png
+    - skill: Linux
+      proficiency: 52
+      description: Data science.
+      icon: linux.png
+    - skill: Conda
+      proficiency: 71
+      description: Data science.
+      icon: conda.png
+    - skill: Docker
+      proficiency: 43
+      description: Data science.
+      icon: docker.png
+    - skill: Git
+      proficiency: 32
+      description: None
+      icon: Git.svg

@@ -1,0 +1,29 @@
+{
+  "name": "jakob1482.github.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cross-env JEKYLL_ENV=production NODE_ENV=production bundle exec jekyll build",
+    "dev": "cross-env JEKYLL_ENV=development NODE_ENV=development bundle exec jekyll serve",
+    "develop": "cross-env JEKYLL_ENV=development NODE_ENV=development bundle exec jekyll serve",
+    "now-build": "cross-env JEKYLL_ENV=production NODE_ENV=production bundle exec jekyll build",
+    "build:css": "postcss _styles/main.css -o assets/css/main.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.10",
+    "autoprefixer": "^10.4.16",
+    "cross-env": "^7.0.3",
+    "cssnano": "^6.0.1",
+    "postcss": "^8.4.31",
+    "postcss-import": "^15.1.0",
+    "postcss-sass": "^0.5.0",
+    "postcss-scss": "^4.0.9",
+    "tailwind-scrollbar": "^3.0.5",
+    "tailwindcss": "^3.3.3"
+  }
+}

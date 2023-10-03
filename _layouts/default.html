@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+
+  <!-- Head -->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{{ site.title }}</title>
+
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.2/css/all.css">
+    <link rel="icon" type="image/x-icon" href="{{ '/favicon.svg' | relative_url }}" />
+
+    <script>
+      // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    </script>
+  </head>
+
+  <body class="overflow-y-scroll min-h-screen flex flex-col text-neutral-900 dark:text-neutral-100 bg-neutral-100 dark:bg-neutral-800 scrollbar-thin scrollbar-track-neutral-300 dark:scrollbar-track-neutral-700 scrollbar-thumb-rounded-md scrollbar-thumb-neutral-400 dark:scrollbar-thumb-neutral-600 hover:scrollbar-thumb-neutral-500">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-neutral-200/80 dark:bg-neutral-900/80 backdrop-blur shadow-md">
+      <div class="container mx-auto px-4 py-2 flex justify-between items-center">
+
+        <!-- Site -->
+        <a href="{{ site.url }}" class="text-lg font-bold hover:underline text-neutral-900 dark:text-neutral-100">{{ site.title }}</a>
+        
+        <!-- Menu -->
+        <nav class="flex space-x-2">
+
+          <!-- Pages -->
+          <a href="/" class="select-none cursor-pointer inline-flex items-center py-1 px-2 border border-white/0 bg-white/0 hover:bg-neutral-250 hover:border-neutral-250 focus:outline-none focus:border-neutral-250 focus:shadow-outline-neutral active:border-neutral-300 rounded text-neutral-900 dark:border-neutral-900/0 dark:bg-neutral-900/0 dark:hover:border-neutral-850 dark:hover:bg-neutral-850 dark:focus:border-neutral-850 dark:focus:shadow-outline-dark dark:active:border-neutral-800 dark:text-neutral-100 transition duration-150 ease-in-out">Home</a>
+          <!--<a href="/projects" class="select-none cursor-pointer inline-flex items-center py-1 px-2 border border-white/0 bg-white/0 hover:bg-neutral-250 hover:border-neutral-250 focus:outline-none focus:border-neutral-250 focus:shadow-outline-neutral active:border-neutral-300 rounded text-neutral-900 dark:border-neutral-900/0 dark:bg-neutral-900/0 dark:hover:border-neutral-850 dark:hover:bg-neutral-850 dark:focus:border-neutral-850 dark:focus:shadow-outline-dark dark:active:border-neutral-800 dark:text-neutral-100 transition duration-150 ease-in-out">Projects</a>
+          -->
+          <div class="flex justify-center items-center">
+            <div class="h-6 border-r border-neutral-300 dark:border-neutral-800"></div>
+          </div>
+
+          <!-- Theme toggle -->
+          <button id="themeToggle" class="select-none cursor-pointer flex items-center justify-center py-1 px-1 w-[34px] h-[34px] border border-white/0 bg-white/0 hover:bg-neutral-250 hover:border-neutral-250 focus:outline-none focus:shadow-outline-neutral active:border-neutral-300 rounded text-neutral-900 dark:border-neutral-900/0 dark:bg-neutral-900/0 dark:hover:border-neutral-850 dark:hover:bg-neutral-850 dark:focus:shadow-outline-dark dark:active:border-neutral-800 dark:text-neutral-100 transition duration-150 ease-in-out">
+            <script type="text/javascript">
+              document.write(document.documentElement.classList.contains('dark') ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>');
+            </script>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <main class="px-2 flex-1 flex justify-center max-w-3xl flex-col mx-auto">
+      {{ content }}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-neutral-200/80 dark:bg-neutral-900/80">
+      <div class="py-2 text-center">
+        &copy; {{ 'now' | date: "%Y" }} Jakob Jersild Nielsen. All rights reserved.
+      </div>
+    </footer>    
+    
+    <!-- Scripts -->
+    <script src="{{ '/assets/js/app.js' | relative_url }}"></script>
+  </body>
+</html>
