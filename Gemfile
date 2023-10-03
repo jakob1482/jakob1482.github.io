@@ -27,7 +27,7 @@ platforms :mingw, :x64_mingw, :mswin, :jruby do
 end
 
 #
-#gem "webrick"
+gem "webrick"
 gem "faraday-retry"
 
 # Performance-booster for watching directories on Windows
