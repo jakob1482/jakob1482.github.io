@@ -23,6 +23,7 @@ include_section:
 
 # Build settings
 repository: jakob1482/jakob1482.github.io
+baseurl: ""
 plugins:
   - jekyll-paginate
   - jekyll-postcss
