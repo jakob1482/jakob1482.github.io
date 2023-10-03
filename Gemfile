@@ -32,6 +32,7 @@ platforms :mingw, :x64_mingw, :mswin, :jruby do
 end
 
 #
+gem "sass"
 gem "webrick"
 
 # Performance-booster for watching directories on Windows
