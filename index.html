@@ -295,10 +295,9 @@ title: Home
               <button class="translate-btn absolute bottom-[-1px] right-5 w-[145px] h-[30px] rounded-t border-x border-t border-neutral-175 bg-neutral-175 hover:bg-neutral-200 hover:border-neutral-200 focus:outline-none focus:border-neutral-200 focus:shadow-outline-neutral active:border-neutral-350 text-neutral-900 dark:border-neutral-700 dark:bg-neutral-700 dark:hover:neutral-650 dark:hover:bg-neutral-650 dark:focus:border-neutral-650 dark:focus:shadow-outline-dark dark:active:border-neutral-550 dark:text-neutral-100 transition duration-150 ease-in-out" iframe_recognition_id="iframe_recognition_id_{{ forloop.index }}">Show Translation</button>
             {% endif %}
           </div>
-<!-- select-none cursor-pointer inline-flex items-center px-4 py-2 border border-neutral-150 bg-neutral-150 hover:bg-neutral-200 hover:border-neutral-200 focus:outline-none focus:border-neutral-200 focus:shadow-outline-neutral active:border-neutral-300 rounded text-neutral-900 dark:border-neutral-700 dark:bg-neutral-700 dark:hover:neutral-650 dark:hover:bg-neutral-650 dark:focus:border-neutral-650 dark:focus:shadow-outline-dark dark:active:border-neutral-600 dark:text-neutral-100 transition duration-150 ease-in-out -->
-          <div class="relative border rounded shadow-sm bg-white dark:bg-white text-black dark:text-black" style="width: {{ recognition.width }}px; height: {{ recognition.height }}px;">
 
-            <!-- Post -->
+          <!-- Post -->
+          <div class="relative border rounded shadow-sm bg-white dark:bg-white text-black dark:text-black" style="width: {{ recognition.width }}px; height: {{ recognition.height }}px;">
             <iframe src="{{ recognition.url }}" id="post_iframe_recognition_id_{{ forloop.index }}" class="absolute overflow-hidden inset-0 w-full h-full border-none rounded" scrolling="no"></iframe>
 
             <!-- Translation -->
