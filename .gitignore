@@ -4,4 +4,4 @@ _site
 .jekyll-metadata
 vendor
 node_modules
-npm-install.sh
+Gemfile.lock
