@@ -247,24 +247,32 @@ title: Home
         <div>
 
           <!-- Category -->
-          <h3 class="mb-4 text-xl font-normal leading-4">{{ category.category }}</h3>
+          <h3 class="mb-4 text-xl font-normal leading-none">{{ category.category }}</h3>
 
           <!-- Skills -->
-          <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
 
             <!-- Sort skills by proficiency in descending order -->
             {% assign sorted_skills = category.items | sort: 'proficiency' | reverse %}
             {% for skill in sorted_skills %}
               <div class="p-8 border dark:border-neutral-800 rounded shadow-sm bg-neutral-50 dark:bg-neutral-750">
 
-                <!-- Skill -->
-                <div class="grid grid-cols-1 gap-3 justify-items-center">
-                  <img class="w-[90px] h-[90px]" src="assets/img/skills/{{ skill.icon }}">
-                  <h4 class="text-lg font-bold">{{ skill.skill }}</h4>
-                </div>
+                <div class="relative h-10">
 
+                  <!-- Icon -->
+                  {% if skill.icon.org == 'local' %}
+                    {% include {{ skill.icon.icon }} %}
+                  {% elsif skill.icon.org == 'fontawesome' %}
+                    <i class="float-right mr-1 text-[40px] leading-none {{ skill.icon.icon }}"></i>
+                  {% endif %}
+
+                  <!-- Title -->
+                  <h4 class="absolute left-1 bottom-0 text-lg font-bold leading-none">{{ skill.skill }}</h4>
+
+                </div>
+              
                 <!-- Proficiency bar -->
-                <div class="proficiency-bar bg-gray-200 dark:bg-gray-600 mt-2 rounded h-4">
+                <div class="bg-gray-200 dark:bg-gray-600 mt-2 rounded h-4">
                   <div class="bg-lime-500 rounded-l h-full" style="width: {{ skill.proficiency }}%;"></div>
                 </div>
 

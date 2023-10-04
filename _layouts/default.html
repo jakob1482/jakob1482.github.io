@@ -35,8 +35,7 @@
 
           <!-- Pages -->
           <a href="/" class="select-none cursor-pointer inline-flex items-center py-1 px-2 border border-white/0 bg-white/0 hover:bg-neutral-250 hover:border-neutral-250 focus:outline-none focus:border-neutral-250 focus:shadow-outline-neutral active:border-neutral-300 rounded text-neutral-900 dark:border-neutral-900/0 dark:bg-neutral-900/0 dark:hover:border-neutral-850 dark:hover:bg-neutral-850 dark:focus:border-neutral-850 dark:focus:shadow-outline-dark dark:active:border-neutral-800 dark:text-neutral-100 transition duration-150 ease-in-out">Home</a>
-          <!--<a href="/projects" class="select-none cursor-pointer inline-flex items-center py-1 px-2 border border-white/0 bg-white/0 hover:bg-neutral-250 hover:border-neutral-250 focus:outline-none focus:border-neutral-250 focus:shadow-outline-neutral active:border-neutral-300 rounded text-neutral-900 dark:border-neutral-900/0 dark:bg-neutral-900/0 dark:hover:border-neutral-850 dark:hover:bg-neutral-850 dark:focus:border-neutral-850 dark:focus:shadow-outline-dark dark:active:border-neutral-800 dark:text-neutral-100 transition duration-150 ease-in-out">Projects</a>
-          -->
+          {% if site.include_section.projects %}<a href="/projects" class="select-none cursor-pointer inline-flex items-center py-1 px-2 border border-white/0 bg-white/0 hover:bg-neutral-250 hover:border-neutral-250 focus:outline-none focus:border-neutral-250 focus:shadow-outline-neutral active:border-neutral-300 rounded text-neutral-900 dark:border-neutral-900/0 dark:bg-neutral-900/0 dark:hover:border-neutral-850 dark:hover:bg-neutral-850 dark:focus:border-neutral-850 dark:focus:shadow-outline-dark dark:active:border-neutral-800 dark:text-neutral-100 transition duration-150 ease-in-out">Projects</a>{% endif %}
           <div class="flex justify-center items-center">
             <div class="h-6 border-r border-neutral-300 dark:border-neutral-800"></div>
           </div>

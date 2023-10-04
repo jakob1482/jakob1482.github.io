@@ -2,37 +2,62 @@
 - category: Programming Languages
   items:
     - skill: R
+      icon: 
+        org: fontawesome
+        icon: fa-brands fa-r-project
       proficiency: 71
       description: Data science.
-      icon: r.png
+
     - skill: Python
+      icon: 
+        org: fontawesome
+        icon: fa-brands fa-python
       proficiency: 77
       description: Data science.
-      icon: python.png
+
     - skill: Java
+      icon: 
+        org: fontawesome
+        icon: fa-brands fa-java
       proficiency: 58
-      description: Data science.
-      icon: java.png
+      description: General.
+
+    - skill: SQL
+      icon: 
+        org: fontawesome
+        icon: fa-solid fa-database
+      proficiency: 37
+      description: Database querying and management.
 
 - category: Tools & Platforms
   items:
     - skill: Snakemake
+      icon:
+        org: local
+        icon: icons/snakemake.html
       proficiency: 72
-      description: Data science.
-      icon: snakemake.png
+      description: Workflow management.
     - skill: Linux
+      icon: 
+        org: fontawesome
+        icon: fa-brands fa-linux
       proficiency: 52
-      description: Data science.
-      icon: linux.png
+      description: General usage including CLI.
     - skill: Conda
+      icon:
+        org: local
+        icon: icons/conda.html
       proficiency: 71
-      description: Data science.
-      icon: conda.png
+      description: Package management.
     - skill: Docker
+      icon: 
+        org: fontawesome
+        icon: fa-brands fa-docker
       proficiency: 43
-      description: Data science.
-      icon: docker.png
+      description: Deployment.
     - skill: Git
+      icon: 
+        org: fontawesome
+        icon: fa-brands fa-git-alt
       proficiency: 32
-      description: None
-      icon: Git.svg
+      description: Version control.
