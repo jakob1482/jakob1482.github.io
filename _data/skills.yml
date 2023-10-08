@@ -26,7 +26,7 @@
       icon: 
         org: fontawesome
         icon: fa-solid fa-database
-      proficiency: 37
+      proficiency: 35
       description: Database querying and management.
 
 - category: Tools & Platforms
@@ -53,11 +53,11 @@
       icon: 
         org: fontawesome
         icon: fa-brands fa-docker
-      proficiency: 43
+      proficiency: 33
       description: Deployment.
     - skill: Git
       icon: 
         org: fontawesome
         icon: fa-brands fa-git-alt
-      proficiency: 32
+      proficiency: 28
       description: Version control.
