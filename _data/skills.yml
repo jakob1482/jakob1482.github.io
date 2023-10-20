@@ -29,6 +29,13 @@
       proficiency: 35
       description: Database querying and management.
 
+    - skill: Bash
+      icon:
+        org: fontawesome
+        icon: fa-solid fa-terminal
+      proficiency: 36
+      description: Scripting.
+
 - category: Tools & Platforms
   items:
     - skill: Snakemake
@@ -54,7 +61,7 @@
         org: fontawesome
         icon: fa-brands fa-docker
       proficiency: 33
-      description: Deployment.
+      description: Development and deployment of containers.
     - skill: Git
       icon: 
         org: fontawesome
