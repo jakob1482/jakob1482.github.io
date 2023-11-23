@@ -250,7 +250,7 @@ title: Home
           <h3 class="mb-4 text-xl font-normal leading-none">{{ category.category }}</h3>
 
           <!-- Skills -->
-          <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
 
             <!-- Sort skills by proficiency in descending order -->
             {% assign sorted_skills = category.items | sort: 'proficiency' | reverse %}
