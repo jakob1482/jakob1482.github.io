@@ -1,0 +1,715 @@
+<!doctype html>
+<html>
+
+  <!-- Head -->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Portfolio</title>
+
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.2/css/all.css">
+    <link rel="icon" type="image/x-icon" href="/favicon.svg" />
+
+    <script>
+      // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    </script>
+  </head>
+
+  <body class="overflow-y-scroll min-h-screen flex flex-col text-neutral-900 dark:text-neutral-100 bg-neutral-100 dark:bg-neutral-800 scrollbar-thin scrollbar-track-neutral-300 dark:scrollbar-track-neutral-700 scrollbar-thumb-rounded-md scrollbar-thumb-neutral-400 dark:scrollbar-thumb-neutral-600 hover:scrollbar-thumb-neutral-500">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-neutral-200/80 dark:bg-neutral-900/80 backdrop-blur shadow-md">
+      <div class="container mx-auto px-4 py-2 flex justify-between items-center">
+
+        <!-- Site -->
+        <a href="/" class="text-lg font-bold hover:underline text-neutral-900 dark:text-neutral-100">Portfolio</a>
+        
+        <!-- Menu -->
+        <nav class="flex space-x-2">
+
+          <!-- Pages -->
+          <a href="/" class="select-none cursor-pointer inline-flex items-center py-1 px-2 border border-white/0 bg-white/0 hover:bg-neutral-250 hover:border-neutral-250 focus:outline-none focus:border-neutral-250 focus:shadow-outline-neutral active:border-neutral-300 rounded text-neutral-900 dark:border-neutral-900/0 dark:bg-neutral-900/0 dark:hover:border-neutral-850 dark:hover:bg-neutral-850 dark:focus:border-neutral-850 dark:focus:shadow-outline-dark dark:active:border-neutral-800 dark:text-neutral-100 transition duration-150 ease-in-out">Home</a>
+          
+          <div class="flex justify-center items-center">
+            <div class="h-6 border-r border-neutral-300 dark:border-neutral-800"></div>
+          </div>
+
+          <!-- Theme toggle -->
+          <button id="themeToggle" class="select-none cursor-pointer flex items-center justify-center py-1 px-1 w-[34px] h-[34px] border border-white/0 bg-white/0 hover:bg-neutral-250 hover:border-neutral-250 focus:outline-none focus:shadow-outline-neutral active:border-neutral-300 rounded text-neutral-900 dark:border-neutral-900/0 dark:bg-neutral-900/0 dark:hover:border-neutral-850 dark:hover:bg-neutral-850 dark:focus:shadow-outline-dark dark:active:border-neutral-800 dark:text-neutral-100 transition duration-150 ease-in-out">
+            <script type="text/javascript">
+              document.write(document.documentElement.classList.contains('dark') ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>');
+            </script>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <main class="px-2 flex-1 flex justify-center max-w-3xl flex-col mx-auto">
+      <!-- About -->
+<section id="about" class="mb-12">
+
+  
+    <!-- Picture -->
+    <div class="grid grid-cols-1 justify-items-center mt-8">
+      <img src="/assets/img/picture.jpg" alt="" class="rounded-full w-80">
+    </div>
+  
+
+  <!-- Author -->
+  <div class="grid grid-cols-1 justify-items-center mt-8 mb-12">
+    <h1 class="font-bold text-5xl">Jakob Jersild Nielsen</h1>
+  </div>
+
+  
+    <!-- Header -->
+    <div class="flex justify-between border-b-2 border-neutral-350 dark:border-neutral-550">
+      <div class="pb-1">
+        <span class="text-[28px] font-light leading-none">Bioinformatician & Data Scientist</span>
+      </div>
+      
+      <ul class="flex space-x-2">
+        
+          <!-- Email -->
+          <li>
+            <a href="mailto:jjn@inguz.dev" rel="noopener noreferrer" class="flex justify-center items-center h-7 w-7 rounded-full bg-neutral-350 dark:bg-neutral-550 text-neutral-100 dark:text-neutral-800 hover:bg-neutral-900 dark:hover:bg-neutral-100 transition duration-100 ease-in-out">
+              <i class="leading-none font-normal fa-solid fa-envelope"></i>
+            </a>
+          </li>
+        
+        
+          
+            
+              <li>
+                <a href="https://www.linkedin.com/in/jakob-jersild-nielsen" target="_blank" rel="noopener noreferrer" class="flex justify-center items-center h-7 w-7 rounded-full bg-neutral-350 dark:bg-neutral-550 text-neutral-100 dark:text-neutral-800 hover:bg-neutral-900 dark:hover:bg-neutral-100 transition duration-100 ease-in-out">
+                  <i class="leading-none font-normal fa-brands fa-linkedin-in"></i>
+                </a>
+              </li>
+            
+          
+            
+              <li>
+                <a href="https://github.com/jakob1482" target="_blank" rel="noopener noreferrer" class="flex justify-center items-center h-7 w-7 rounded-full text-neutral-350 dark:text-neutral-550 hover:text-neutral-900 dark:hover:text-neutral-100 transition duration-100 ease-in-out">
+                  <i class="text-[28px] leading-none font-normal fa-brands fa-github"></i>
+                </a>
+              </li>
+            
+          
+            
+              <li>
+                <a href="https://www.kaggle.com/jakobjersildnielsen" target="_blank" rel="noopener noreferrer" class="flex justify-center items-center h-7 w-7 rounded-full bg-neutral-350 dark:bg-neutral-550 text-neutral-100 dark:text-neutral-800 hover:bg-neutral-900 dark:hover:bg-neutral-100 transition duration-100 ease-in-out">
+                  <i class="leading-none font-normal fa-brands fa-kaggle"></i>
+                </a>
+              </li>
+            
+          
+        
+      </ul>
+    </div>
+
+    <!-- Intro -->
+    <p class="mt-6 hyphen-auto leading-snug">
+      <b>Hi!</b> I'm a graduate bioinformatician with a passion for unravelling the complexities of biological data.  Both my Bachelor's and Master's projects have been focused on exploring and analysing next-generation sequencing data,  which has laid the foundation to my technical abilities and sparked an immense interest and curiosity in the field.  I believe in continuous learning and I dedicate time daily to further refine my skills and stay updated with the latest  tools and technologies.<br> As I seek new opportunities, I am eager to bring my expertise to a team that values innovation and development. If  you're in search of someone dedicated and enthusiastic, I'd love discussing how I can be an asset to your company.
+    </p>
+  
+
+</section>
+
+
+  <!-- Experience -->
+  <section id="experience" class="mb-12">
+
+    <!-- Header -->
+    <div class="pb-1 border-b-2 border-neutral-350 dark:border-neutral-550">
+      <span class="text-[28px] font-bold leading-none">Experience</span>
+    </div>
+
+    <!-- Content -->
+    <div class="mt-6 leading-snug grid grid-cols-1 gap-4">
+      
+        <div class="p-4 border dark:border-neutral-800 rounded shadow-sm bg-neutral-50 dark:bg-neutral-750">
+
+          <!-- Position -->
+          <h3 class="mb-2 text-xl font-normal leading-4">Software Developer</h3>
+
+          <!-- Employer -->
+          <h4 class="text-lg font-bold mb-2">PentaBase</h4>
+
+          <!-- Details -->
+          <div class="mb-3 grid grid-cols-3 gap-4">
+
+            
+              <!-- Duration -->
+              <div class="grid grid-cols-[16px,auto] gap-1 leading-4">
+                <p><i class="fa-regular fa-calendar"></i></p>
+                <p>May, 2020 &mdash; Aug, 2020</p>
+              </div>
+            
+
+            
+              <!-- Location -->
+              <div class="grid grid-cols-[16px,auto] gap-1 leading-4">
+                <p><i class="fa-solid fa-location-dot"></i></p>
+                <p>Odense, Denmark</p>
+              </div>
+            
+
+            
+              <!-- Contract type -->
+              <div class="grid grid-cols-[16px,auto] gap-1 leading-4">
+                <p><i class="fa-solid fa-file-signature"></i></p>
+                <p>Freelance</p>
+              </div>
+            
+          </div>
+
+          
+            <!-- Summary -->
+            <ul class="grid grid-cols-1 gap-1 list-disc pl-5">
+              
+                <li class="leading-snug">Development of software for scanning and organizing PCR samples.</li>
+              
+            </ul>
+          
+
+          
+
+        </div>
+      
+        <div class="p-4 border dark:border-neutral-800 rounded shadow-sm bg-neutral-50 dark:bg-neutral-750">
+
+          <!-- Position -->
+          <h3 class="mb-2 text-xl font-normal leading-4">Consultant</h3>
+
+          <!-- Employer -->
+          <h4 class="text-lg font-bold mb-2">iGEM Competition</h4>
+
+          <!-- Details -->
+          <div class="mb-3 grid grid-cols-3 gap-4">
+
+            
+              <!-- Duration -->
+              <div class="grid grid-cols-[16px,auto] gap-1 leading-4">
+                <p><i class="fa-regular fa-calendar"></i></p>
+                <p>Sep, 2019</p>
+              </div>
+            
+
+            
+              <!-- Location -->
+              <div class="grid grid-cols-[16px,auto] gap-1 leading-4">
+                <p><i class="fa-solid fa-location-dot"></i></p>
+                <p>Odense, Denmark</p>
+              </div>
+            
+
+            
+          </div>
+
+          
+            <!-- Summary -->
+            <ul class="grid grid-cols-1 gap-1 list-disc pl-5">
+              
+                <li class="leading-snug">Guidance for the University of Southern Denmark's 2019 iGEM team in mathematical modeling of bacterial conjugation.</li>
+              
+            </ul>
+          
+
+          
+            <!-- Link -->
+            <div class="mt-2 flex justify-center items-center">
+              <a href="https://2019.igem.org/Team:SDU-Denmark" target="_blank" class="select-none cursor-pointer inline-flex items-center px-4 py-2 border border-neutral-150 bg-neutral-150 hover:bg-neutral-200 hover:border-neutral-200 focus:outline-none focus:border-neutral-200 focus:shadow-outline-neutral active:border-neutral-350 rounded text-neutral-900 dark:border-neutral-700 dark:bg-neutral-700 dark:hover:neutral-650 dark:hover:bg-neutral-650 dark:focus:border-neutral-650 dark:focus:shadow-outline-dark dark:active:border-neutral-550 dark:text-neutral-100 transition duration-150 ease-in-out">
+                <i class="fa-solid fa-link mr-2"></i>
+                View Project
+              </a>
+            </div>
+          
+
+        </div>
+      
+    </div>
+  </section>
+
+
+
+  <!-- Education -->
+  <section id="education" class="mb-12">
+
+    <!-- Header -->
+    <div class="pb-1 border-b-2 border-neutral-350 dark:border-neutral-550">
+      <span class="text-[28px] font-bold leading-none">Education</span>
+    </div>
+
+    <!-- Content -->
+    <div class="mt-6 leading-snug grid grid-cols-1 gap-4">
+      
+        <div class="p-4 border dark:border-neutral-800 rounded shadow-sm bg-neutral-50 dark:bg-neutral-750">
+
+          <!-- Degree -->
+          <h3 class="mb-2 text-xl font-normal leading-4">MSc, Computational Biomedicine</h3>
+
+          <!-- University -->
+          <h4 class="text-lg font-bold mb-2">University of Southern Denmark</h4>
+
+          <!-- Details -->
+          <div class="mb-3 grid grid-cols-3 gap-4">
+
+            
+              <!-- Year -->
+              <div class="grid grid-cols-[16px,auto] gap-1 leading-4">
+                <p><i class="fa-regular fa-calendar"></i></p>
+                <p>Sep, 2019 &mdash; Aug, 2023</p>
+              </div>
+            
+
+            
+              <!-- Location -->
+              <div class="grid grid-cols-[16px,auto] gap-1 leading-4">
+                <p><i class="fa-solid fa-location-dot"></i></p>
+                <p>Odense, Denmark</p>
+              </div>
+            
+          </div>
+
+          <!-- Thesis details -->
+          <div class="grid grid-cols-[110px,auto] gap-1">
+            
+              <!-- Thesis title -->
+              <p class="leading-snug"><b>Thesis title:</b></p>
+              <p class="leading-snug">"Detection of circulating tumor DNA by recalling patient-specific somatic variants in plasma samples using whole-exome sequencing."</p>
+            
+
+            
+              <!-- Thesis supervisors -->
+              <p class="leading-snug"><b>Supervisors:</b></p>
+              <p class="leading-snug"><i>Prof.</i> Torben A. Kruse, <i>Prof.</i> Mads Thomassen, <i>Post Doc.</i> Lars Andersen & <i>Post Doc.</i> Kristina M. Koldby.</p>
+            
+          </div>
+
+          
+            <!-- Link -->
+            <div class="mt-2 flex justify-center items-center">
+              <a data-modal-id="modal_degree_1" class="modal-identifier select-none cursor-pointer inline-flex items-center px-4 py-2 border border-neutral-150 bg-neutral-150 hover:bg-neutral-200 hover:border-neutral-200 focus:outline-none focus:border-neutral-200 focus:shadow-outline-neutral active:border-neutral-350 rounded text-neutral-900 dark:border-neutral-700 dark:bg-neutral-700 dark:hover:neutral-650 dark:hover:bg-neutral-650 dark:focus:border-neutral-650 dark:focus:shadow-outline-dark dark:active:border-neutral-550 dark:text-neutral-100 transition duration-150 ease-in-out">
+                <i class="fa-regular fa-file-pdf mr-2"></i>
+                View Thesis
+              </a>
+            </div>
+
+            <!-- Modal -->
+            <div id="modal_degree_1" class="modal hidden fixed top-0 left-0 w-full h-full bg-black/70 z-[100]">
+              <div class="modal-overlay relative top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" style="width: calc(100vw - 100px); height: calc(100vh - 100px);">
+                <span data-modal-close-id="modal_degree_1" class="modal-close-btn cursor-pointer absolute top-[-30px] right-0 text-3xl ease transform duration-100 text-white font-bold hover:text-red-500">&times;</span>
+                <iframe src="assets/pdf/Master_s_Thesis.pdf" width="100%" height="100%"></iframe>
+              </div>
+            </div>
+          
+
+        </div>
+      
+        <div class="p-4 border dark:border-neutral-800 rounded shadow-sm bg-neutral-50 dark:bg-neutral-750">
+
+          <!-- Degree -->
+          <h3 class="mb-2 text-xl font-normal leading-4">BSc, Biomedicine</h3>
+
+          <!-- University -->
+          <h4 class="text-lg font-bold mb-2">University of Southern Denmark</h4>
+
+          <!-- Details -->
+          <div class="mb-3 grid grid-cols-3 gap-4">
+
+            
+              <!-- Year -->
+              <div class="grid grid-cols-[16px,auto] gap-1 leading-4">
+                <p><i class="fa-regular fa-calendar"></i></p>
+                <p>Sep, 2016 &mdash; Aug, 2019</p>
+              </div>
+            
+
+            
+              <!-- Location -->
+              <div class="grid grid-cols-[16px,auto] gap-1 leading-4">
+                <p><i class="fa-solid fa-location-dot"></i></p>
+                <p>Odense, Denmark</p>
+              </div>
+            
+          </div>
+
+          <!-- Thesis details -->
+          <div class="grid grid-cols-[110px,auto] gap-1">
+            
+              <!-- Thesis title -->
+              <p class="leading-snug"><b>Thesis title:</b></p>
+              <p class="leading-snug">"Characterisation of fibrotic transcriptional signatures in mouse adipose tissue using RNA-Seq."</p>
+            
+
+            
+              <!-- Thesis supervisors -->
+              <p class="leading-snug"><b>Supervisors:</b></p>
+              <p class="leading-snug"><i>Prof.</i> Susanne Mandrup & <i>Ph.D.</i> Elvira Laila Van Hauwaert.</p>
+            
+          </div>
+
+          
+            <!-- Link -->
+            <div class="mt-2 flex justify-center items-center">
+              <a data-modal-id="modal_degree_2" class="modal-identifier select-none cursor-pointer inline-flex items-center px-4 py-2 border border-neutral-150 bg-neutral-150 hover:bg-neutral-200 hover:border-neutral-200 focus:outline-none focus:border-neutral-200 focus:shadow-outline-neutral active:border-neutral-350 rounded text-neutral-900 dark:border-neutral-700 dark:bg-neutral-700 dark:hover:neutral-650 dark:hover:bg-neutral-650 dark:focus:border-neutral-650 dark:focus:shadow-outline-dark dark:active:border-neutral-550 dark:text-neutral-100 transition duration-150 ease-in-out">
+                <i class="fa-regular fa-file-pdf mr-2"></i>
+                View Thesis
+              </a>
+            </div>
+
+            <!-- Modal -->
+            <div id="modal_degree_2" class="modal hidden fixed top-0 left-0 w-full h-full bg-black/70 z-[100]">
+              <div class="modal-overlay relative top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" style="width: calc(100vw - 100px); height: calc(100vh - 100px);">
+                <span data-modal-close-id="modal_degree_2" class="modal-close-btn cursor-pointer absolute top-[-30px] right-0 text-3xl ease transform duration-100 text-white font-bold hover:text-red-500">&times;</span>
+                <iframe src="assets/pdf/Bachelor_s_Thesis.pdf" width="100%" height="100%"></iframe>
+              </div>
+            </div>
+          
+
+        </div>
+      
+    </div>
+  </section>
+
+
+
+
+
+  <!-- Skills -->
+  <section id="skills" class="mb-12">
+
+    <!-- Header -->
+    <div class="pb-1 border-b-2 border-neutral-350 dark:border-neutral-550">
+      <span class="text-[28px] font-bold leading-none">Skills</span>
+    </div>
+
+    <!-- Content -->
+    <div class="mt-6 grid grid-cols-1 gap-6">
+      
+        <div>
+
+          <!-- Category -->
+          <h3 class="mb-4 text-xl font-normal leading-none">Programming Languages</h3>
+
+          <!-- Skills -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+
+            <!-- Sort skills by proficiency in descending order -->
+            
+            
+              <div class="p-8 border dark:border-neutral-800 rounded shadow-sm bg-neutral-50 dark:bg-neutral-750">
+
+                <div class="relative h-10">
+
+                  <!-- Icon -->
+                  
+                    <i class="float-right mr-1 text-[40px] leading-none fa-brands fa-python"></i>
+                  
+
+                  <!-- Title -->
+                  <h4 class="absolute left-1 bottom-0 text-lg font-bold leading-none">Python</h4>
+
+                </div>
+              
+                <!-- Proficiency bar -->
+                <div class="bg-gray-200 dark:bg-gray-600 mt-2 rounded h-4">
+                  <div class="bg-lime-500 rounded-l h-full" style="width: 77%;"></div>
+                </div>
+
+              </div>
+            
+              <div class="p-8 border dark:border-neutral-800 rounded shadow-sm bg-neutral-50 dark:bg-neutral-750">
+
+                <div class="relative h-10">
+
+                  <!-- Icon -->
+                  
+                    <i class="float-right mr-1 text-[40px] leading-none fa-brands fa-r-project"></i>
+                  
+
+                  <!-- Title -->
+                  <h4 class="absolute left-1 bottom-0 text-lg font-bold leading-none">R</h4>
+
+                </div>
+              
+                <!-- Proficiency bar -->
+                <div class="bg-gray-200 dark:bg-gray-600 mt-2 rounded h-4">
+                  <div class="bg-lime-500 rounded-l h-full" style="width: 71%;"></div>
+                </div>
+
+              </div>
+            
+              <div class="p-8 border dark:border-neutral-800 rounded shadow-sm bg-neutral-50 dark:bg-neutral-750">
+
+                <div class="relative h-10">
+
+                  <!-- Icon -->
+                  
+                    <i class="float-right mr-1 text-[40px] leading-none fa-brands fa-java"></i>
+                  
+
+                  <!-- Title -->
+                  <h4 class="absolute left-1 bottom-0 text-lg font-bold leading-none">Java</h4>
+
+                </div>
+              
+                <!-- Proficiency bar -->
+                <div class="bg-gray-200 dark:bg-gray-600 mt-2 rounded h-4">
+                  <div class="bg-lime-500 rounded-l h-full" style="width: 58%;"></div>
+                </div>
+
+              </div>
+            
+              <div class="p-8 border dark:border-neutral-800 rounded shadow-sm bg-neutral-50 dark:bg-neutral-750">
+
+                <div class="relative h-10">
+
+                  <!-- Icon -->
+                  
+                    <i class="float-right mr-1 text-[40px] leading-none fa-solid fa-terminal"></i>
+                  
+
+                  <!-- Title -->
+                  <h4 class="absolute left-1 bottom-0 text-lg font-bold leading-none">Bash</h4>
+
+                </div>
+              
+                <!-- Proficiency bar -->
+                <div class="bg-gray-200 dark:bg-gray-600 mt-2 rounded h-4">
+                  <div class="bg-lime-500 rounded-l h-full" style="width: 36%;"></div>
+                </div>
+
+              </div>
+            
+              <div class="p-8 border dark:border-neutral-800 rounded shadow-sm bg-neutral-50 dark:bg-neutral-750">
+
+                <div class="relative h-10">
+
+                  <!-- Icon -->
+                  
+                    <i class="float-right mr-1 text-[40px] leading-none fa-solid fa-database"></i>
+                  
+
+                  <!-- Title -->
+                  <h4 class="absolute left-1 bottom-0 text-lg font-bold leading-none">SQL</h4>
+
+                </div>
+              
+                <!-- Proficiency bar -->
+                <div class="bg-gray-200 dark:bg-gray-600 mt-2 rounded h-4">
+                  <div class="bg-lime-500 rounded-l h-full" style="width: 35%;"></div>
+                </div>
+
+              </div>
+            
+          </div>
+        </div>
+      
+        <div>
+
+          <!-- Category -->
+          <h3 class="mb-4 text-xl font-normal leading-none">Tools & Platforms</h3>
+
+          <!-- Skills -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+
+            <!-- Sort skills by proficiency in descending order -->
+            
+            
+              <div class="p-8 border dark:border-neutral-800 rounded shadow-sm bg-neutral-50 dark:bg-neutral-750">
+
+                <div class="relative h-10">
+
+                  <!-- Icon -->
+                  
+                    <svg class="float-right mr-1 fill-current text-neutral-900 dark:text-neutral-100 h-10 w-auto" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 160 160" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd">
+  <path d="M 45.5,-0.5 C 68.5,-0.5 91.5,-0.5 114.5,-0.5C 134.128,1.94789 147.961,12.2812 156,30.5C 157.728,37.2034 155.561,42.0367 149.5,45C 116.5,45.3333 83.5,45.6667 50.5,46C 26.9674,50.3722 15.9674,64.5389 17.5,88.5C 16.448,88.6495 15.448,88.4828 14.5,88C 6.3858,79.2729 1.3858,69.1062 -0.5,57.5C -0.5,53.1667 -0.5,48.8333 -0.5,44.5C 4.98819,19.3443 20.3215,4.3443 45.5,-0.5 Z M 117.5,13.5 C 123.356,13.854 125.523,16.854 124,22.5C 118.927,26.8638 115.427,25.8638 113.5,19.5C 113.67,16.6736 115.003,14.6736 117.5,13.5 Z"/>
+  <path d="M 159.5,98.5 C 159.5,105.167 159.5,111.833 159.5,118.5C 156.994,128.673 151.994,137.506 144.5,145C 143.552,145.483 142.552,145.649 141.5,145.5C 143.753,121.477 133.086,107.31 109.5,103C 86.77,102.969 64.1033,102.302 41.5,101C 29.1612,93.6534 25.3279,83.1534 30,69.5C 33.5419,62.8059 39.0419,58.6393 46.5,57C 71.5359,56.0585 96.5359,56.3918 121.5,58C 141.974,64.3035 154.641,77.8035 159.5,98.5 Z"/>
+  <path d="M 114.5,159.5 C 90.8333,159.5 67.1667,159.5 43.5,159.5C 24.033,156.547 10.533,145.881 3,127.5C 1.99121,121.015 4.49121,116.515 10.5,114C 44.8333,113.333 79.1667,113.333 113.5,114C 126.448,118.048 132.281,126.882 131,140.5C 128.85,149.812 123.35,156.145 114.5,159.5 Z"/>
+</svg>
+
+                  
+
+                  <!-- Title -->
+                  <h4 class="absolute left-1 bottom-0 text-lg font-bold leading-none">Snakemake</h4>
+
+                </div>
+              
+                <!-- Proficiency bar -->
+                <div class="bg-gray-200 dark:bg-gray-600 mt-2 rounded h-4">
+                  <div class="bg-lime-500 rounded-l h-full" style="width: 72%;"></div>
+                </div>
+
+              </div>
+            
+              <div class="p-8 border dark:border-neutral-800 rounded shadow-sm bg-neutral-50 dark:bg-neutral-750">
+
+                <div class="relative h-10">
+
+                  <!-- Icon -->
+                  
+                    <svg class="float-right mr-1 fill-current text-neutral-900 dark:text-neutral-100 h-10 w-auto" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 512 512" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd">
+  <path d="M 232.5,-0.5 C 248.5,-0.5 264.5,-0.5 280.5,-0.5C 368.803,10.7096 435.637,54.3763 481,130.5C 496.381,159.222 506.548,189.555 511.5,221.5C 511.5,244.5 511.5,267.5 511.5,290.5C 499.249,366.198 461.916,426.031 399.5,470C 365.858,491.993 329.192,505.826 289.5,511.5C 266.833,511.5 244.167,511.5 221.5,511.5C 182.231,505.538 145.898,491.705 112.5,470C 108.174,449.083 106.007,427.916 106,406.5C 126.051,406.55 146.218,406.05 166.5,405C 213.487,432.084 262.821,437.084 314.5,420C 380.584,393.571 418.751,345.071 429,274.5C 433.687,214.41 413.853,164.243 369.5,124C 330.913,92.5855 286.579,78.5855 236.5,82C 248.492,68.0088 261.158,54.6754 274.5,42C 259.336,26.8278 243.003,13.1611 225.5,1C 228.036,0.813823 230.369,0.313823 232.5,-0.5 Z"/>
+  <path d="M 171.5,12.5 C 172.376,12.3691 173.043,12.7025 173.5,13.5C 167.288,25.9231 161.122,38.2564 155,50.5C 141.927,46.9402 128.761,43.7735 115.5,41C 132.98,29.0936 151.647,19.5936 171.5,12.5 Z"/>
+  <path d="M 199.5,13.5 C 213.352,22.0178 226.352,31.6845 238.5,42.5C 229.458,52.3721 220.624,62.3721 212,72.5C 200.614,67.2059 189.114,62.2059 177.5,57.5C 183.792,42.2491 191.125,27.5824 199.5,13.5 Z"/>
+  <path d="M 96.5,61.5 C 113.106,63.1878 129.44,66.3545 145.5,71C 146.516,71.5194 147.182,72.3527 147.5,73.5C 143.853,85.422 140.52,97.422 137.5,109.5C 123.847,110.721 110.18,111.721 96.5,112.5C 95.398,95.5062 95.398,78.5062 96.5,61.5 Z"/>
+  <path d="M 73.5,73.5 C 74.5,73.5 75.5,73.5 76.5,73.5C 75.5227,87.4815 75.3561,101.482 76,115.5C 62.5696,118.321 49.2363,121.654 36,125.5C 34.7425,125.15 34.4092,124.483 35,123.5C 46.1347,105.531 58.968,88.8645 73.5,73.5 Z"/>
+  <path d="M 169.5,78.5 C 179.373,82.1012 189.04,86.2679 198.5,91C 185.737,96.3097 173.404,102.476 161.5,109.5C 163.023,99.081 165.69,88.7477 169.5,78.5 Z"/>
+  <path d="M 126.5,130.5 C 128.924,130.192 131.257,130.526 133.5,131.5C 123.2,142.776 113.867,154.776 105.5,167.5C 101.899,156.496 99.5655,145.163 98.5,133.5C 107.947,132.265 117.28,131.265 126.5,130.5 Z"/>
+  <path d="M 74.5,136.5 C 75.8333,136.5 77.1667,136.5 78.5,136.5C 80.5333,151.701 83.5333,166.701 87.5,181.5C 74.8561,189.8 62.1895,198.133 49.5,206.5C 38.0817,189.666 28.7484,171.666 21.5,152.5C 26.4472,149.677 31.7806,147.51 37.5,146C 49.9219,142.645 62.2552,139.479 74.5,136.5 Z"/>
+  <path d="M -0.5,249.5 C -0.5,243.167 -0.5,236.833 -0.5,230.5C 1.56579,212.183 5.56579,194.183 11.5,176.5C 18.8836,190.261 26.5503,203.928 34.5,217.5C 22.2398,227.423 10.5732,238.089 -0.5,249.5 Z"/>
+  <path d="M 87.5,202.5 C 88.552,202.351 89.552,202.517 90.5,203C 85.3012,218.025 82.6345,233.525 82.5,249.5C 79.6448,248.166 77.1448,246.166 75,243.5C 69.2152,236.758 64.0486,229.591 59.5,222C 68.3459,214.748 77.6792,208.248 87.5,202.5 Z"/>
+  <path d="M 42.5,233.5 C 44.3904,233.297 45.8904,233.963 47,235.5C 54.7986,246.297 62.9653,256.797 71.5,267C 63.5482,279.065 55.7149,291.232 48,303.5C 32.6359,294.124 18.4692,283.29 5.5,271C 6.31686,269.51 7.15019,268.01 8,266.5C 19.0924,254.904 30.5924,243.904 42.5,233.5 Z"/>
+  <path d="M 81.5,279.5 C 82.4972,279.47 83.1639,279.97 83.5,281C 86.2286,297.08 90.8952,312.58 97.5,327.5C 97,327.833 96.5,328.167 96,328.5C 84.1436,323.823 72.977,317.99 62.5,311C 68.4722,300.212 74.8055,289.712 81.5,279.5 Z"/>
+  <path d="M 0.5,290.5 C 0.559992,289.957 0.893326,289.624 1.5,289.5C 2.70034,290.531 4.03368,291.365 5.5,292C 16.9038,301.077 28.5704,309.744 40.5,318C 33.9758,332.536 27.6425,347.036 21.5,361.5C 11.2205,338.698 4.2205,315.031 0.5,290.5 Z"/>
+  <path d="M 53.5,326.5 C 67.3293,332.662 81.1627,338.995 95,345.5C 93.9629,360.482 92.7962,375.482 91.5,390.5C 72.1754,389.001 53.1754,385.668 34.5,380.5C 34.1667,379.833 33.8333,379.167 33.5,378.5C 39.0667,360.707 45.7334,343.374 53.5,326.5 Z"/>
+  <path d="M 109.5,350.5 C 119.407,365.074 131.073,378.074 144.5,389.5C 145.386,390.325 145.719,391.325 145.5,392.5C 132.254,392.823 119.087,392.489 106,391.5C 105.914,377.7 107.081,364.033 109.5,350.5 Z"/>
+  <path d="M 41.5,396.5 C 57.9551,400.465 74.6217,403.131 91.5,404.5C 92.3999,420.698 93.7332,436.865 95.5,453C 95.1667,454.167 94.8333,455.333 94.5,456.5C 75.7332,441.902 59.5665,424.902 46,405.5C 43.9404,402.714 42.4404,399.714 41.5,396.5 Z"/>
+</svg>
+
+                  
+
+                  <!-- Title -->
+                  <h4 class="absolute left-1 bottom-0 text-lg font-bold leading-none">Conda</h4>
+
+                </div>
+              
+                <!-- Proficiency bar -->
+                <div class="bg-gray-200 dark:bg-gray-600 mt-2 rounded h-4">
+                  <div class="bg-lime-500 rounded-l h-full" style="width: 71%;"></div>
+                </div>
+
+              </div>
+            
+              <div class="p-8 border dark:border-neutral-800 rounded shadow-sm bg-neutral-50 dark:bg-neutral-750">
+
+                <div class="relative h-10">
+
+                  <!-- Icon -->
+                  
+                    <i class="float-right mr-1 text-[40px] leading-none fa-brands fa-linux"></i>
+                  
+
+                  <!-- Title -->
+                  <h4 class="absolute left-1 bottom-0 text-lg font-bold leading-none">Linux</h4>
+
+                </div>
+              
+                <!-- Proficiency bar -->
+                <div class="bg-gray-200 dark:bg-gray-600 mt-2 rounded h-4">
+                  <div class="bg-lime-500 rounded-l h-full" style="width: 52%;"></div>
+                </div>
+
+              </div>
+            
+              <div class="p-8 border dark:border-neutral-800 rounded shadow-sm bg-neutral-50 dark:bg-neutral-750">
+
+                <div class="relative h-10">
+
+                  <!-- Icon -->
+                  
+                    <i class="float-right mr-1 text-[40px] leading-none fa-brands fa-docker"></i>
+                  
+
+                  <!-- Title -->
+                  <h4 class="absolute left-1 bottom-0 text-lg font-bold leading-none">Docker</h4>
+
+                </div>
+              
+                <!-- Proficiency bar -->
+                <div class="bg-gray-200 dark:bg-gray-600 mt-2 rounded h-4">
+                  <div class="bg-lime-500 rounded-l h-full" style="width: 33%;"></div>
+                </div>
+
+              </div>
+            
+              <div class="p-8 border dark:border-neutral-800 rounded shadow-sm bg-neutral-50 dark:bg-neutral-750">
+
+                <div class="relative h-10">
+
+                  <!-- Icon -->
+                  
+                    <i class="float-right mr-1 text-[40px] leading-none fa-brands fa-git-alt"></i>
+                  
+
+                  <!-- Title -->
+                  <h4 class="absolute left-1 bottom-0 text-lg font-bold leading-none">Git</h4>
+
+                </div>
+              
+                <!-- Proficiency bar -->
+                <div class="bg-gray-200 dark:bg-gray-600 mt-2 rounded h-4">
+                  <div class="bg-lime-500 rounded-l h-full" style="width: 28%;"></div>
+                </div>
+
+              </div>
+            
+          </div>
+        </div>
+      
+    </div>
+  </section>
+
+
+
+  <!-- Recognition -->
+  <section id="recognition" class="mb-12">
+
+    <!-- Header -->
+    <div class="pb-1 border-b-2 border-neutral-350 dark:border-neutral-550">
+      <span class="text-[28px] font-bold leading-none">Recognition</span>
+    </div>
+
+    <!-- Content -->
+    <div class="grid grid-cols-1 gap-y-6 justify-items-center">
+      
+        <div class="py-6">
+
+          <!-- Translation Button -->
+          <div class="relative h-[30px]">
+            
+              <button class="translate-btn absolute bottom-[-1px] right-5 w-[145px] h-[30px] rounded-t border-x border-t border-neutral-175 bg-neutral-175 hover:bg-neutral-200 hover:border-neutral-200 focus:outline-none focus:border-neutral-200 focus:shadow-outline-neutral active:border-neutral-350 text-neutral-900 dark:border-neutral-700 dark:bg-neutral-700 dark:hover:neutral-650 dark:hover:bg-neutral-650 dark:focus:border-neutral-650 dark:focus:shadow-outline-dark dark:active:border-neutral-550 dark:text-neutral-100 transition duration-150 ease-in-out" iframe_recognition_id="iframe_recognition_id_1">Show Translation</button>
+            
+          </div>
+
+          <!-- Post -->
+          <div class="relative border rounded shadow-sm bg-white dark:bg-white text-black dark:text-black" style="width: 550px; height: 1050px;">
+            <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7097844714871091200" id="post_iframe_recognition_id_1" class="absolute overflow-hidden inset-0 w-full h-full border-none rounded" scrolling="no"></iframe>
+
+            <!-- Translation -->
+            
+              <div id="translation_iframe_recognition_id_1" class="hidden absolute overflow-hidden inset-0 top-[76px] w-full border-none bg-white dark:bg-white text-black dark:text-black" style="height: 400px;" scrolling="no">
+                <p class="px-4 py-0 text-sm leading-normal font-sans">Huge congratulations to Jakob Jersild Nielsen 🌟 On the 8th of August, he defended his Master's thesis in computational biomedicine and earned an impressive grade of A 🏆 👏 🤩<br><br> The thesis focuses on improving the diagnosis of pancreatic cancer, which is among the deadliest forms of cancer.<br><br> The high mortality rate is largely due to late diagnosis since patients in the early stages often show no symptoms, the symptoms in general are non-specific, and the current screening methods are ineffective.<br><br> Analysis of ctDNA (DNA released from tumors into the plasma) using next-generation sequencing has proven effective for cancer prognosis and monitoring. However, the application of this method is currently hindered by technical limitations. Jakob's research aims to enhance the existing ctDNA detection tools 👨⚕️ 🛠 ⚗ 🔬<br><br> At the Clinical Genetic Department, Jakob was guided by Professor Torben Kruse, Professor Mads Thomassen, Lars Andersen, and Kristina Magaard Koldby.<br><br></p>
+              </div>
+            
+            
+          </div>
+        </div>
+      
+    </div>
+  </section>
+
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-neutral-200/80 dark:bg-neutral-900/80">
+      <div class="py-2 text-center">
+        &copy; 2023 Jakob Jersild Nielsen. All rights reserved.
+      </div>
+    </footer>
+
+    <!-- Visitor statistics using clicky -->
+    <script async data-id="101434754" src="//static.getclicky.com/js"></script>
+    
+    <!-- Scripts -->
+    <script src="/assets/js/app.js"></script>
+  </body>
+</html>
