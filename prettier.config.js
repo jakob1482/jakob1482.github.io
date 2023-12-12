@@ -10,4 +10,12 @@ module.exports = {
   printWidth: 80,
   endOfLine: "lf",
   singleAttributePerLine: true,
+  overrides: [
+    {
+      files: "*.html",
+      options: {
+        parser: "liquid-html",
+      },
+    },
+  ],
 };
