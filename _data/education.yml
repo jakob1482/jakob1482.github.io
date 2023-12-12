@@ -3,16 +3,23 @@
   uni: University of Southern Denmark
   year: Sep, 2019 &mdash; Aug, 2023
   location: Odense, Denmark
-  thesis: 
-    title: Detection of circulating tumor DNA by recalling patient-specific somatic variants in plasma samples using whole-exome sequencing.
-    supervisors: <i>Prof.</i> Torben A. Kruse, <i>Prof.</i> Mads Thomassen, <i>Post Doc.</i> Lars Andersen & <i>Post Doc.</i> Kristina M. Koldby.
+  thesis:
+    title:
+      Detection of circulating tumor DNA by recalling patient-specific somatic
+      variants in plasma samples using whole-exome sequencing.
+    supervisors:
+      <i>Prof.</i> Torben A. Kruse, <i>Prof.</i> Mads Thomassen, <i>Post
+      Doc.</i> Lars Andersen & <i>Post Doc.</i> Kristina M. Koldby.
     pdf: Master_s_Thesis.pdf
 
 - degree: BSc, Biomedicine
   uni: University of Southern Denmark
   year: Sep, 2016 &mdash; Aug, 2019
   location: Odense, Denmark
-  thesis: 
-    title: Characterisation of fibrotic transcriptional signatures in mouse adipose tissue using RNA-Seq.
-    supervisors: <i>Prof.</i> Susanne Mandrup & <i>Ph.D.</i> Elvira Laila Van Hauwaert.
+  thesis:
+    title:
+      Characterisation of fibrotic transcriptional signatures in mouse adipose
+      tissue using RNA-Seq.
+    supervisors:
+      <i>Prof.</i> Susanne Mandrup & <i>Ph.D.</i> Elvira Laila Van Hauwaert.
     pdf: Bachelor_s_Thesis.pdf

@@ -2,15 +2,25 @@
 - degree: Master of Science, Computational Biomedicine
   uni: University of Southern Denmark
   year: 2019 &mdash; 2023
-  thesis: 
-    topic: <b>Thesis topic:</b> "Detection of circulating tumor DNA by recalling patient-specific somatic variants in plasma samples using whole-exome sequencing."
-    supervisors: <b>Supervisors:</b> <i>Prof.</i> Torben A. Kruse, <i>Prof.</i> Mads Thomassen, <i>Post Doc.</i> Lars Andersen & <i>Post Doc.</i> Kristina M. Koldby.
+  thesis:
+    topic:
+      <b>Thesis topic:</b> "Detection of circulating tumor DNA by recalling
+      patient-specific somatic variants in plasma samples using whole-exome
+      sequencing."
+    supervisors:
+      <b>Supervisors:</b> <i>Prof.</i> Torben A. Kruse, <i>Prof.</i> Mads
+      Thomassen, <i>Post Doc.</i> Lars Andersen & <i>Post Doc.</i> Kristina M.
+      Koldby.
     url: https://inguz836-my.sharepoint.com/:b:/g/personal/jjn_inguz_dev/EZrpJmPeFZtAsqq3ySX6Ji4Bc0TKolc1PG6uw_MnmGxFvA?e=tKYvmb
 
 - degree: Bachelor of Science, Biomedicine
   uni: University of Southern Denmark
   year: 2016 &mdash; 2019
-  thesis: 
-    topic: <b>Thesis topic:</b> "Characterisation of fibrotic transcriptional signatures in mouse adipose tissue using RNA-Seq."
-    supervisors: <b>Supervisors:</b> <i>Prof.</i> Susanne Mandrup & <i>Ph.D.</i> Elvira Laila Van Hauwaert.
+  thesis:
+    topic:
+      <b>Thesis topic:</b> "Characterisation of fibrotic transcriptional
+      signatures in mouse adipose tissue using RNA-Seq."
+    supervisors:
+      <b>Supervisors:</b> <i>Prof.</i> Susanne Mandrup & <i>Ph.D.</i> Elvira
+      Laila Van Hauwaert.
     url: https://inguz836-my.sharepoint.com/:b:/g/personal/jjn_inguz_dev/EduxqdmGmBRDl4si2BPo51QB8UifGMHx40gvLWKsKvbVVA?e=BF77Cx

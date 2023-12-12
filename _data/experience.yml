@@ -4,13 +4,14 @@
   contract: Freelance
   duration: May, 2020 &mdash; Aug, 2020
   location: Odense, Denmark
-  summaries: 
+  summaries:
     - Development of software for scanning and organizing PCR samples.
 
 - company: iGEM Competition
   position: Consultant
   duration: Sep, 2019
   location: Odense, Denmark
-  summaries: 
-    - Guidance for the University of Southern Denmark's 2019 iGEM team in mathematical modeling of bacterial conjugation.
+  summaries:
+    - Guidance for the University of Southern Denmark's 2019 iGEM team in
+      mathematical modeling of bacterial conjugation.
   url: https://2019.igem.org/Team:SDU-Denmark

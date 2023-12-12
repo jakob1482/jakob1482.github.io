@@ -2,28 +2,35 @@
 - category: Programming Languages
   items:
     - skill: R
-      icon: 
+      icon:
         org: fontawesome
         icon: fa-brands fa-r-project
       proficiency: 71
       description: Data science.
 
     - skill: Python
-      icon: 
+      icon:
         org: fontawesome
         icon: fa-brands fa-python
-      proficiency: 77
+      proficiency: 87
       description: Data science.
 
+    - skill: Snakemake
+      icon:
+        org: local
+        icon: icons/snakemake.html
+      proficiency: 72
+      description: Workflow management.
+
     - skill: Java
-      icon: 
+      icon:
         org: fontawesome
         icon: fa-brands fa-java
       proficiency: 58
       description: General.
 
     - skill: SQL
-      icon: 
+      icon:
         org: fontawesome
         icon: fa-solid fa-database
       proficiency: 35
@@ -38,15 +45,8 @@
 
 - category: Tools & Platforms
   items:
-    - skill: Snakemake
-      icon:
-        org: local
-        icon: icons/snakemake.html
-      proficiency: 72
-      description: Workflow management.
-
     - skill: Linux
-      icon: 
+      icon:
         org: fontawesome
         icon: fa-brands fa-linux
       proficiency: 52
@@ -60,15 +60,15 @@
       description: Package management.
 
     - skill: Docker
-      icon: 
+      icon:
         org: fontawesome
         icon: fa-brands fa-docker
-      proficiency: 33
+      proficiency: 43
       description: Development and deployment of containers.
-      
+
     - skill: Git
-      icon: 
+      icon:
         org: fontawesome
         icon: fa-brands fa-git-alt
-      proficiency: 28
+      proficiency: 38
       description: Version control.

@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "cross-env JEKYLL_ENV=production NODE_ENV=production bundle exec jekyll build",
-    "dev": "cross-env JEKYLL_ENV=development NODE_ENV=development bundle exec jekyll serve",
-    "develop": "cross-env JEKYLL_ENV=development NODE_ENV=development bundle exec jekyll serve",
+    "dev": "cross-env JEKYLL_ENV=development NODE_ENV=development bundle exec jekyll serve --force_polling --livereload --unpublished --incremental",
+    "develop": "cross-env JEKYLL_ENV=development NODE_ENV=development bundle exec jekyll serve --force_polling --livereload --unpublished --incremental",
     "now-build": "cross-env JEKYLL_ENV=production NODE_ENV=production bundle exec jekyll build",
     "build:css": "postcss _styles/main.css -o assets/css/main.css"
   },
@@ -15,14 +15,23 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@shopify/prettier-plugin-liquid": "^1.4.0",
+    "@shopify/theme-language-server-node": "^1.7.1",
     "@tailwindcss/typography": "^0.5.10",
     "autoprefixer": "^10.4.16",
     "cross-env": "^7.0.3",
     "cssnano": "^6.0.1",
+    "eslint": "^8.55.0",
+    "eslint-plugin-tailwindcss": "^3.13.0",
     "postcss": "^8.4.31",
     "postcss-import": "^15.1.0",
     "postcss-sass": "^0.5.0",
     "postcss-scss": "^4.0.9",
+    "prettier": "^3.1.1",
+    "prettier-plugin-css-order": "^2.0.1",
+    "prettier-plugin-organize-attributes": "^1.0.0",
+    "prettier-plugin-organize-imports": "^3.2.4",
+    "prettier-plugin-tailwindcss": "^0.5.9",
     "tailwind-scrollbar": "^3.0.5",
     "tailwindcss": "^3.3.3"
   }
