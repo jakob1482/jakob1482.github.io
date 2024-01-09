@@ -1,0 +1,12 @@
+<a
+  class="flex h-7 w-7 items-center justify-center rounded-full border-none bg-neutral-350 transition-icon duration-150 hover:bg-neutral-900 active:scale-90 dark:bg-neutral-550 dark:hover:bg-neutral-100{% case to_color %}{% when 'stroke' %} [&>svg]:stroke-neutral-100 [&>svg]:dark:stroke-neutral-800{% when 'fill' %} [&>svg]:fill-neutral-100 [&>svg]:dark:fill-neutral-800{% endcase %}"
+  href="{{ url | relative_url }}"
+  {% unless target == null %}
+    target="{{ target }}"
+  {% endunless %}
+  {% unless rel == null %}
+    target="{{ rel }}"
+  {% endunless %}
+>
+  {% include {{ icon }} %}
+</a>

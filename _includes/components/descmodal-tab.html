@@ -1,0 +1,43 @@
+<div
+  id="{{ tab-id }}"
+  data-tab-content
+  class="absolute left-0 top-0 z-0 w-[480px] opacity-0 transition-opacity duration-300 ease-in-out data-[te-tab-active]:z-10 data-[te-tab-active]:opacity-100"
+  {% if first == true and (category.categories == null or subcategory.categories == null) %}
+    data-te-tab-active
+    {% assign first = false %}
+  {% endif %}
+>
+  {% for topic in topics %}
+    <div class="{% unless forloop.last %}mb-3{% endunless %}">
+      {% if topic.subtitle %}
+        <!-- Subtitle -->
+        <h6 class="text-sm font-semibold">
+          {{ topic.subtitle }}
+        </h6>
+      {% endif %}
+      {% if topic.description %}
+        <!-- Description -->
+        <p class="text-sm italic{% if topics.size > 1 %} pb-2 w-full border-b border-dashed border-neutral-250 dark:border-neutral-650{% endif %}">
+          {{ topic.description }}
+        </p>
+      {% endif %}
+      {% if topic.utils %}
+        <!-- Packages, libraries, repositories, etc. -->
+        <div>
+          {% for util in topic.utils %}
+            <span class="mt-1 inline-block rounded-full bg-neutral-200 px-4 py-[6px] text-xs font-medium leading-normal text-neutral-700 shadow-sm dark:bg-neutral-600 dark:text-neutral-200">
+              {{ util }}
+            </span>
+          {% endfor %}
+        </div>
+      {% endif %}
+      {% if topic.topics %}
+        {% assign topics = topic.topics %}
+        {% if recursion == null %}
+          {% assign recursion = 'True' %}
+        {% endif %}
+        {% include components/skill_topic.html %}
+      {% endif %}
+    </div>
+  {% endfor %}
+</div>
