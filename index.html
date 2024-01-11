@@ -2,7 +2,7 @@
 layout: default
 title: Home
 ---
-<!-- About -->
+<!-- About start -->
 <section
   class="mb-12"
   id="about"
@@ -20,62 +20,56 @@ title: Home
 
   <!-- Author -->
   <div class="mb-12 mt-8 grid grid-cols-1 justify-items-center">
-    <h1 class="text-5xl font-bold">{{ site.author }}</h1>
+    <h1 class="text-4xl font-bold xs:text-5xl">
+      {{ site.author }}
+    </h1>
   </div>
 
   {% if site.include_section.about %}
     <!-- Header -->
     <div
-      class="flex justify-between border-b-2 border-neutral-350 dark:border-neutral-550"
+      class="flex flex-col justify-between border-b-2 border-neutral-350 dark:border-neutral-550 xs:flex-row"
     >
-      <div class="pb-1">
-        <span class="text-[28px] font-light leading-none">
-          {{- site.data.about.title -}}
-        </span>
+      <div class="border-b-2 border-neutral-350 pb-1 dark:border-neutral-550 xs:border-none">
+        <h2 class="text-[24px] font-light leading-none sm:text-[28px]">
+          {{ site.data.about.title }}
+        </h2>
       </div>
 
-      <ul class="flex space-x-2">
+      <ul class="my-[6px] flex justify-center space-x-2 xs:my-0 xs:-translate-y-1 xs:justify-normal sm:translate-y-0">
         {% if site.include_element.contact %}
           <!-- Email -->
           <li>
-            <a
-              class="flex h-7 w-7 items-center justify-center rounded-full bg-neutral-350 text-neutral-100 transition duration-100 ease-in-out hover:bg-neutral-900 dark:bg-neutral-550 dark:text-neutral-800 dark:hover:bg-neutral-100"
-              href="mailto:{{ site.email }}"
-              rel="noopener noreferrer"
-            >
-              <i class="fa-solid fa-envelope font-normal leading-none"></i>
-            </a>
+            {% assign url = 'mailto:' | append: site.email %}
+            {% assign icon = 'icons/ui/at-symbol.svg' %}
+            {% assign to_color = 'stroke' %}
+            {% assign target = null %}
+            {% assign rel = null %}
+            {% include components/url-icon.html %}
           </li>
         {% endif %}
         {% if site.include_element.platforms %}
+          <!-- Social media and development platforms -->
           {% for platform in site.platforms %}
-            {% if platform.platform == 'github' %}
-              <li>
-                <a
-                  class="flex h-7 w-7 items-center justify-center rounded-full text-neutral-350 transition duration-100 ease-in-out hover:text-neutral-900 dark:text-neutral-550 dark:hover:text-neutral-100"
-                  href="{{ platform.link }}"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <i
-                    class="text-[28px] leading-none font-normal fa-brands fa-{{ platform.platform }}"
-                  ></i>
-                </a>
-              </li>
-            {% else %}
-              <li>
-                <a
-                  class="flex h-7 w-7 items-center justify-center rounded-full bg-neutral-350 text-neutral-100 transition duration-100 ease-in-out hover:bg-neutral-900 dark:bg-neutral-550 dark:text-neutral-800 dark:hover:bg-neutral-100"
-                  href="{{ platform.link }}"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <i
-                    class="leading-none font-normal fa-brands fa-{{ platform.platform }}{% if platform.platform == 'linkedin' %}-in{% endif %}"
-                  ></i>
-                </a>
-              </li>
-            {% endif %}
+            {% case platform.platform %}
+              {% when 'github' %}
+                {% assign height = 28 %}
+                {% assign margin-bottom = -2 %}
+              {% else %}
+                {% assign height = null %}
+                {% assign margin-bottom = null %}
+            {% endcase %}
+            <li>
+              {% assign url = platform.link %}
+              {% assign icon = 'icons/ui/'
+                | append: platform.platform
+                | append: '.svg'
+              %}
+              {% assign to_color = 'fill' %}
+              {% assign target = '_blank' %}
+              {% assign rel = 'noopener noreferrer' %}
+              {% include components/url-icon.html %}
+            </li>
           {% endfor %}
         {% endif %}
       </ul>
@@ -85,24 +79,34 @@ title: Home
     <p class="hyphen-auto mt-6 leading-snug">{{ site.data.about.intro }}</p>
   {% endif %}
 </section>
-
+<!-- About end -->
 {% if site.include_section.experience %}
-  <!-- Experience -->
+  <!-- Experience start -->
   <section
     class="mb-12"
     id="experience"
   >
     <!-- Header -->
     <div class="border-b-2 border-neutral-350 pb-1 dark:border-neutral-550">
-      <span class="text-[28px] font-bold leading-none">Experience</span>
+      <h2 class="text-[24px] font-bold leading-none sm:text-[28px]">
+        Experience
+      </h2>
     </div>
 
     <!-- Content -->
     <div class="mt-6 grid grid-cols-1 gap-4 leading-snug">
       {% for job in site.data.experience %}
         <div
-          class="rounded border bg-neutral-50 p-4 shadow-sm dark:border-neutral-800 dark:bg-neutral-750"
+          class="relative rounded border bg-white p-4 shadow-sm dark:border-neutral-700 dark:bg-neutral-750"
         >
+          {% if job.url %}
+            <!-- Link -->
+            {% assign url = job.url %}
+            {% assign urlicon = job.urlicon %}
+            {% assign urltext = job.urltext %}
+            {% include components/url-icon-expand.html %}
+          {% endif %}
+
           <!-- Position -->
           <h3 class="mb-2 text-xl font-normal leading-4">{{ job.position }}</h3>
 
@@ -110,26 +114,19 @@ title: Home
           <h4 class="mb-2 text-lg font-bold">{{ job.company }}</h4>
 
           <!-- Details -->
-          <div class="mb-3 grid grid-cols-3 gap-4">
+          <div class="mb-3 grid grid-cols-3 justify-start gap-2 [&>div]:flex [&>div]:flex-row [&>div]:items-center [&>div]:space-x-2 [&>div]:leading-4">
             {% if job.duration %}
               <!-- Duration -->
-              <div class="grid grid-cols-[16px,auto] gap-1 leading-4">
-                <p><i class="fa-regular fa-calendar"></i></p>
-                <p>{{ job.duration }}</p>
+              <div>
+                {% include icons/ui/calendar.svg %}
+                <p class="-mb-[2px]">{{ job.duration }}</p>
               </div>
             {% endif %}
             {% if job.location %}
               <!-- Location -->
-              <div class="grid grid-cols-[16px,auto] gap-1 leading-4">
-                <p><i class="fa-solid fa-location-dot"></i></p>
-                <p>{{ job.location }}</p>
-              </div>
-            {% endif %}
-            {% if job.contract %}
-              <!-- Contract type -->
-              <div class="grid grid-cols-[16px,auto] gap-1 leading-4">
-                <p><i class="fa-solid fa-file-signature"></i></p>
-                <p>{{ job.contract }}</p>
+              <div>
+                {% include icons/ui/map-pin.svg %}
+                <p class="-mb-[2px]">{{ job.location }}</p>
               </div>
             {% endif %}
           </div>
@@ -142,41 +139,39 @@ title: Home
               {% endfor %}
             </ul>
           {% endif %}
-          {% if job.url %}
-            <!-- Link -->
-            <div class="mt-2 flex items-center justify-center">
-              <a
-                class="focus:shadow-outline-neutral dark:hover:neutral-650 dark:focus:shadow-outline-dark inline-flex cursor-pointer select-none items-center rounded border border-neutral-150 bg-neutral-150 px-4 py-2 text-neutral-900 transition duration-150 ease-in-out hover:border-neutral-200 hover:bg-neutral-200 focus:border-neutral-200 focus:outline-none active:border-neutral-350 dark:border-neutral-700 dark:bg-neutral-700 dark:text-neutral-100 dark:hover:bg-neutral-650 dark:focus:border-neutral-650 dark:active:border-neutral-550"
-                href="{{ job.url }}"
-                target="_blank"
-              >
-                <i class="fa-solid fa-link mr-2"></i>
-                View Project
-              </a>
-            </div>
-          {% endif %}
         </div>
       {% endfor %}
     </div>
   </section>
+  <!-- Experience end -->
 {% endif %}
 {% if site.include_section.education %}
-  <!-- Education -->
+  <!-- Education start -->
   <section
     class="mb-12"
     id="education"
   >
     <!-- Header -->
     <div class="border-b-2 border-neutral-350 pb-1 dark:border-neutral-550">
-      <span class="text-[28px] font-bold leading-none">Education</span>
+      <h2 class="text-[24px] font-bold leading-none sm:text-[28px]">
+        Education
+      </h2>
     </div>
 
     <!-- Content -->
     <div class="mt-6 grid grid-cols-1 gap-4 leading-snug">
       {% for degree in site.data.education %}
         <div
-          class="rounded border bg-neutral-50 p-4 shadow-sm dark:border-neutral-800 dark:bg-neutral-750"
+          class="relative rounded border bg-white p-4 shadow-sm dark:border-neutral-700 dark:bg-neutral-750"
         >
+          {% if degree.url %}
+            <!-- Link -->
+            {% assign url = degree.url %}
+            {% assign urlicon = degree.urlicon %}
+            {% assign urltext = degree.urltext %}
+            {% include components/url-icon-expand.html %}
+          {% endif %}
+
           <!-- Degree -->
           <h3 class="mb-2 text-xl font-normal leading-4">
             {{ degree.degree }}
@@ -186,246 +181,264 @@ title: Home
           <h4 class="mb-2 text-lg font-bold">{{ degree.uni }}</h4>
 
           <!-- Details -->
-          <div class="mb-3 grid grid-cols-3 gap-4">
+          <div class="mb-3 grid grid-cols-3 gap-4 [&>div]:flex [&>div]:flex-row [&>div]:items-center [&>div]:space-x-2 [&>div]:leading-4">
             {% if degree.year %}
               <!-- Year -->
-              <div class="grid grid-cols-[16px,auto] gap-1 leading-4">
-                <p><i class="fa-regular fa-calendar"></i></p>
-                <p>{{ degree.year }}</p>
+              <div class="flex items-center">
+                {% include icons/ui/calendar.svg %}
+                <p class="-mb-[2px]">{{ degree.year }}</p>
               </div>
             {% endif %}
             {% if degree.location %}
               <!-- Location -->
-              <div class="grid grid-cols-[16px,auto] gap-1 leading-4">
-                <p><i class="fa-solid fa-location-dot"></i></p>
-                <p>{{ degree.location }}</p>
+              <div class="flex items-center">
+                {% include icons/ui/map-pin.svg %}
+                <p class="-mb-[2px]">{{ degree.location }}</p>
               </div>
             {% endif %}
           </div>
 
           <!-- Thesis details -->
-          <div class="grid grid-cols-[110px,auto] gap-1">
+          <div class="grid grid-cols-1 2xs:grid-cols-[110px,auto] 2xs:gap-1">
             {% if degree.thesis.title %}
               <!-- Thesis title -->
               <p class="leading-snug"><b>Thesis title:</b></p>
-              <p class="leading-snug">"{{ degree.thesis.title }}"</p>
+              <p class="mb-1 leading-snug 2xs:mb-0">
+                "{{ degree.thesis.title }}"
+              </p>
             {% endif %}
             {% if degree.thesis.supervisors %}
               <!-- Thesis supervisors -->
               <p class="leading-snug"><b>Supervisors:</b></p>
-              <p class="leading-snug">{{ degree.thesis.supervisors }}</p>
+              <p class="mb-1 leading-snug 2xs:mb-0">
+                {{ degree.thesis.supervisors }}
+              </p>
             {% endif %}
           </div>
-
-          {% if degree.thesis.pdf %}
-            <!-- Link -->
-            <div class="mt-2 flex items-center justify-center">
-              <a
-                class="modal-identifier focus:shadow-outline-neutral dark:hover:neutral-650 dark:focus:shadow-outline-dark inline-flex cursor-pointer select-none items-center rounded border border-neutral-150 bg-neutral-150 px-4 py-2 text-neutral-900 transition duration-150 ease-in-out hover:border-neutral-200 hover:bg-neutral-200 focus:border-neutral-200 focus:outline-none active:border-neutral-350 dark:border-neutral-700 dark:bg-neutral-700 dark:text-neutral-100 dark:hover:bg-neutral-650 dark:focus:border-neutral-650 dark:active:border-neutral-550"
-                data-modal-id="modal_degree_{{ forloop.index }}"
-              >
-                <i class="fa-regular fa-file-pdf mr-2"></i>
-                View Thesis
-              </a>
-            </div>
-
-            <!-- Modal -->
-            <div
-              class="modal fixed left-0 top-0 z-[100] hidden h-full w-full bg-black/70"
-              id="modal_degree_{{ forloop.index }}"
-            >
-              <div
-                class="modal-overlay relative left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform"
-                style="width: calc(100vw - 100px); height: calc(100vh - 100px)"
-              >
-                <span
-                  class="modal-close-btn ease absolute right-0 top-[-30px] transform cursor-pointer text-3xl font-bold text-white duration-100 hover:text-red-500"
-                  data-modal-close-id="modal_degree_{{ forloop.index }}"
-                  >&times;</span
-                >
-                <iframe
-                  src="assets/pdf/{{ degree.thesis.pdf }}"
-                  width="100%"
-                  height="100%"
-                ></iframe>
-              </div>
-            </div>
-          {% endif %}
         </div>
       {% endfor %}
     </div>
   </section>
-{% endif %}
-{% if site.include_section.projects %}
-  <!-- Projects -->
-  <section
-    class="mb-12"
-    id="projects"
-  >
-    <!-- Header -->
-    <div class="border-b-2 border-neutral-350 pb-1 dark:border-neutral-550">
-      <span class="text-[28px] font-bold leading-none">Recent Projects</span>
-    </div>
-
-    <!-- Content -->
-    <div class="mt-6 grid grid-cols-1 gap-6"></div>
-  </section>
+  <!-- Education end -->
 {% endif %}
 {% if site.include_section.skills %}
-  <!-- Skills -->
+  <!-- Skills start -->
   <section
-    class="mb-12"
+    class="mb-12 overflow-hidden"
     id="skills"
   >
     <!-- Header -->
     <div class="border-b-2 border-neutral-350 pb-1 dark:border-neutral-550">
-      <span class="text-[28px] font-bold leading-none">Skills</span>
+      <h2 class="text-[24px] font-bold leading-none sm:text-[28px]">Skills</h2>
     </div>
 
+    <!-- Filtering buttons -->
+    {% assign skill_filters = '' %}
+    {% for category in site.data.skills %}
+      {% for skill in category.items %}
+        {% for skill_filter in skill.filter %}
+          {% assign skill_filters = skill_filters
+            | append: skill_filter
+            | append: ','
+          %}
+        {% endfor %}
+      {% endfor %}
+    {% endfor %}
+    {% assign skill_filters = skill_filters | split: ',' | uniq | sort %}
+    <ul
+      class="mb-3 flex w-full flex-wrap border-b-2 border-neutral-350 py-2 dark:border-neutral-550 [&>*]:mx-auto [&>*]:px-2 [&>*]:py-1"
+      role="filterlist"
+    >
+      <li
+        class="cursor-pointer select-none border-transparent transition duration-200 ease-in-out hover:text-neutral-550 active:text-neutral-450 disabled:text-black/30 aria-selected:text-neutral-450 dark:text-neutral-100 dark:hover:text-neutral-350 dark:active:text-neutral-450 dark:aria-selected:text-neutral-450"
+        role="filter"
+        data-filter="*"
+        aria-selected="true"
+        tabindex="0"
+      >
+        All
+      </li>
+      {% for skill_filter in skill_filters %}
+        {% assign skill_filter_id = skill_filter
+          | downcase
+          | replace: ' ', '-'
+          | replace: '&', 'and'
+        %}
+        <li
+          class="cursor-pointer select-none border-transparent transition duration-200 ease-in-out hover:text-neutral-550 active:text-neutral-450 disabled:text-black/30 aria-selected:text-neutral-450 dark:text-neutral-100 dark:hover:text-neutral-350 dark:active:text-neutral-450 dark:aria-selected:text-neutral-450"
+          role="filter"
+          data-filter=".{{ skill_filter_id }}"
+          tabindex="0"
+        >
+          {{ skill_filter }}
+        </li>
+      {% endfor %}
+    </ul>
+
     <!-- Content -->
-    <div class="mt-6 grid grid-cols-1 gap-6">
+    <div
+      class="-mb-3 transition-height duration-400 ease-in-out"
+      data-isotope-container
+    >
       {% for category in site.data.skills %}
-        <div>
-          <!-- Category -->
-          <h3 class="mb-4 text-xl font-normal leading-none">
+        <!-- Category -->
+        {% assign skill_filters = '' %}
+        {% for skill in category.items %}
+          {% for skill_filter in skill.filter %}
+            {% assign skill_filters = skill_filters
+              | append: skill_filter
+              | append: ','
+            %}
+          {% endfor %}
+        {% endfor %}
+        {% assign skill_filters = skill_filters | split: ',' | uniq | sort %}
+        <div
+          class="z-10 mb-4 mt-3 w-full{% for skill_filter in skill_filters %} {{ skill_filter | downcase | replace: ' ', '-' | replace: '&', 'and' }}{% endfor %}"
+          data-isotope-item
+        >
+          <h3
+            class="text-xl font-normal leading-none"
+          >
             {{ category.category }}
           </h3>
+        </div>
 
-          <!-- Skills -->
-          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-            <!-- Sort skills by proficiency in descending order -->
-            {% assign sorted_skills = category.items
-              | sort: 'proficiency'
-              | reverse
-            %}
-            {% for skill in sorted_skills %}
-              <div
-                class="group rounded border bg-neutral-50 p-8 shadow-sm dark:border-neutral-800 dark:bg-neutral-750"
-              >
-                <div
-                  class="transition duration-150 ease-in-out hover:cursor-pointer hover:blur-[6px]"
+        <!-- Skills sorted by proficiency in descending order -->
+        {% assign sorted_skills = category.items
+          | sort: 'proficiency'
+          | reverse
+        %}
+        {% for skill in sorted_skills %}
+          {% assign skill_id = skill.skill | downcase %}
+          <!-- Skill box: {{ skill.skill }} -->
+          <div
+            class="relative mb-3 h-[130px] w-full rounded border bg-white shadow-sm active:scale-95 data-[arrange-completed=true]:transition-transform dark:border-neutral-700 dark:bg-neutral-750 2xs:w-[calc(50%-6px)] md:w-[calc(33.3333%-8px)]{% for skill_filter in skill.filter %} {{ skill_filter | downcase | replace: ' ', '-' | replace: '&', 'and' }}{% endfor %}"
+            data-isotope-item
+            data-arrange-completed="true"
+          >
+            <div class="p-8">
+              <div class="flex h-10 w-auto flex-row items-end justify-between">
+                <!-- Title -->
+                <h4
+                  class="ml-1 text-lg font-bold leading-none"
                 >
-                  <div class="relative h-10">
-                    <!-- Icon -->
-                    {% if skill.icon.org == 'local' %}
-                      {%
-                        include {{ skill.icon.icon
-                        }}
-                      %}
-                    {% elsif skill.icon.org == 'fontawesome' %}
-                      <i
-                        class="float-right mr-1 text-[40px] leading-none {{ skill.icon.icon }}"
-                      ></i>
-                    {% endif %}
+                  {{ skill.skill }}
+                </h4>
 
-                    <!-- Title -->
-                    <h4
-                      class="absolute bottom-0 left-1 text-lg font-bold leading-none"
-                    >
-                      {{ skill.skill }}
-                    </h4>
-                  </div>
-
-                  <!-- Proficiency bar -->
-                  <div class="mt-2 h-4 rounded bg-gray-200 dark:bg-gray-600">
-                    <div
-                      class="h-full rounded-l bg-lime-500"
-                      style="width: {{ skill.proficiency }}%;"
-                    ></div>
-                  </div>
-                </div>
-
-                <!-- Modal button -->
-                {% if skill.description %}
-                  <a
-                    class="modal-identifier hidden cursor-pointer select-none items-center group-hover:inline-flex"
-                    id
-                    data-modal-id="modal_skill_{{ skill.skill }}"
-                  >
-                    Click to view more!
-                  </a>
-                {% endif %}
+                <!-- Icon -->
+                <span class="[&>*]:mr-1 [&>*]:h-auto [&>*]:max-h-10 [&>*]:w-10">
+                  {% if skill.icon.org == 'local' %}
+                    {% include {{ skill.icon.icon }} %}
+                  {% elsif skill.icon.org == 'fontawesome' %}
+                    <i
+                      class="float-right leading-none {{ skill.icon.icon }}"
+                    ></i>
+                  {% endif %}
+                </span>
               </div>
 
-              {% if skill.modal %}
-                <!-- Modal -->
+              <!-- Proficiency bar -->
+              <div class="mt-2 h-4 rounded bg-gray-200 dark:bg-gray-600">
                 <div
-                  class="modal fixed left-0 top-0 z-[100] hidden h-full w-full bg-black/70"
-                  id="modal_skill_{{ skill.skill }}"
-                >
-                  <div
-                    class="modal-overlay relative left-1/2 top-1/2 max-h-fit max-w-3xl -translate-x-1/2 -translate-y-1/2 transform rounded py-8"
-                  >
-                    <span
-                      class="modal-close-btn ease absolute right-2 top-2 transform cursor-pointer text-3xl font-bold text-white duration-100 hover:text-red-500"
-                      data-modal-close-id="modal_skill_{{ skill.skill }}"
-                      >&times;</span
-                    >
-                  </div>
-                </div>
-              {% endif %}
-            {% endfor %}
+                  class="h-full rounded-l bg-lime-500"
+                  style="width: {{ skill.proficiency }}%;"
+                ></div>
+              </div>
+            </div>
+
+            {% if skill.categories %}
+              <!-- Modal button -->
+              <span
+                class="absolute left-0 top-0 flex h-full w-full select-none items-center justify-center rounded bg-transparent text-transparent transition-[backdrop-filter,opacity,color,background-color,text-decoration-color] hover:cursor-pointer hover:bg-white/70 hover:text-neutral-900 hover:backdrop-blur-sm focus:bg-white/70 focus:text-neutral-900 focus:backdrop-blur-sm hover:active:text-neutral-900 hover:active:backdrop-blur-[6px] dark:hover:bg-neutral-750/70 dark:hover:text-neutral-100 dark:focus:bg-neutral-750/70 dark:focus:text-neutral-100 dark:hover:active:bg-neutral-750/70 dark:hover:active:text-neutral-100 dark:hover:active:backdrop-blur-[6px] dark:focus:active:bg-neutral-750/70"
+                role="modal-open"
+                aria-controls="modal_skill_{{ skill_id }}"
+                aria-hidden="true"
+                tabindex="0"
+              >
+                View more
+              </span>
+            {% endif %}
           </div>
-        </div>
+
+          <!-- Modal: {{ skill.skill }} -->
+          {% if skill.categories %}
+            {% include components/descmodal.html %}
+          {% endif %}
+        {% endfor %}
       {% endfor %}
     </div>
   </section>
+  <!-- Skills end -->
 {% endif %}
 {% if site.include_section.recognition %}
-  <!-- Recognition -->
+  <!-- Recognitions start -->
   <section
     class="mb-12"
     id="recognition"
   >
     <!-- Header -->
     <div class="border-b-2 border-neutral-350 pb-1 dark:border-neutral-550">
-      <span class="text-[28px] font-bold leading-none">Recognition</span>
+      <h2 class="text-[24px] font-bold leading-none sm:text-[28px]">
+        Recognition
+      </h2>
     </div>
 
     <!-- Content -->
-    <div class="grid grid-cols-1 justify-items-center gap-y-6">
+    <div class="mt-6 grid grid-cols-1 justify-items-center gap-y-6">
       {% for recognition in site.data.recognitions %}
-        <div class="py-6">
-          <!-- Translation Button -->
-          <div class="relative h-[30px]">
-            {% if recognition.translation %}
-              <button
-                class="translate-btn focus:shadow-outline-neutral dark:hover:neutral-650 dark:focus:shadow-outline-dark absolute bottom-[-1px] right-5 h-[30px] w-[145px] rounded-t border-x border-t border-neutral-175 bg-neutral-175 text-neutral-900 transition duration-150 ease-in-out hover:border-neutral-200 hover:bg-neutral-200 focus:border-neutral-200 focus:outline-none active:border-neutral-350 dark:border-neutral-700 dark:bg-neutral-700 dark:text-neutral-100 dark:hover:bg-neutral-650 dark:focus:border-neutral-650 dark:active:border-neutral-550"
-                iframe_recognition_id="iframe_recognition_id_{{ forloop.index }}"
+        <!-- Only light theme due to social media posts being cross-origin -->
+        <div class="relative rounded border bg-white text-black shadow-sm dark:bg-white dark:text-black">
+          <!-- Translation toggle -->
+          {% if recognition.translation %}
+            <span
+              class="float-right -ml-7 mt-4 h-7 w-7 pr-4"
+            >
+              <span
+                class="group float-right flex h-auto w-auto cursor-pointer select-none flex-row rounded-full shadow-sm transition-transform duration-150 active:scale-95"
+                role="switch"
+                aria-controls="translation_recognition_{{ forloop.index }}"
+                aria-checked="false"
+                data-trigger-event="toggle-target"
+                tabindex="0"
               >
-                Show Translation
-              </button>
-            {% endif %}
-          </div>
+                <span class="z-10 inline-flex h-7 w-7 items-center justify-center rounded-full bg-neutral-350 p-[2px] text-white transition-colors duration-150 ease-in-out group-hover:bg-neutral-900 group-focus:bg-neutral-900">
+                  {% include icons/ui/language.svg %}
+                </span>
+                <span class="z-0 -ml-7 inline-flex h-7 w-7 items-center justify-center overflow-hidden rounded-full border border-neutral-350 bg-white p-0 text-neutral-900/0 transition-icon-expand delay-icon-expand duration-icon-expand group-hover:w-40 group-hover:border-neutral-900 group-hover:pl-[26px] group-hover:text-neutral-900/100 group-hover:delay-0 group-focus:w-40 group-focus:border-neutral-900 group-focus:pl-[26px] group-focus:text-neutral-900/100 group-focus:delay-0">
+                  <p class="inline-block whitespace-nowrap peer-checked:group-[]:hidden">
+                    View translation
+                  </p>
+                  <p class="hidden whitespace-nowrap peer-checked:group-[]:inline-block">
+                    View original
+                  </p>
+                </span>
+              </span>
+            </span>
+          {% endif %}
 
           <!-- Post -->
-          <div
-            class="relative rounded border bg-white text-black shadow-sm dark:bg-white dark:text-black"
-            style="width: {{ recognition.width }}px; height: {{ recognition.height }}px;"
-          >
-            <iframe
-              class="absolute inset-0 h-full w-full overflow-hidden rounded border-none"
-              id="post_iframe_recognition_id_{{ forloop.index }}"
-              src="{{ recognition.url }}"
-              scrolling="no"
-            ></iframe>
+          <iframe
+            class="inset-0 w-auto rounded border-none"
+            id="post_recognition_{{ forloop.index }}"
+            src="{{ recognition.url }}"
+            scrolling="no"
+          ></iframe>
 
-            <!-- Translation -->
-            {% if recognition.translation %}
-              <div
-                class="absolute inset-0 top-[76px] hidden w-full overflow-hidden border-none bg-white text-black dark:bg-white dark:text-black"
-                id="translation_iframe_recognition_id_{{ forloop.index }}"
-                style="height: {{ recognition.height_text }}px;"
-                scrolling="no"
-              >
-                <p class="px-4 py-0 font-sans text-sm leading-normal">
-                  {{ recognition.translation }}
-                </p>
-              </div>
-            {% endif %}
-          </div>
+          <!-- Translation - Hardcoded -->
+          {% if recognition.translation %}
+            <div
+              class="absolute inset-0 top-[76px] hidden w-full overflow-hidden border-none bg-white text-black peer-checked:block dark:bg-white dark:text-black"
+              id="translation_recognition_{{ forloop.index }}"
+              scrolling="no"
+            >
+              <p class="px-4 py-0 !font-linkedin !text-sm !font-normal !leading-normal">
+                {{ recognition.translation }}
+              </p>
+            </div>
+          {% endif %}
         </div>
       {% endfor %}
     </div>
   </section>
+  <!-- Recognitions end -->
 {% endif %}
