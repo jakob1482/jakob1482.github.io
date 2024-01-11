@@ -1,152 +1,328 @@
-function convertImageToColor(imgElement, hexColor) {
-  // Convert hex to RGB
-  function hexToRgb(hex) {
-    const bigint = parseInt(hex.substring(1), 16);
-    const r = (bigint >> 16) & 255;
-    const g = (bigint >> 8) & 255;
-    const b = bigint & 255;
+---
+---
+var recognitionsData = {
+  {% for recognition in site.data.recognitions %}{% if recognition.dimensions %}"recognition_{{ forloop.index }}": {{ recognition.dimensions | jsonify }},{% endif %}{% endfor %}
+};
+var {
+  OverlayScrollbars,
+  ScrollbarsHidingPlugin,
+  SizeObserverPlugin,
+  ClickScrollPlugin,
+} = OverlayScrollbarsGlobal;
+const $easeInOut = $.bez([0.4,0,0.2,1]);
 
-    return [r, g, b];
-  }
+// Timers
+var resizeTimerIsotope;
+var resizeTimerModal;
+var toggleTimerTheme;
 
-  const color = hexToRgb(hexColor);
+// Custom events.
+const eventToggleTheme = new Event("toggle-theme");
+const eventToggleTarget = new Event("toggle-target");
+const eventModalClose = new Event("modal-close");
 
-  const canvas = document.createElement("canvas");
-  const ctx = canvas.getContext("2d");
-
-  canvas.width = imgElement.width;
-  canvas.height = imgElement.height;
-
-  ctx.drawImage(imgElement, 0, 0);
-
-  const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-  const data = imageData.data;
-
-  for (let i = 0; i < data.length; i += 4) {
-    // If the pixel is not transparent
-    if (data[i + 3] > 0) {
-      data[i] = color[0]; // Red
-      data[i + 1] = color[1]; // Green
-      data[i + 2] = color[2]; // Blue
-    }
-  }
-
-  ctx.putImageData(imageData, 0, 0);
-
-  // Replace the original image's src with the canvas data
-  imgElement.src = canvas.toDataURL();
-}
-
-function updateSkillIconColors(isDarkTheme) {
-  const hexColor = isDarkTheme ? "#F5F5F5" : "#171717";
-
-  const skillImages = document.querySelectorAll('img[id^="skill_img_"]');
-  skillImages.forEach((img) => {
-    // If images are already loaded:
-    if (img.complete) convertImageToColor(img, hexColor);
+/**
+ * Initializes the scrollbar and sets the theme based on the user's preference.
+ * 
+ * @param {HTMLElement} element - The element to initialize the scrollbar on.
+ * @returns {OverlayScrollbars} - The initialized OverlayScrollbars instance.
+ */
+function initScrollbar(element) {
+  return OverlayScrollbars(element, {
+    scrollbars: {
+      theme: localStorage.theme === "dark" ? "os-theme-light" : "os-theme-dark",
+      autoHide: "leave",
+      autoHideDelay: 500,
+      autoHideEasing: "ease",
+      clickScrolling: true,
+      dragScrolling: true,
+      touchSupport: true,
+      snapHandle: true,
+    },
   });
 }
 
-// Initially color the images based on the current theme
-updateSkillIconColors(document.documentElement.classList.contains("dark"));
+/**
+ * Initializes the DOMContentLoaded event listener.
+ */
+$(function () {
+  // Initialize OverlayScrollbars in the body element.
+  var scrollbar = initScrollbar(document.body);
 
-// When DOM is loaded
-document.addEventListener("DOMContentLoaded", function () {
-  var themeToggleButton = document.getElementById("themeToggle");
+  // Initialize isotope items grid.
+  var $grid = $("[data-isotope-container]").isotope({
+    transitionDuration: 400,
+    resize: false,
+    itemSelector: "[data-isotope-item]",
+    layoutMode: "fitRows",
+    percentPosition: true,
+    fitRows: {
+      isFitWidth: true,
+      columnWidth: "[data-isotope-item]",
+      gutter: 12,
+    },
+  });
+  var skillBoxes = $grid.find("[data-arrange-completed]");
 
-  // Theme toggle logic
-  themeToggleButton.addEventListener("click", function () {
+  /**
+   * Event handler for filtering skills in the Isotope grid.
+   * Applies the selected filter to the grid and updates the UI elements.
+   * Temporarily sets the data-arrange-completed attribute to false to prevent 'jumping' animations.
+   */
+  var resizeTimerIsotope;
+  $("ul[role='filterlist']").on("click", "li", function() {
+    // Get the filter value from the clicked element.
+    let filterValue = $(this).attr("data-filter");
+
+    // Set the data-arrange-completed attribute to false to prevent 'jumping' animations.
+    skillBoxes.attr("data-arrange-completed", false);
+    
+    // Filter the grid while applying a transition
+    $grid.isotope({ filter: filterValue });
+    $(this).siblings().attr("aria-selected", false);
+    $(this).attr("aria-selected", true);
+
+    // Set the data-arrange-completed attribute to true after the transition is complete.
+    clearTimeout(resizeTimerIsotope);
+    resizeTimerIsotope = setTimeout(function() {
+      skillBoxes.attr("data-arrange-completed", true);
+    }, $("[data-isotope-container]").data("isotope").options["transitionDuration"] + 50);
+  });
+
+  /**
+   * Event handler for window resize event.
+   * Temporarily removes the transition duration, triggers the layout of the grid, and then restores the transition duration.
+   */
+  $(window).on("resize", function() {
+    $grid.isotope({ transitionDuration: 0 });
+    $grid.isotope("layout");
+    $grid.isotope({ transitionDuration: 400 });
+  });
+  
+  $("[role='switch']").on("click keydown", function(e) {
+    if (e.type === 'click' || e.key === 'Enter' || e.which === 13) {
+      let triggerEvent = $(this).attr("data-trigger-event");
+      $(this)
+        .trigger(triggerEvent);
+    }
+  });
+
+  /**
+   * Toggles the theme between light and dark mode.
+   * Changes the theme in localStorage, updates the UI elements, and applies the new theme to the scrollbar.
+   * Disables transitions to ensure instant theme change, then enables transitions after the theme change.
+   * If the window width is less than 550px, triggers a click event on the navbar toggle to close the navbar.
+   */
+  $("[role='switch']").on("toggle-theme", function() {
+    // Disables transitions to ensure instant theme change.
+    $("html").addClass("no-transition");
+
+    // Changes the theme in localStorage.
     let themeIsDark = localStorage.theme === "dark";
-    document.documentElement.classList.add("no-transition");
-
     if (themeIsDark) {
-      document.documentElement.classList.remove("dark");
+      $("html").removeClass("dark");
       localStorage.theme = "light";
-      themeToggleButton.innerHTML = '<i class="fa-solid fa-sun"></i>';
     } else {
-      document.documentElement.classList.add("dark");
+      $("html").addClass("dark");
       localStorage.theme = "dark";
-      themeToggleButton.innerHTML = '<i class="fa-solid fa-moon"></i>';
     }
+    
+    // Updates the UI elements.
+    $(this).attr("aria-checked", !themeIsDark)
 
-    // Emit custom event after theme switch
-    const themeChangedEvent = new CustomEvent("themeChanged", {
-      detail: { isDark: themeIsDark },
+    // Changes the scrollbar theme.
+    let currentScrollbarTheme = themeIsDark ? "os-theme-light" : "os-theme-dark";
+    let newScrollbarTheme = themeIsDark ? "os-theme-dark" : "os-theme-light";
+    $("." + currentScrollbarTheme).each(function () {
+      $(this).removeClass(currentScrollbarTheme).addClass(newScrollbarTheme);
     });
-    document.dispatchEvent(themeChangedEvent);
 
-    setTimeout(() => {
-      document.documentElement.classList.remove("no-transition");
-    }, 150);
-  });
-
-  // Open the modal
-  document.body.addEventListener("click", function (event) {
-    if (event.target.classList.contains("modal-identifier")) {
-      const modalId = event.target.getAttribute("data-modal-id");
-      if (modalId) {
-        document.getElementById(modalId).style.display = "block";
-        document.body.style.overflowY = "hidden";
-        document.body.style.borderRight = `${scrollbarWidth}px solid transparent`;
+    // Enables transitions after the theme change.
+    setTimeout(function () {
+      $("html").removeClass("no-transition");
+      if (window.innerWidth < 550) {
+        $("#navbar-toggle").trigger("click");
       }
-    }
-    if (event.target.closest(".modal-identifier")) {
-      const modalId = event.target
-        .closest(".modal-identifier")
-        .getAttribute("data-modal-id");
-      if (modalId) {
-        document.getElementById(modalId).style.display = "block";
-        document.body.style.overflowY = "hidden";
-        document.body.style.borderRight = `${scrollbarWidth}px solid transparent`;
+    }, 200);
+  });
+
+  $("[role='switch']").on("toggle-target", function() {
+    let targetId = "#" + $(this).attr("aria-controls");
+    let target = $(targetId);
+    $(this).attr("aria-checked", $(this).attr("aria-checked") !== "true")
+    $(this).attr("aria-checked") === "true" ? target.show() : target.hide();
+  });
+
+  /**
+   * Toggles the aria-expanded attribute of the navbar header based on the state of the navbar toggle.
+   * If the navbar toggle is expanded, sets the aria-expanded attribute to "true", otherwise sets it to "false".
+   */
+  $("[role='navbar-toggle'][aria-controls]").on("click", function () {
+    let targetId = "#" + $(this).attr("aria-controls");
+    let isExpanded = $(this).attr("aria-expanded") === "true";
+    $(this).attr("aria-expanded", !isExpanded);
+    $(this).closest("nav").attr("aria-expanded", !isExpanded);
+    $(targetId).toggle(400, $.bez([0.4,0,0.2,1]));
+  });
+
+  /**
+   * Handles the click event on elements with the role "tab-tabs" and attribute "aria-controls".
+   * Updates the active tab content and navigation state based on the clicked element.
+   */
+  $("[role='sidenav-toggle'][aria-controls]").on("click", function() {
+    let targetId = "#" + $(this).attr("aria-controls");
+    let isExpanded = $(this).attr("aria-expanded") === "true";
+    $(targetId).fadeToggle(400, $easeInOut);
+    $(this).attr("aria-expanded", !isExpanded);
+    $(this).closest("nav").attr("aria-expanded", !isExpanded);
+  });
+
+  /**
+   * Handles the click event on elements with the role "tab-tabs" and attribute "aria-controls".
+   * Updates the active tab content and navigation state based on the clicked element.
+   */
+  $("[role='tablist-toggle'][aria-controls]").on("click", function() {
+    let targetId = "#" + $(this).attr("aria-controls");
+    let isExpanded = $(this).attr("aria-expanded") === "true";
+    $(targetId)
+      .fadeToggle(400, $easeInOut)
+      .css("height", isExpanded ? "0" : $(targetId).attr("data-toggle-height"));
+    $(this).attr("aria-expanded", !isExpanded);
+  });
+
+  /**
+   * Handles the click event on elements with the role "tab" and attribute "aria-controls".
+   * Updates the active tab content and navigation state based on the clicked element.
+   */
+  $("[role='tab'][aria-controls]").on("click", function() {
+    // Find the target ID
+    let activeTabs = $(this)
+      .closest("nav")
+      .find("[aria-selected='true']");
+    let targetId = "#" + $(this).attr("aria-controls");
+
+    // First, fade out all tab contents
+    activeTabs.each(function () {
+      let activeId = "#" + $(this).attr("aria-controls");
+      if (activeId !== targetId) {
+        // Fade out the current active tab content
+        $(activeId).attr("aria-selected", false);
+        // Fade in the target content section
+        $(targetId).attr("aria-selected", true);
       }
+    });
+
+    // Update active state for nav items within the same sidebar
+    activeTabs.attr("aria-selected", false);
+    $(this).attr("aria-selected", true);
+  });
+
+  /**
+   * Handles the click event for elements with the role "modal-open" and the attribute "aria-controls".
+   * Opens the modal specified by the value of the aria-controls attribute.
+   */
+  $("[role='modal-open'][aria-controls]").on("click", function() {
+    let targetId = "#" + $(this).attr("aria-controls");
+    document.querySelector(targetId).showModal();
+    $(targetId)
+      .attr("aria-modal", true)
+      .attr("aria-hidden", false);
+    $(window).trigger('resize');
+  });
+
+  /**
+   * Handles the click event for elements with the role "modal-close" and the attribute "aria-controls".
+   * Closes the modal and updates the accessibility attributes.
+   */
+  $("[role='modal-close'][aria-controls]").on("click", function() {
+    let targetId = "#" + $(this).attr("aria-controls");
+    $(targetId).trigger("modal-close");
+  });
+
+  /**
+   * Handles the click event on elements with the role "modal".
+   * Closes the corresponding modal and updates the attributes.
+   */
+  $("[role='modal']").on("click", function() {
+    let targetId = "#" + $(this).prop("id");
+    $(this).trigger("modal-close");
+  });
+
+  /**
+   * Handles the click event on elements with the role "modal".
+   * Closes the corresponding modal and updates the attributes.
+   */
+  $("[role='modal']").on("keydown", function(e) {
+    e.preventDefault();
+    let targetId = "#" + $(this).prop("id");
+    if (e.key == "Escape") {
+      $(this).trigger("modal-close");
     }
   });
 
-  // Close the modal when clicking the button
-  document.body.addEventListener("click", function (event) {
-    if (event.target.classList.contains("modal-close-btn")) {
-      const modalCloseId = event.target.getAttribute("data-modal-close-id");
-      if (modalCloseId) {
-        document.getElementById(modalCloseId).style.display = "none";
-        document.body.style.overflowY = "scroll";
-        document.body.style.borderRight = "";
-      }
-    }
+  /**
+   * Handles the close event on elements with the role "modal".
+   * Updates the accessibility attributes.
+   */
+  $("[role='modal']").on("modal-close", function(e) {
+    let id = "#" + $(this).prop("id");
+    $(this)
+      .attr("aria-modal", false)
+      .attr("aria-hidden", true)
+      .attr("tabindex", -1);
+    setTimeout(function() {
+      document.querySelector(id).close();
+    }, 300);
   });
 
-  // Close the modal when clicking outside of the content
-  window.addEventListener("click", function (event) {
-    if (event.target.classList.contains("modal")) {
-      event.target.style.display = "none";
-      document.body.style.overflowY = "scroll";
-      document.body.style.borderRight = "";
-    }
+  /**
+   * Handles the click event on elements with the role "modal-content".
+   * Prevents the click event from propagating further up the DOM tree, ensuring that the modal does not close when the content is clicked.
+   * 
+   * @param {Event} e - The click event object.
+   */
+  $("[role='modal-content']").on("click", function(e) {
+    e.stopPropagation();
   });
 
-  // Switch between posts and their translation
-  document.body.addEventListener("click", function (event) {
-    if (event.target.classList.contains("translate-btn")) {
-      const iframeId = event.target.getAttribute("iframe_recognition_id");
+  /**
+   * Event handler for window resize event.
+   * It adds a class to the modal content element to disable transitions temporarily,
+   * clears the resize timer, and then removes the class after a short delay.
+   */
+  var resizeTimerModal;
+  $(window).on("resize", function() {
+    let modalContent = $("[open][aria-modal='true']").find("[role='modal-content'");
+    modalContent.addClass('no-transition');
+    
+    clearTimeout(resizeTimerModal);
+    resizeTimerModal = setTimeout(function() {
+      modalContent.removeClass('no-transition');
+    }, 50);
+  });
 
-      if (iframeId) {
-        const translationContainer = document.getElementById(
-          "translation_" + iframeId,
-        );
-
-        // Toggle visibility of the iframes
-        if (translationContainer.style.display === "block") {
-          translationContainer.style.display = "none";
-          event.target.textContent = "Show Translation"; // Update button label
-        } else {
-          translationContainer.style.display = "block";
-          event.target.textContent = "Show Original"; // Update button label
+  /**
+   * Event handler for window resize.
+   * Adjusts the dimensions of posts and translations based on the window size.
+   */
+  $(window).on("resize", function() {
+    $.each(recognitionsData, function(recognitionId, dimensions) {
+      let post = $("#post_" + recognitionId);
+      let translation = $("#translation_" + recognitionId);
+      for (let i = 0; i < dimensions.length; i++) {
+        let dimension = dimensions[i];
+        if (window.innerWidth >= dimension.screen) {
+          post.css("width", dimension.screen - 40 + "px");
+          post.css("height", dimension.post_height + "px");
+          translation.css("height", dimension.translation_height + "px");
+          break; // Exit the loop once a matching condition is found
         }
       }
-    }
+    });
   });
-});
 
-// Set up the event listener for theme changes
-document.addEventListener("themeChanged", function (e) {
-  updateSkillIconColors(e.detail.isDark);
+  // Trigger window resize event 100 milliseconds after the DOMContentLoaded event is triggered
+  setTimeout(function() {
+    $(window).trigger("resize");
+  }, 100);
 });
