@@ -17,7 +17,6 @@
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^6.5.1",
     "@shopify/prettier-plugin-liquid": "^1.4.0",
-    "@svgr/plugin-prettier": "^8.1.0",
     "@tailwindcss/typography": "^0.5.10",
     "autoprefixer": "^10.4.16",
     "cross-env": "^7.0.3",
