@@ -1,16 +1,14 @@
 <!-- Theme toggle with SVG animations -->
-<label
-  for="theme-toggle"
-  class="my-auto cursor-pointer border-none bg-transparent !transition-transform"
+<span
+  class="group/themetoggle my-auto cursor-pointer border-none bg-transparent !transition-transform"
+  role="switch"
+  id="theme-toggle"
+  aria-checked="false"
+  data-trigger-event="toggle-theme"
+  tabindex="0"
 >
-  <input
-    id="theme-toggle"
-    type="checkbox"
-    class="peer hidden"
-    data-theme-toggle
-  >
   <svg
-    class="group h-5 w-5 fill-current"
+    class="h-5 w-5 fill-current"
     viewBox="0 0 32 32"
     aria-hidden="true"
     xmlns="http://www.w3.org/2000/svg"
@@ -21,41 +19,35 @@
         width="32" height="32"
       />
       <path
+        class="theme-icon fill-black transition-path duration-225 group-aria-checked/themetoggle:path-dark-theme-mask"
         id="theme-toggle-sun-moon-mask-path"
-        class="fill-black peer-checked:group-[]:path-[theme-toggle-mask-dark]"
         d="M 36,4 A 8,8 0 0 1 28,12 8,8 0 0 1 20,4 8,8 0 0 1 28,-4 8,8 0 0 1 36,4 Z"
       />
     </mask>
     <path
+      class="theme-icon origin-center scale-100 duration-325 ease-in-out group-aria-checked/themetoggle:scale-150"
       id="theme-toggle-sun-moon"
       mask="url(#theme-toggle-sun-moon-mask)"
-      class="theme-icon origin-center scale-100 duration-[275ms] ease-in-out peer-checked:group-[]:scale-150"
       d="M 24,16 a 8,8 0 0 1 -8,8 8,8 0 0 1 -8,-8 8,8 0 0 1 8,-8 8,8 0 0 1 8,8 Z"
     />
     <path
+      class="theme-icon origin-center scale-100 delay-225 duration-175 ease-in-out group-aria-checked/themetoggle:scale-0 group-aria-checked/themetoggle:delay-0"
       id="theme-toggle-sunrays"
-      class="theme-icon origin-center scale-100 delay-[225ms] duration-[175ms] ease-in-out peer-checked:group-[]:scale-0 peer-checked:group-[]:delay-0"
       d="M 16,0.10000018 c -0.830979,0 -1.499963,0.6689843 -1.499963,1.49996312 v 2.9999263 c 0,0.830979 0.668984,1.4999631 1.499963,1.4999631 0.83098,0 1.499963,-0.6689841 1.499963,-1.4999631 V 1.5999633 C 17.499963,0.76898448 16.83098,0.10000018 16,0.10000018 Z M 5.8186096,4.3166934 c -0.3834188,-1e-7 -0.766725,0.1475996 -1.0605208,0.4413954 -0.5875914,0.5875914 -0.5875908,1.5334508 0,2.1210416 L 6.8791304,9.000172 c 0.5875909,0.587591 1.5334502,0.5875915 2.1210416,0 0.5875914,-0.5875913 0.5875909,-1.5334507 0,-2.1210416 L 6.8791304,4.7580888 C 6.585335,4.4642934 6.2020284,4.3166936 5.8186096,4.3166934 Z m 20.3627814,0 c -0.383419,1e-7 -0.766726,0.1476 -1.060521,0.4413954 l -2.121042,2.1210416 c -0.587591,0.5875914 -0.587591,1.5334503 0,2.1210416 0.58759,0.5875908 1.533449,0.5875915 2.121042,0 l 2.121042,-2.1210416 c 0.58759,-0.5875908 0.58759,-1.5334508 0,-2.1210416 C 26.948115,4.4642931 26.56481,4.3166934 26.181391,4.3166934 Z M 1.5999633,14.500037 c -0.83097882,0 -1.49996312,0.668984 -1.49996312,1.499963 0,0.83098 0.6689843,1.499963 1.49996312,1.499963 h 2.9999263 c 0.830979,0 1.4999631,-0.668983 1.4999631,-1.499963 0,-0.830979 -0.6689841,-1.499963 -1.4999631,-1.499963 z m 25.8001477,0 c -0.830981,0 -1.499963,0.668984 -1.499963,1.499963 0,0.83098 0.668982,1.499963 1.499963,1.499963 h 2.999926 C 31.231016,17.499963 31.9,16.83098 31.9,16 c 0,-0.830979 -0.668984,-1.499963 -1.499963,-1.499963 z M 7.9396512,22.560386 c -0.3834189,0 -0.7667254,0.145646 -1.0605208,0.439442 L 4.7580888,25.12087 c -0.5875908,0.587591 -0.5875914,1.533449 0,2.121042 0.5875908,0.58759 1.5334508,0.58759 2.1210416,0 L 9.000172,25.12087 c 0.5875908,-0.587592 0.5875908,-1.533451 0,-2.121042 C 8.7063764,22.706032 8.3230702,22.560386 7.9396512,22.560386 Z m 16.1206978,0 c -0.383419,0 -0.766725,0.145646 -1.060521,0.439442 -0.587591,0.587592 -0.587591,1.533449 0,2.121042 l 2.121042,2.121042 c 0.58759,0.587589 1.533449,0.58759 2.121042,0 0.58759,-0.587593 0.58759,-1.533451 0,-2.121042 L 25.12087,22.999828 C 24.827074,22.706032 24.443768,22.560386 24.060349,22.560386 Z M 16,25.900148 c -0.830979,0 -1.499963,0.668982 -1.499963,1.499963 v 2.999926 C 14.500037,31.231016 15.169021,31.9 16,31.9 c 0.83098,0 1.499963,-0.668984 1.499963,-1.499963 V 27.400111 C 17.499963,26.56913 16.83098,25.900148 16,25.900148 Z"
     />
     <path
+      class="theme-icon origin-center scale-0 delay-0 duration-175 ease-in-out group-aria-checked/themetoggle:scale-100 group-aria-checked/themetoggle:delay-225"
       id="theme-toggle-stars"
-      class="theme-icon origin-center scale-0 delay-0 duration-[175ms] ease-in-out peer-checked:group-[]:scale-100 peer-checked:group-[]:delay-[225ms]"
       d="M 21.567001,0.28184573 A 0.71790897,0.71790897 0 0 0 20.99083,0.82286147 L 20.570907,2.5787208 A 2.8505576,2.8505576 0 0 1 18.33458,4.7173927 l -1.238281,0.2363281 a 0.83513071,0.83513071 0 0 0 -0.03711,1.6328125 l 1.44922,0.3457031 a 2.4952972,2.4952972 0 0 1 1.873045,1.9589848 l 0.300782,1.5742178 a 0.81074039,0.81074039 0 0 0 1.583984,0.03516 l 0.365235,-1.5292974 a 2.5428892,2.5428892 0 0 1 1.996093,-1.9062498 l 1.470704,-0.2812499 a 0.82655776,0.82655776 0 0 0 0.03711,-1.6171875 L 24.818954,4.8521583 A 2.7659447,2.7659447 0 0 1 22.742783,2.6822364 L 22.393174,0.85411145 A 0.71790897,0.71790897 0 0 0 21.567001,0.28184573 Z m 7.552735,8.63867257 a 2.25,2.25 0 0 0 -2.25,2.2499997 2.25,2.25 0 0 0 2.25,2.25 2.25,2.25 0 0 0 2.25,-2.25 2.25,2.25 0 0 0 -2.25,-2.2499997 z m -3.007812,6.0175777 a 1.75,1.75 0 0 0 -1.75,1.750001 1.75,1.75 0 0 0 1.75,1.749999 1.75,1.75 0 0 0 1.749999,-1.749999 1.75,1.75 0 0 0 -1.749999,-1.750001 z"
     />
   </svg>
-</label>
+</span>
 <!--
   Script for setting the initial theme toggle state to avoid transition animations on page load
 -->
 <script>
-  const initialThemeIsDark = localStorage.getItem('theme') === 'dark';
-  const themeToggleMaskPathDark =
-    'M 29.5,11.5 A 8,8 0 0 1 21.5,19.5 8,8 0 0 1 13.5,11.5 8,8 0 0 1 21.5,3.5 a 8,8 0 0 1 8,8 Z';
-  const themeToggleMaskPathLight =
-    'M 36,4 A 8,8 0 0 1 28,12 8,8 0 0 1 20,4 8,8 0 0 1 28,-4 8,8 0 0 1 36,4 Z';
-  $('#theme-toggle-sun-moon-mask-path').attr(
-    'd',
-    initialThemeIsDark ? themeToggleMaskPathDark : themeToggleMaskPathLight,
+  $('#theme-toggle').attr(
+    'aria-checked',
+    localStorage.getItem('theme') === 'dark',
   );
-  $('#theme-toggle').prop('checked', initialThemeIsDark);
 </script>
