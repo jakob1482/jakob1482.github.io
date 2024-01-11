@@ -1,74 +1,711 @@
-# Skills
-- category: Programming Languages
+# skills.yml
+
+###
+# Programming Languages
+- category: Programming & Scripting Languages
   items:
     - skill: R
       icon:
         org: fontawesome
         icon: fa-brands fa-r-project
       proficiency: 71
-      description: Data science.
+      filter:
+        - Data Science
+        - Bioinformatics
+      categories:
+        - title: General
+          topics:
+            - description: >
+                General Programming, encompassing the development and
+                maintenance of command-line scripts and applications.
+            - subtitle: Library Installation
+              utils:
+                - devtools
+                - Bioconductor
+            - subtitle: Parallelization
+              utils:
+                - parallel
+                - doParallel
+                - future
+                - snow
+                - BiocParallel
+        - title: Data Science
+          topics:
+            - subtitle: Data Manipulation & Analysis
+              utils:
+                - readr
+                - data.table
+                - dplyr
+                - tidyr
+                - purrr
+                - stringr
+                - stringi
+                - lubridate
+                - forcats
+                - rebus
+                - xlsx
+                - yaml
+            - subtitle: Data Visualization
+              utils:
+                - ggplot2
+                - ggpattern
+                - ggpubr
+                - ggvenn
+                - GGally
+                - grid
+                - gridExtra
+                - cowplot
+                - RColorBrewer
+                - factoextra
+                - lattice
+            - subtitle: Statistics
+              utils:
+                - stats
+                - MASS
+                - limma
+                - lme4
+                - nlme
+                - qvalue
+            - subtitle: Reporting
+              utils:
+                - rmarkdown
+                - knitr
+        - title: Bioinformatics
+          categories:
+            - title: Proteomics
+              topics:
+                - subtitle: Mass Spectrometry Data Analysis
+                  utils:
+                    - MSnbase
+            - title: Transcriptomics
+              topics:
+                - subtitle: Differential Expression Analysis
+                  utils:
+                    - DESeq2
+                    - edgeR
+                    - limma
+            - title: Multi-Omics
+              topics:
+                - subtitle: Gene Annotation
+                  utils:
+                    - biomaRt
+                    - AnnotationDbi
+                    - org.Hs.eg.db
+                    - org.Mm.eg.db
+                - subtitle: Variant Analysis
+                  utils:
+                    - vcfR
+                    - VariantAnnotation
+                    - VariantFiltering
+                    - ensemblVEP
+                - subtitle: Ontology Analysis
+                  utils:
+                    - DOSE
+                    - topGO
+                    - GOfuncR
+                    - clusterProfiler
+                    - GO.db
+                - subtitle: Pathway Analysis
+                  utils:
+                    - KEGGREST
+                    - rWikiPathways
+                    - ReactomePA
+            - title: Data Visualization
+              topics:
+                - subtitle: General
+                  utils:
+                    - Gviz
+                    - ggbio
+                - subtitle: Ontology Analysis
+                  utils:
+                    - GOplot
+                    - GObubble
+                - subtitle: Network Analysis
+                  utils:
+                    - RCy3
+                    - igraph
+        - title: Machine Learning
+          topics:
+            - description: >
+                Supervised, Unsupervised, Semi-Supervised Learning and
+                Reinforcement Learning.
+            - subtitle: General Machine Learning
+              utils:
+                - caret
+                - kernlab
+                - e1071
+                - Prophet
+            - subtitle: Clustering
+              utils:
+                - mclust
+                - NbClust
+                - ppclust
+                - useful
+                - EMCluster
+                - dbscan
+                - fpc
+            - subtitle: Decision Trees
+              utils:
+                - randomForest
+                - rpart
+                - ada
+                - xgboost
+            - subtitle: Deep Learning
+              utils:
+                - nnet
+                - neuralnet
+                - keras
 
     - skill: Python
       icon:
         org: fontawesome
         icon: fa-brands fa-python
       proficiency: 87
-      description: Data science.
-
-    - skill: Snakemake
-      icon:
-        org: local
-        icon: icons/snakemake.html
-      proficiency: 72
-      description: Workflow management.
+      filter:
+        - Data Science
+        - Bioinformatics
+        - Software Development
+      categories:
+        - title: General
+          topics:
+            - description: >
+                General and Object-Oriented Programming, encompassing the
+                development and maintenance of command-line scripts and
+                applications.
+            - subtitle: Logging
+              utils:
+                - logging
+                - loguru
+            - subtitle: Parallelization
+              utils:
+                - threading
+                - concurrent.futures
+                - asyncio
+        - title: Data Science
+          topics:
+            - subtitle: Data Manipulation & Analysis
+              utils:
+                - NumPy
+                - SciPy
+                - Pandas
+                - dateutil
+                - pytz
+            - subtitle: Data Visualization
+              utils:
+                - Matplotlib
+                - Seaborn
+            - subtitle: Statistics
+              utils:
+                - SciPy
+                - statsmodels
+                - pingouin
+        - title: Bioinformatics
+          topics:
+            - subtitle: General Bioinformatics
+              utils:
+                - Biopython
+            - subtitle: Variant Analysis
+              utils:
+                - PyVCF
+        - title: Machine learning
+          topics:
+            - description: >
+                Supervised, Unsupervised, Semi-Supervised Learning and
+                Reinforcement Learning.
+            - subtitle: General Machine Learning
+              utils:
+                - SciPy
+                - scikit-learn
+            - subtitle: Deep Learning
+              utils:
+                - PyTorch
+                - Keras
+            - subtitle: Natural Language Processing
+              utils:
+                - NLTK
+                - HuggingFace
+        - title: Web Scraping
+          topics:
+            - subtitle: Synchronous Scraping
+              utils:
+                - Requests
+                - Selenium
+                - FeedParser
+            - subtitle: Asynchronous Scraping
+              utils:
+                - AIOHTTP
+                - Playwright
+            - subtitle: HTML Parsing
+              utils:
+                - lxml
+                - BeautifulSoup
+                - html
+                - unidecode
 
     - skill: Java
       icon:
         org: fontawesome
         icon: fa-brands fa-java
       proficiency: 58
-      description: General.
-
-    - skill: SQL
-      icon:
-        org: fontawesome
-        icon: fa-solid fa-database
-      proficiency: 35
-      description: Database querying and management.
+      filter:
+        - Software Development
+      categories:
+        - title: General
+          topics:
+            - description: >
+                Object-Oriented Programming, encompassing the development and
+                maintenance of both command-line and graphical applications.
 
     - skill: Bash
       icon:
         org: fontawesome
         icon: fa-solid fa-terminal
       proficiency: 36
-      description: Scripting.
+      filter:
+        - Bioinformatics
+      categories:
+        - title: General
+          topics:
+            - description: >
+                General usage including scripting and automation.
 
-- category: Tools & Platforms
+    - skill: JavaScript
+      icon:
+        org: fontawesome
+        icon: fa-brands fa-js-square
+      proficiency: 37
+      filter:
+        - Web Development
+      categories:
+        - title: General
+          topics:
+            - description: >
+                Development and maintenance of websites.
+            - subtitle: Web Development
+              utils:
+                - Node.js
+                - jQuery
+                - ESLint
+
+###
+# Markup, Styling, & Templating Languages
+- category: Markup, Styling, & Templating Languages
+  items:
+    - skill: LaTeX
+      icon:
+        org: local
+        icon: icons/skills/latex.svg
+      proficiency: 39
+      categories:
+        - title: General
+          topics:
+            - description: >
+                Development and maintenance of documentation and publications.
+            - subtitle: Distributions
+              utils:
+                - Overleaf
+                - TeXstudio
+        - title: Packages
+          categories:
+            - title: Document Layout
+              topics:
+                - subtitle: Page Layout & Styling
+                  utils:
+                    - geometry
+                    - fancyhdr
+                    - titlesec
+                    - tocloft
+                - subtitle: Adaptive Content & Utilities
+                  utils:
+                    - lastpage
+                    - afterpage
+                    - changepage
+                    - pdflscape
+                    - listings
+                    - float
+                    - rotating
+            - title: Text Management
+              topics:
+                - subtitle: Fonts & Typography
+                  utils:
+                    - fontawesome
+                    - newtxtext
+                    - newtxmath
+                    - gensymb
+                    - fontenc
+                - subtitle: Text Content & Formatting
+                  utils:
+                    - lipsum
+                    - babel
+                    - enumitem
+                    - textpos
+                    - pseudo
+                    - inputenc
+            - title: Hyperlinks
+              topics:
+                - subtitle: Hyperlinks
+                  utils:
+                    - hyperref
+            - title: Graphics & Tables
+              topics:
+                - subtitle: Images & Color Management
+                  utils:
+                    - graphics
+                    - graphicx
+                    - xcolor
+                    - tikz
+                - subtitle: Tables & Lists
+                  utils:
+                    - booktabs
+                    - multicol
+                    - multirow
+                    - longtable
+                    - array
+                    - makecell
+                - subtitle: Captions
+                  utils:
+                    - caption
+                    - subcaption
+            - title: Mathematical Content
+              topics:
+                - subtitle: Mathematical Tools
+                  utils:
+                    - mathtools
+                    - amsmath
+            - title: Bibliography
+              topics:
+                - subtitle: Reference Management
+                  utils:
+                    - natbib
+                    - bibunits
+            - title: Additional Utilities
+              topics:
+                - subtitle: Text & Content
+                  utils:
+                    - fixltx2e
+                    - siunitx
+                    - subfiles
+                    - todonotes
+
+    - skill: Markdown
+      icon:
+        org: fontawesome
+        icon: fa-brands fa-markdown
+      proficiency: 68
+      filter:
+        - Web Development
+      categories:
+        - title: General
+          topics:
+            - description: >
+                Development and maintenance of documentation and websites.
+            - subtitle: Static Site Generators
+              utils:
+                - Jekyll
+
+    - skill: HTML
+      icon:
+        org: fontawesome
+        icon: fa-brands fa-html5
+      proficiency: 72
+      filter:
+        - Web Development
+      categories:
+        - title: General
+          topics:
+            - description: >
+                Development and maintenance of websites.
+            - subtitle: Static Site Generators
+              utils:
+                - Jekyll
+
+    - skill: CSS
+      icon:
+        org: fontawesome
+        icon: fa-brands fa-css3-alt
+      proficiency: 52
+      filter:
+        - Web Development
+      categories:
+        - title: General
+          topics:
+            - description: >
+                Development and maintenance of websites.
+            - subtitle: Frameworks
+              utils:
+                - TailwindCSS
+
+    - skill: Liquid
+      icon:
+        org: fontawesome
+        icon: fa-solid fa-droplet
+      proficiency: 65
+      filter:
+        - Web Development
+      categories:
+        - title: General
+          topics:
+            - description: >
+                Development and maintenance of websites.
+            - subtitle: Static Site Generators
+              utils:
+                - Jekyll
+            - subtitle: Integrations
+              utils:
+                - HTML
+                - JavaScript
+
+###
+# Development Tools & Platforms
+- category: Development Tools & Platforms
+  items:
+    - skill: Snakemake
+      icon:
+        org: local
+        icon: icons/skills/snakemake.svg
+      proficiency: 82
+      filter:
+        - Bioinformatics
+      categories:
+        - title: General
+          topics:
+            - description: >
+                Development and maintenance of Snakemake modules and workflows
+                for reproducible and scalable bioinformatics data analysis.
+            - subtitle: Environment Management
+              utils:
+                - Conda
+                - Mamba
+            - subtitle: Container Management
+              utils:
+                - Docker
+            - subtitle: High-Performance Computing
+              utils:
+                - SLURM
+            - subtitle: Scripting & Automation
+              utils:
+                - Bash
+                - Python
+                - R
+
+    - skill: Conda
+      icon:
+        org: local
+        icon: icons/skills/conda.svg
+      proficiency: 71
+      filter:
+        - Bioinformatics
+      categories:
+        - title: General
+          topics:
+            - description: >
+                Development and maintenance of Conda environments for
+                reproducible and scalable bioinformatics data analysis.
+            - subtitle: Distributions
+              utils:
+                - Conda
+                - Mamba
+            - subtitle: Repositories
+              utils:
+                - Anaconda
+                - Bioconda
+                - Conda-Forge
+
+    - skill: Docker
+      icon:
+        org: fontawesome
+        icon: fa-brands fa-docker
+      proficiency: 57
+      filter:
+        - Bioinformatics
+        - Data Science
+        - Software Development
+        - Web Development
+      categories:
+        - title: General
+          topics:
+            - description: >
+                Development and maintenance of Docker images for reproducible
+                and scalable bioinformatics data analysis.
+            - subtitle: Distributions
+              utils:
+                - Docker
+                - Udocker
+            - subtitle: Repositories
+              utils:
+                - Docker Hub
+                - nvcr.io
+            - subtitle: Container Management
+              utils:
+                - Docker Compose
+
+    - skill: Git
+      icon:
+        org: fontawesome
+        icon: fa-brands fa-git-alt
+      proficiency: 54
+      filter:
+        - Bioinformatics
+        - Data Science
+        - Software Development
+        - Web Development
+      categories:
+        - title: General
+          topics:
+            - description: >
+                Utilization of version-control for development and maintenance
+                of software repositories.
+            - subtitle: Platforms
+              utils:
+                - GitHub
+                - GitLab
+
+    - skill: Slurm
+      icon:
+        org: local
+        icon: icons/skills/slurm.svg
+      proficiency: 62
+      filter:
+        - Bioinformatics
+      categories:
+        - title: General
+          topics:
+            - description: >
+                Execution of scripts and bioinformatics workflows on
+                high-performance computing clusters.
+
+    - skill: SQL
+      icon:
+        org: fontawesome
+        icon: fa-solid fa-database
+      proficiency: 35
+      filter:
+        - Data Science
+        - Software Development
+      categories:
+        - title: General
+          topics:
+            - description: >
+                General usage including querying, manipulation, and management
+                of databases and tables.
+            - subtitle: Databases
+              utils:
+                - PostgreSQL
+                - SQLite
+
+    - skill: Jekyll
+      icon:
+        org: local
+        icon: icons/skills/jekyll.svg
+      proficiency: 72
+      filter:
+        - Web Development
+      categories:
+        - title: General
+          topics:
+            - description: >
+                Development and maintenance of static websites.
+            - subtitle: Integrations
+              utils:
+                - Markdown
+                - HTML
+                - CSS
+                - JavaScript
+                - Liquid
+            - subtitle: Hosting Platforms
+              utils:
+                - GitHub Pages
+
+###
+# Operating Systems
+- category: Operating Systems
   items:
     - skill: Linux
       icon:
         org: fontawesome
         icon: fa-brands fa-linux
       proficiency: 52
-      description: General usage including CLI.
+      categories:
+        - title: General
+          topics:
+            - description: >
+                General usage including scripting, automation, and system
+                administration.
+            - subtitle: Distributions
+              utils:
+                - Ubuntu
+                - Debian
+                - TrueNAS
+        - title: Software Management
+          topics:
+            - subtitle: Utilities & Repositories
+              utils:
+                - apt
+                - dpkg
+                - snap
+                - flatpak
+                - git
+            - subtitle: Environment Management
+              utils:
+                - Conda
+                - Mamba
+            - subtitle: Container Management
+              utils:
+                - Docker
+        - title: System Administration
+          topics:
+            - subtitle: Sysadmin Utilities
+              utils:
+                - Landscape
+                - Cockpit
+            - subtitle: Services
+              utils:
+                - PostgreSQL
+                - Nginx
+                - OpenVPN
+            - subtitle: Virtualization
+              utils:
+                - VirtualBox
+                - QEMU
+            - subtitle: Remote Access
+              utils:
+                - SSH
+                - VNC
+                - X11
+            - subtitle: Storage
+              utils:
+                - LVM
+                - RAID
+                - ZFS
+                - NTP
+                - NFS
+                - Samba
 
-    - skill: Conda
-      icon:
-        org: local
-        icon: icons/conda.html
-      proficiency: 71
-      description: Package management.
-
-    - skill: Docker
+    - skill: Windows
       icon:
         org: fontawesome
-        icon: fa-brands fa-docker
-      proficiency: 43
-      description: Development and deployment of containers.
-
-    - skill: Git
-      icon:
-        org: fontawesome
-        icon: fa-brands fa-git-alt
-      proficiency: 38
-      description: Version control.
+        icon: fa-brands fa-windows
+      proficiency: 93
+      categories:
+        - title: General
+          topics:
+            - description: >
+                General usage including automation and system administration.
+            - subtitle: Distributions
+              utils:
+                - Windows 10
+                - Windows 11
+                - Windows Server
+        - title: Software Management
+          topics:
+            - subtitle: Utilities & Repositories
+              utils:
+                - Chocolatey
+                - git
+            - subtitle: Environment Management
+              utils:
+                - Conda
+                - Mamba
+            - subtitle: Container Management
+              utils:
+                - Docker

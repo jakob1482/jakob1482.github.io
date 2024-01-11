@@ -1,7 +1,6 @@
 # Recognitions
 - platform: LinkedIn
   date: Aug, 2023
-  post-id: 7097844714871091200
   url: https://www.linkedin.com/embed/feed/update/urn:li:share:7097844714871091200
   translation: >-
     Huge congratulations to Jakob Jersild Nielsen 🌟 On the 8th of August, he
@@ -19,6 +18,22 @@
     Clinical Genetic Department, Jakob was guided by Professor Torben Kruse,
     Professor Mads Thomassen, Lars Andersen, and Kristina Magaard
     Koldby.<br><br>
-  width: 550
-  height: 1050
-  height_text: 400
+  dimensions:
+    - screen: 600
+      post_height: 1035
+      translation_height: 400
+    - screen: 550
+      post_height: 1065
+      translation_height: 420
+    - screen: 500
+      post_height: 1055
+      translation_height: 440
+    - screen: 450
+      post_height: 1105
+      translation_height: 530
+    - screen: 400
+      post_height: 1110
+      translation_height: 570
+    - screen: 350
+      post_height: 1205
+      translation_height: 670

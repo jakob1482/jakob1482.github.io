@@ -10,7 +10,9 @@
     supervisors:
       <i>Prof.</i> Torben A. Kruse, <i>Prof.</i> Mads Thomassen, <i>Post
       Doc.</i> Lars Andersen & <i>Post Doc.</i> Kristina M. Koldby.
-    pdf: Master_s_Thesis.pdf
+  url: /assets/pdf/Master_s_Thesis.pdf
+  urlicon: paper-clip
+  urltext: thesis
 
 - degree: BSc, Biomedicine
   uni: University of Southern Denmark
@@ -22,4 +24,6 @@
       tissue using RNA-Seq.
     supervisors:
       <i>Prof.</i> Susanne Mandrup & <i>Ph.D.</i> Elvira Laila Van Hauwaert.
-    pdf: Bachelor_s_Thesis.pdf
+  url: /assets/pdf/Bachelor_s_Thesis.pdf
+  urlicon: paper-clip
+  urltext: thesis
