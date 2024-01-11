@@ -1,10 +1,13 @@
 <div
-  id="{{ tab-id }}"
-  data-tab-content
-  class="absolute left-0 top-0 z-0 w-[480px] opacity-0 transition-opacity duration-300 ease-in-out data-[te-tab-active]:z-10 data-[te-tab-active]:opacity-100"
+  class="w-[calc(100vw - 274px)] hidden transition-opacity duration-300 ease-in-out aria-selected:block md:w-[433px]"
+  role="tabpanel"
+  id="{{ id }}"
+  aria-labelledby="tab-{{ id }}"
   {% if first == true and (category.categories == null or subcategory.categories == null) %}
-    data-te-tab-active
+    aria-selected="true"
     {% assign first = false %}
+  {% else %}
+    aria-selected="false"
   {% endif %}
 >
   {% for topic in topics %}

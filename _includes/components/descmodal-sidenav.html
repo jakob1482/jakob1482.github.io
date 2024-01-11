@@ -1,111 +1,117 @@
 <div
-  class="relative left-0 top-0 z-50 h-full w-[75px] sm:w-[200px]"
-  style="height: {{ height }}px;"
+  class="relative left-0 top-0 z-50 w-[84px] sm:w-[200px]"
 >
   <nav
+    class="group w-[84px] overflow-hidden bg-white/80 pr-2 backdrop-blur transition-width duration-400 ease-in-out aria-expanded:w-[200px] dark:bg-neutral-800/80 sm:w-[200px] sm:aria-expanded:w-[200px]"
+    role="sidenav"
     id="sidenav-skill-{{ skill_id }}"
-    class="group overflow-hidden bg-white/80 pr-2 backdrop-blur dark:bg-neutral-800/80 sm:p-0"
-    data-te-sidenav-init
-    data-te-sidenav-position="inherit"
-    data-te-sidenav-mode="side"
-    data-te-sidenav-color="dark"
-    data-te-sidenav-content="#content"
-    data-te-sidenav-width="200"
-    data-te-sidenav-slim-width="77"
+    aria-expanded="false"
   >
     <ul
       class="relative m-0 flex list-none flex-col [&>li:not(:last-child)]:mb-1"
-      data-te-sidenav-menu-ref
     >
-      <li class="relative block sm:hidden">
+      <li
+        class="relative block sm:hidden"
+        role="sidenav-toggle"
+        id="sidenav-toggle-skill-{{ skill_id }}"
+        aria-controls="tablist-skill-{{ skill_id }}-{{ category_id }}"
+        aria-expanded="false"
+        tabindex="0"
+      >
         <span
-          id="navbar-toggle-slim-skill-{{ skill_id }}"
-          type="button"
           class="flex h-12 border-0 bg-transparent px-6 py-2 text-neutral-900 hover:no-underline hover:shadow-none focus:no-underline focus:shadow-none focus:outline-none focus:ring-0 dark:text-neutral-100"
-          data-te-sidenav-toggle
         >
           <span
-            class="my-auto flex h-5 w-5 scale-50 items-center justify-center opacity-0 duration-300 ease-out group-data-[sidenav-slim]:scale-100 group-data-[sidenav-slim]:opacity-100 group-data-[sidenav-slim]:ease-in"
+            class="my-auto flex h-5 w-5 scale-100 flex-row items-center justify-center opacity-100 duration-300 ease-in group-aria-expanded:scale-50 group-aria-expanded:opacity-0 group-aria-expanded:ease-out"
           >
             {% include icons/ui/bars.svg %}
           </span>
           <span
-            class="my-auto -ml-5 flex h-5 w-5 scale-100 flex-row items-center justify-center opacity-100 duration-300 ease-in group-data-[sidenav-slim]:scale-50 group-data-[sidenav-slim]:opacity-0 group-data-[sidenav-slim]:ease-out"
+            class="my-auto -ml-5 flex h-5 w-5 scale-50 items-center justify-center opacity-0 duration-300 ease-out group-aria-expanded:scale-100 group-aria-expanded:opacity-100 group-aria-expanded:ease-in"
           >
             {% include icons/ui/x.svg %}
           </span>
         </span>
       </li>
-      {% for category in skill.categories %}
-        {% assign category_id = category.title
-          | downcase
-          | replace: ' ', '-'
-          | replace: '&', 'and'
-        %}
-        <li
-          class="relative"
+      <li
+        style="height: {{height}}px;"
+      >
+        <ul
+          class="relative m-0 hidden list-none flex-col space-y-1 p-0 aria-expanded:flex sm:!flex"
+          role="tablist"
+          id="tablist-skill-{{ skill_id }}-{{ category_id }}"
         >
-          <a
-            href="#tab-skill-{{ skill_id }}-{{ category_id }}"
-            type="button"
-            class="flex h-12 cursor-pointer items-center truncate rounded px-6 py-4 text-[0.875rem] text-neutral-700 outline-none transition duration-300 ease-linear hover:bg-neutral-150 hover:text-inherit hover:text-neutral-700 hover:outline-none focus:text-inherit focus:outline-none active:bg-neutral-150 active:text-inherit active:text-neutral-700 active:outline-none data-[te-nav-active]:bg-neutral-200 data-[te-nav-active]:font-semibold data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none data-[te-nav-active]:hover:bg-neutral-200 motion-reduce:transition-none dark:text-neutral-300 dark:hover:bg-neutral-750 dark:hover:text-neutral-300 dark:active:bg-neutral-750 dark:active:text-neutral-300 data-[te-nav-active]:dark:bg-neutral-700 data-[te-nav-active]:dark:hover:bg-neutral-700"
-            data-te-sidenav-link-ref
-            {% if category.categories == null %}
-              data-te-tab-target="#tab-skill-{{ skill_id }}-{{ category_id }}"
-            {% endif %}
-            {% if forloop.first %}
-              data-te-nav-active
-            {% endif %}
-          >
-            <span>{{ category.title }}</span>
-            {% if category.categories %}
-              <span
-                class="absolute right-0 mr-[0.8rem] transition-transform duration-300 ease-linear motion-reduce:transition-none [&>svg]:text-gray-600 dark:[&>svg]:text-gray-300"
-                data-te-sidenav-rotate-icon-ref
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  class="h-5 w-5"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                    clip-rule="evenodd" />
-                </svg>
-              </span>
-            {% endif %}
-          </a>
-          {% if category.categories %}
-            <ul
-              class="show !visible relative m-0 hidden list-none flex-col space-y-1 p-0 data-[te-collapse-show]:flex"
-              data-te-sidenav-collapse-ref
+          {% for category in skill.categories %}
+            {% assign category_id = category.title
+              | downcase
+              | replace: ' ', '-'
+              | replace: '&', 'and'
+            %}
+            <li
+              class="relative"
             >
-              {% for subcategory in category.categories %}
-                {% assign subcategory_id = subcategory.title
-                  | downcase
-                  | replace: ' ', '-'
-                  | replace: '&', 'and'
-                %}
-                <li
-                  class="relative mt-1"
-                >
-                  <a
-                    href="#tab-skill-{{ skill_id }}-{{ category_id }}-{{ subcategory_id }}"
-                    type="button"
-                    class="flex h-6 cursor-pointer items-center truncate rounded py-4 pl-[3.4rem] pr-6 text-[0.78rem] text-neutral-700 outline-none transition duration-300 ease-linear hover:bg-neutral-150 hover:text-inherit hover:text-neutral-700 hover:outline-none focus:text-inherit focus:outline-none active:bg-neutral-150 active:text-inherit active:text-neutral-700 active:outline-none data-[te-nav-active]:bg-neutral-200 data-[te-nav-active]:font-semibold data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none data-[te-nav-active]:hover:bg-neutral-200 motion-reduce:transition-none dark:text-neutral-300 dark:hover:bg-neutral-750 dark:hover:text-neutral-300 dark:active:bg-neutral-750 dark:active:text-neutral-300 data-[te-nav-active]:dark:bg-neutral-700 data-[te-nav-active]:dark:hover:bg-neutral-700"
-                    data-te-sidenav-link-ref
-                    data-te-tab-target="#tab-skill-{{ skill_id }}-{{ category_id }}-{{ subcategory_id }}"
+              <span
+                class="group/tab peer/tab flex h-12 cursor-pointer items-center truncate rounded px-6 py-4 text-[0.875rem] text-neutral-700 outline-none transition duration-300 ease-linear hover:bg-neutral-150 hover:text-inherit hover:text-neutral-700 hover:outline-none focus:text-inherit focus:outline-none active:bg-neutral-150 active:text-inherit active:text-neutral-700 active:outline-none aria-expanded:bg-neutral-200 aria-expanded:hover:bg-neutral-200 aria-selected:bg-neutral-200 aria-selected:hover:bg-neutral-200 motion-reduce:transition-none dark:text-neutral-300 dark:hover:bg-neutral-750 dark:hover:text-neutral-300 dark:active:bg-neutral-750 dark:active:text-neutral-300 aria-expanded:dark:bg-neutral-700 aria-expanded:dark:hover:bg-neutral-700 aria-selected:dark:bg-neutral-700 aria-selected:dark:hover:bg-neutral-700"
+                id="tab-skill-{{ skill_id }}-{{ category_id }}"
+                {% if category.categories == null %}
+                  role="tab"
+                  aria-controls="tabpanel-skill-{{ skill_id }}-{{ category_id }}"
+                  {% if forloop.first %}
+                    aria-selected="true"
+                  {% else %}
+                    aria-selected="false"
+                  {% endif %}
+                {% else %}
+                  role="tablist-toggle"
+                  aria-controls="tablist-skill-{{ skill_id }}-{{ category_id }}"
+                  aria-expanded="false"
+                {% endif %}
+                tabindex="0"
+              >
+                <span>{{ category.title }}</span>
+                {% if category.categories %}
+                  <span
+                    class="absolute right-0 mr-[0.8rem] transition-transform duration-400 group-aria-expanded/tab:rotate-180 motion-reduce:transition-none [&>svg]:text-gray-600 dark:[&>svg]:text-gray-300"
                   >
-                    {{ subcategory.title }}
-                  </a>
-                </li>
-              {% endfor %}
-            </ul>
-          {% endif %}
-        </li>
-      {% endfor %}
+                    {% include icons/ui/chevron-down.svg %}
+                  </span>
+                {% endif %}
+              </span>
+              {% if category.categories %}
+                <ul
+                  class="relative flex list-none flex-col space-y-1 overflow-hidden transition-height duration-400 ease-in-out"
+                  style="height: 0; display: none;"
+                  role="tablist"
+                  id="tablist-skill-{{ skill_id }}-{{ category_id }}"
+                  data-toggle-height="{{ 34 | times: category.categories.size | plus: 4 }}px"
+                >
+                  {% for subcategory in category.categories %}
+                    {% assign subcategory_id = subcategory.title
+                      | downcase
+                      | replace: ' ', '-'
+                      | replace: '&', 'and'
+                    %}
+                    <li
+                      class="relative mt-1"
+                    >
+                      <span
+                        class="flex h-6 cursor-pointer items-center truncate rounded py-4 pl-[3.4rem] pr-6 text-[0.78rem] text-neutral-700 outline-none transition duration-300 ease-linear hover:bg-neutral-150 hover:text-inherit hover:text-neutral-700 hover:outline-none focus:text-inherit focus:outline-none active:bg-neutral-150 active:text-inherit active:text-neutral-700 active:outline-none aria-selected:bg-neutral-200 aria-selected:hover:bg-neutral-200 motion-reduce:transition-none dark:text-neutral-300 dark:hover:bg-neutral-750 dark:hover:text-neutral-300 dark:active:bg-neutral-750 dark:active:text-neutral-300 aria-selected:dark:bg-neutral-700 aria-selected:dark:hover:bg-neutral-700"
+                        role="tab"
+                        id="tab-skill-{{ skill_id }}-{{ category_id }}-{{ subcategory_id }}"
+                        aria-controls="tabpanel-skill-{{ skill_id }}-{{ category_id }}-{{ subcategory_id }}"
+                        aria-selected="false"
+                        tabindex="0"
+                      >
+                        {{ subcategory.title }}
+                      </span>
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </li>
     </ul>
   </nav>
 </div>

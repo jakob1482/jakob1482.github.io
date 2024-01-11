@@ -1,117 +1,111 @@
-<div
-  data-te-modal-init
-  class="fixed left-0 top-0 z-[1055] hidden h-full w-full overflow-y-auto overflow-x-hidden outline-none"
+<dialog
+  class="group/modal backdrop:transition-backdrop fixed inset-0 z-50 origin-center translate-y-0 overflow-y-auto overflow-x-hidden rounded border bg-white bg-clip-padding text-current opacity-100 outline-none transition-[visibility,_transform,_opacity] delay-0 duration-[0ms,_300ms,_300ms] ease-[linear,swing,in-out] backdrop:bg-black/50 backdrop:backdrop-blur backdrop:duration-300 aria-hidden:-translate-y-10 aria-hidden:opacity-0 aria-hidden:delay-[300ms,_0ms,_0ms,_0ms] aria-hidden:backdrop:bg-black/0 aria-hidden:backdrop:backdrop-blur-none dark:border-neutral-750 dark:bg-neutral-800"
+  role="modal"
   id="modal_skill_{{ skill_id }}"
   tabindex="-1"
   aria-labelledby="modal_skill_{{ skill_id }}_label"
   aria-hidden="true"
 >
   <div
-    data-te-modal-dialog-ref
-    class="pointer-events-none relative mx-auto mt-7 flex min-h-[calc(100%-3.5rem)] w-fit max-w-[700px] translate-y-[-50px] items-center px-4 opacity-0 transition-all duration-300"
+    class="max-w-700"
+    role="modal-content"
   >
+    <!-- Modal header -->
     <div
-      class="shadow-[0_0.5rem_1rem_rgba(#000, 0.15)] pointer-events-auto relative flex w-full flex-col rounded border bg-white bg-clip-padding text-current shadow-lg outline-none dark:border-neutral-750 dark:bg-neutral-800"
+      class="relative flex flex-row items-center justify-between rounded-t border-b border-neutral-250 p-4 dark:border-neutral-650 dark:border-opacity-50"
     >
-      <!-- Modal header -->
-      <div
-        class="relative flex flex-row items-center justify-between rounded-t border-b border-neutral-250 p-4 dark:border-neutral-650 dark:border-opacity-50"
+      <!-- Title -->
+      <h4
+        class="mr-auto text-lg font-bold leading-none"
       >
-        <!-- Title -->
-        <h4
-          class="mr-auto text-lg font-bold leading-none"
-        >
-          {{ skill.skill }}
-        </h4>
+        {{ skill.skill }}
+      </h4>
 
-        <!-- Icon -->
-        <span class="fill:text-neutral-650 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 fill-neutral-250 text-neutral-250 dark:text-neutral-650 [&>*]:h-auto [&>*]:max-h-10 [&>*]:w-16">
-          {% if skill.icon.org == 'local' %}
-            {% include {{ skill.icon.icon }} %}
-          {% elsif skill.icon.org == 'fontawesome' %}
-            <i
-              class="text-[40px] leading-none {{ skill.icon.icon }}"
-            ></i>
-          {% endif %}
-        </span>
-
-        <!-- Close button -->
-        <span
-          type="button"
-          class="box-content rounded-none border-none hover:cursor-pointer hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
-          data-te-modal-dismiss
-          aria-label="Close"
-        >
-          <span class="flex h-5 w-5 items-center justify-center">
-            {% include icons/ui/x.svg %}
-          </span>
-        </span>
-      </div>
-
-      <!-- Modal body -->
-      <div
-        class="relative flex flex-row space-x-2 p-4{% if skill.categories.size > 1 %}{% endif %}"
-        data-te-modal-body-ref
-      >
-        {% if skill.categories.size > 1 %}
-          {% assign height = 0 %}
-          {% for category in skill.categories %}
-            {% assign height = height | plus: 48 %}
-            {% unless forloop.first %}
-              {% assign height = height | plus: 4 %}
-            {% endunless %}
-            {% if category.categories %}
-              {% for subcategory in category.categories %}
-                {% assign height = height | plus: 32 | plus: 4 %}
-              {% endfor %}
-            {% endif %}
-          {% endfor %}
-          <!-- Categories navigation -->
-          {% include components/descmodal-sidenav.html %}
+      <!-- Icon -->
+      <span class="fill:text-neutral-650 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 fill-neutral-250 text-neutral-250 dark:text-neutral-650 [&>*]:h-auto [&>*]:max-h-10 [&>*]:w-16">
+        {% if skill.icon.org == 'local' %}
+          {% include {{ skill.icon.icon }} %}
+        {% elsif skill.icon.org == 'fontawesome' %}
+          <i
+            class="text-[40px] leading-none {{ skill.icon.icon }}"
+          ></i>
         {% endif %}
+      </span>
 
-        <!-- Categories content -->
-        <div
-          data-tab-container
-          class="relative flex"
-        >
-          {% assign first = true %}
-          {% for category in skill.categories %}
-            {% assign category_id = category.title
-              | downcase
-              | replace: ' ', '-'
-              | replace: '&', 'and'
+      <!-- Close button -->
+      <span
+        class="box-content rounded-none border-none hover:cursor-pointer hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
+        type="button"
+        role="modal-close"
+        aria-controls="modal_skill_{{ skill_id }}"
+        tabindex="0"
+      >
+        <span class="flex h-5 w-5 items-center justify-center">
+          {% include icons/ui/x.svg %}
+        </span>
+      </span>
+    </div>
+
+    <!-- Modal body -->
+    <div
+      class="relative flex flex-row p-4{% if skill.categories.size > 1 %}{% endif %}"
+    >
+      {% if skill.categories.size > 1 %}
+        {% assign height = 0 %}
+        {% for category in skill.categories %}
+          {% assign height = height | plus: 48 %}
+          {% unless forloop.first %}
+            {% assign height = height | plus: 4 %}
+          {% endunless %}
+          {% if category.categories %}
+            {% for subcategory in category.categories %}
+              {% assign height = height | plus: 32 | plus: 4 %}
+            {% endfor %}
+          {% endif %}
+        {% endfor %}
+        <!-- Categories navigation -->
+        {% include components/descmodal-sidenav.html %}
+      {% endif %}
+
+      <!-- Categories content -->
+      <div
+        class="relative flex flex-row flex-nowrap"
+      >
+        {% assign first = true %}
+        {% for category in skill.categories %}
+          {% assign category_id = category.title
+            | downcase
+            | replace: ' ', '-'
+            | replace: '&', 'and'
+          %}
+          {% unless category.categories %}
+            {% assign topics = category.topics %}
+            {% assign id = 'tabpanel-skill-'
+              | append: skill_id
+              | append: '-'
+              | append: category_id
             %}
-            {% if category.categories == null %}
-              {% assign topics = category.topics %}
-              {% assign tab-id = 'tab-skill-'
+            {% include components/descmodal-tab.html %}
+          {% else %}
+            {% for subcategory in category.categories %}
+              {% assign subcategory_id = subcategory.title
+                | downcase
+                | replace: ' ', '-'
+                | replace: '&', 'and'
+              %}
+              {% assign topics = subcategory.topics %}
+              {% assign id = 'tabpanel-skill-'
                 | append: skill_id
                 | append: '-'
                 | append: category_id
+                | append: '-'
+                | append: subcategory_id
               %}
               {% include components/descmodal-tab.html %}
-            {% endif %}
-            {% if category.categories %}
-              {% for subcategory in category.categories %}
-                {% assign subcategory_id = subcategory.title
-                  | downcase
-                  | replace: ' ', '-'
-                  | replace: '&', 'and'
-                %}
-                {% assign topics = subcategory.topics %}
-                {% assign tab-id = 'tab-skill-'
-                  | append: skill_id
-                  | append: '-'
-                  | append: category_id
-                  | append: '-'
-                  | append: subcategory_id
-                %}
-                {% include components/descmodal-tab.html %}
-              {% endfor %}
-            {% endif %}
-          {% endfor %}
-        </div>
+            {% endfor %}
+          {% endunless %}
+        {% endfor %}
       </div>
     </div>
   </div>
-</div>
+</dialog>
