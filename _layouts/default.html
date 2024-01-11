@@ -10,21 +10,57 @@
 
     <title>{{ site.title }}</title>
 
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      href="{{ '/favicon.svg' | relative_url }}"
+      sizes="any"
+      type="image/svg+xml"
+    >
+    <link
+      rel="icon"
+      href="{{ '/favicon.png' | relative_url }}"
+      type="image/png"
+    >
+    <!-- JQuery -->
+    <script
+      type="text/javascript"
+      src="{{ 'jquery/dist/jquery.min.js' | node_module_url }}"
+    ></script>
+    <!-- JQuery plugins -->
+    <script
+      type="text/javascript"
+      src="{{ 'jquery-bez/lib/jquery.bez.min.js' | node_module_url }}"
+    ></script>
+    <!-- OverlayScrollbars -->
+    <link
+      rel="stylesheet"
+      href="{{ 'overlayscrollbars/styles/overlayscrollbars.min.css' | node_module_url }}"
+    >
+    <script
+      type="text/javascript"
+      src="{{ 'overlayscrollbars/browser/overlayscrollbars.browser.es6.js' | node_module_url }}"
+    ></script>
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="{{ '@fortawesome/fontawesome-free/css/all.min.css' | node_module_url }}"
+    >
+    <script
+      type="text/javascript"
+      src="{{ '@fortawesome/fontawesome-free/js/all.min.js' | node_module_url }}"
+    ></script>
+    <!-- Isotope -->
+    <script
+      type="text/javascript"
+      src="{{ 'isotope-layout/dist/isotope.pkgd.min.js' | node_module_url }}"
+    ></script>
+    <!-- CSS styles -->
     <link
       rel="stylesheet"
       href="{{ '/assets/css/main.css' | relative_url }}"
     >
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v6.4.2/css/all.css"
-    >
-    <link
-      rel="icon"
-      type="image/x-icon"
-      href="{{ '/favicon.svg' | relative_url }}"
-    >
-
-    <script>
+    <script type="text/javascript">
       // On page load or when changing themes, best to add inline in `head` to avoid FOUC
       if (
         localStorage.theme === 'dark' ||
@@ -32,6 +68,7 @@
           window.matchMedia('(prefers-color-scheme: dark)').matches)
       ) {
         document.documentElement.classList.add('dark');
+        $('.theme-toggle').prop('checked', true);
       } else {
         document.documentElement.classList.remove('dark');
       }
@@ -39,72 +76,39 @@
   </head>
 
   <body
-    class="flex min-h-screen flex-col overflow-y-scroll bg-neutral-100 text-neutral-900 scrollbar-thin scrollbar-track-neutral-300 scrollbar-thumb-neutral-400 scrollbar-thumb-rounded-md hover:scrollbar-thumb-neutral-500 dark:bg-neutral-800 dark:text-neutral-100 dark:scrollbar-track-neutral-700 dark:scrollbar-thumb-neutral-600"
+    class="relative flex min-h-screen w-full flex-col bg-neutral-100 text-neutral-900 motion-reduce:transition-none dark:bg-neutral-800 dark:text-neutral-100"
+    data-overlayscrollbars-initialize
   >
     <!-- Header -->
     <header
-      class="sticky top-0 z-50 bg-neutral-200/80 shadow-md backdrop-blur dark:bg-neutral-900/80"
+      id="header"
+      class="fixed top-0 z-50 w-full"
     >
-      <div
-        class="container mx-auto flex items-center justify-between px-4 py-2"
-      >
-        <!-- Site -->
-        <a
-          class="text-lg font-bold text-neutral-900 hover:underline dark:text-neutral-100"
-          href="/"
-        >
-          {{- site.title -}}
-        </a>
-
-        <!-- Menu -->
-        <nav class="flex space-x-2">
-          <!-- Pages -->
-          <a
-            class="focus:shadow-outline-neutral dark:focus:shadow-outline-dark inline-flex cursor-pointer select-none items-center rounded border border-white/0 bg-white/0 px-2 py-1 text-neutral-900 transition duration-150 ease-in-out hover:border-neutral-250 hover:bg-neutral-250 focus:border-neutral-250 focus:outline-none active:border-neutral-300 dark:border-neutral-900/0 dark:bg-neutral-900/0 dark:text-neutral-100 dark:hover:border-neutral-850 dark:hover:bg-neutral-850 dark:focus:border-neutral-850 dark:active:border-neutral-800"
-            href="/"
-            >Home</a
-          >
-          {% if site.include_section.projects -%}
-            <a
-              class="focus:shadow-outline-neutral dark:focus:shadow-outline-dark inline-flex cursor-pointer select-none items-center rounded border border-white/0 bg-white/0 px-2 py-1 text-neutral-900 transition duration-150 ease-in-out hover:border-neutral-250 hover:bg-neutral-250 focus:border-neutral-250 focus:outline-none active:border-neutral-300 dark:border-neutral-900/0 dark:bg-neutral-900/0 dark:text-neutral-100 dark:hover:border-neutral-850 dark:hover:bg-neutral-850 dark:focus:border-neutral-850 dark:active:border-neutral-800"
-              href="/projects"
-              >Projects</a
-            >
-          {%- endif %}
-          <div class="flex items-center justify-center">
-            <div
-              class="h-6 border-r border-neutral-300 dark:border-neutral-800"
-            ></div>
-          </div>
-
-          <!-- Theme toggle -->
-          <button
-            class="focus:shadow-outline-neutral dark:focus:shadow-outline-dark flex h-[34px] w-[34px] cursor-pointer select-none items-center justify-center rounded border border-white/0 bg-white/0 px-1 py-1 text-neutral-900 transition duration-150 ease-in-out hover:border-neutral-250 hover:bg-neutral-250 focus:outline-none active:border-neutral-300 dark:border-neutral-900/0 dark:bg-neutral-900/0 dark:text-neutral-100 dark:hover:border-neutral-850 dark:hover:bg-neutral-850 dark:active:border-neutral-800"
-            id="themeToggle"
-          >
-            <script type="text/javascript">
-              document.write(
-                document.documentElement.classList.contains('dark')
-                  ? '<i class="fa-solid fa-moon"></i>'
-                  : '<i class="fa-solid fa-sun"></i>'
-              );
-            </script>
-          </button>
-        </nav>
-      </div>
+      {% include components/navbar.html %}
     </header>
 
     <!-- Content -->
-    <main class="mx-auto flex max-w-3xl flex-1 flex-col justify-center px-2">
+    <main
+      id="main"
+      class="os-content mx-auto mt-12 flex max-w-3xl flex-1 flex-col justify-center px-2"
+    >
       {{ content }}
     </main>
 
     <!-- Footer -->
-    <footer class="bg-neutral-200/80 dark:bg-neutral-900/80">
-      <div class="py-2 text-center">
-        &copy; {{ 'now' | date: '%Y' }} Jakob Jersild Nielsen. All rights
-        reserved.
-      </div>
+    <footer
+      id="footer"
+      class="grid grid-cols-1 bg-neutral-180 shadow-inner dark:bg-neutral-880"
+    >
+      <span
+        class="mt-4 flex items-start justify-center [&>svg]:w-[64px] [&>svg]:fill-neutral-900 [&>svg]:dark:fill-neutral-100"
+      >
+        {% include logos/large.svg %}
+      </span>
+      <span class="py-2 text-center text-sm">
+        Copyright &copy; 2023 — {{ 'now' | date: '%Y' }} Jakob Jersild Nielsen.
+        All rights reserved.
+      </span>
     </footer>
 
     <!-- Visitor statistics using clicky -->
@@ -115,6 +119,15 @@
     ></script>
 
     <!-- Scripts -->
-    <script src="{{ '/assets/js/app.js' | relative_url }}"></script>
+    <!--
+      <script
+        type="text/javascript"
+        src="{{ 'tw-elements/dist/js/tw-elements.umd.min.js' | node_module_url }}"
+      ></script>
+    -->
+    <script
+      type="module"
+      src="{{ '/assets/js/app.js' | relative_url }}"
+    ></script>
   </body>
 </html>
