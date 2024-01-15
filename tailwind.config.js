@@ -70,6 +70,7 @@ module.exports = {
       transitionProperty: {
         width: "width",
         height: "height",
+        dimensions: "width, height",
         spacing: "margin, padding",
         transform: "transform",
         opacity: "opacity",
@@ -85,6 +86,7 @@ module.exports = {
         swing: "cubic-bezier(.02, .01, .47, 1)",
         "in-expo": "cubic-bezier(0.95, 0.05, 0.795, 0.035)",
         "out-expo": "cubic-bezier(0.19, 1, 0.22, 1)",
+        expand: "cubic-bezier(0.23, 0, 0.32, 1)",
       },
       transitionDuration: {
         175: "175ms",
