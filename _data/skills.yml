@@ -5,9 +5,7 @@
 - category: Programming & Scripting Languages
   items:
     - skill: R
-      icon:
-        org: fontawesome
-        icon: fa-brands fa-r-project
+      icon: icons/skills/r-project.svg
       proficiency: 71
       filter:
         - Data Science
@@ -157,9 +155,7 @@
                 - keras
 
     - skill: Python
-      icon:
-        org: fontawesome
-        icon: fa-brands fa-python
+      icon: icons/skills/python.svg
       proficiency: 87
       filter:
         - Data Science
@@ -243,9 +239,7 @@
                 - unidecode
 
     - skill: Java
-      icon:
-        org: fontawesome
-        icon: fa-brands fa-java
+      icon: icons/skills/java.svg
       proficiency: 58
       filter:
         - Software Development
@@ -257,9 +251,7 @@
                 maintenance of both command-line and graphical applications.
 
     - skill: Bash
-      icon:
-        org: fontawesome
-        icon: fa-solid fa-terminal
+      icon: icons/skills/terminal-solid.svg
       proficiency: 36
       filter:
         - Bioinformatics
@@ -270,9 +262,7 @@
                 General usage including scripting and automation.
 
     - skill: JavaScript
-      icon:
-        org: fontawesome
-        icon: fa-brands fa-js-square
+      icon: icons/skills/js.svg
       proficiency: 37
       filter:
         - Web Development
@@ -292,9 +282,7 @@
 - category: Markup, Styling, & Templating Languages
   items:
     - skill: LaTeX
-      icon:
-        org: local
-        icon: icons/skills/latex.svg
+      icon: icons/skills/latex.svg
       proficiency: 39
       categories:
         - title: General
@@ -388,10 +376,8 @@
                     - todonotes
 
     - skill: Markdown
-      icon:
-        org: fontawesome
-        icon: fa-brands fa-markdown
-      proficiency: 68
+      icon: icons/skills/markdown.svg
+      proficiency: 58
       filter:
         - Web Development
       categories:
@@ -404,9 +390,7 @@
                 - Jekyll
 
     - skill: HTML
-      icon:
-        org: fontawesome
-        icon: fa-brands fa-html5
+      icon: icons/skills/html5.svg
       proficiency: 72
       filter:
         - Web Development
@@ -420,9 +404,7 @@
                 - Jekyll
 
     - skill: CSS
-      icon:
-        org: fontawesome
-        icon: fa-brands fa-css3-alt
+      icon: icons/skills/css3-alt.svg
       proficiency: 52
       filter:
         - Web Development
@@ -436,9 +418,7 @@
                 - TailwindCSS
 
     - skill: Liquid
-      icon:
-        org: fontawesome
-        icon: fa-solid fa-droplet
+      icon: icons/skills/liquid.svg
       proficiency: 65
       filter:
         - Web Development
@@ -460,9 +440,7 @@
 - category: Development Tools & Platforms
   items:
     - skill: Snakemake
-      icon:
-        org: local
-        icon: icons/skills/snakemake.svg
+      icon: icons/skills/snakemake.svg
       proficiency: 82
       filter:
         - Bioinformatics
@@ -489,9 +467,7 @@
                 - R
 
     - skill: Conda
-      icon:
-        org: local
-        icon: icons/skills/conda.svg
+      icon: icons/skills/conda.svg
       proficiency: 71
       filter:
         - Bioinformatics
@@ -512,15 +488,12 @@
                 - Conda-Forge
 
     - skill: Docker
-      icon:
-        org: fontawesome
-        icon: fa-brands fa-docker
+      icon: icons/skills/docker.svg
       proficiency: 57
       filter:
         - Bioinformatics
         - Data Science
         - Software Development
-        - Web Development
       categories:
         - title: General
           topics:
@@ -540,9 +513,7 @@
                 - Docker Compose
 
     - skill: Git
-      icon:
-        org: fontawesome
-        icon: fa-brands fa-git-alt
+      icon: icons/skills/git-alt.svg
       proficiency: 54
       filter:
         - Bioinformatics
@@ -561,9 +532,7 @@
                 - GitLab
 
     - skill: Slurm
-      icon:
-        org: local
-        icon: icons/skills/slurm.svg
+      icon: icons/skills/slurm.svg
       proficiency: 62
       filter:
         - Bioinformatics
@@ -574,10 +543,8 @@
                 Execution of scripts and bioinformatics workflows on
                 high-performance computing clusters.
 
-    - skill: SQL
-      icon:
-        org: fontawesome
-        icon: fa-solid fa-database
+    - skill: PostgreSQL
+      icon: icons/skills/postgresql.svg
       proficiency: 35
       filter:
         - Data Science
@@ -588,15 +555,31 @@
             - description: >
                 General usage including querying, manipulation, and management
                 of databases and tables.
-            - subtitle: Databases
+            - subtitle: Integrations
               utils:
-                - PostgreSQL
-                - SQLite
+                - Docker
+                - R
+                - Python
+
+    - skill: SQLite
+      icon: icons/skills/sqlite.svg
+      proficiency: 40
+      filter:
+        - Data Science
+        - Software Development
+      categories:
+        - title: General
+          topics:
+            - description: >
+                General usage including querying, manipulation, and management
+                of databases and tables.
+            - subtitle: Integrations
+              utils:
+                - R
+                - Python
 
     - skill: Jekyll
-      icon:
-        org: local
-        icon: icons/skills/jekyll.svg
+      icon: icons/skills/jekyll.svg
       proficiency: 72
       filter:
         - Web Development
@@ -616,14 +599,48 @@
               utils:
                 - GitHub Pages
 
+    - skill: TailwindCSS
+      icon: icons/skills/tailwind.svg
+      proficiency: 57
+      filter:
+        - Web Development
+      categories:
+        - title: General
+          topics:
+            - description: >
+                General usage encompassing styling of HTML elements.
+            - subtitle: Integrations
+              utils:
+                - Jekyll
+                - HTML
+
+    - skill: jQuery
+      icon: icons/skills/jquery.svg
+      proficiency: 51
+      filter:
+        - Web Development
+      categories:
+        - title: General
+          topics:
+            - description: >
+                General usage including dynamic web page development and event
+                handling.
+            - subtitle: Features
+              utils:
+                - DOM Manipulation
+                - Event Handling
+            - subtitle: Integrations
+              utils:
+                - HTML
+                - CSS
+                - JavaScript
+
 ###
 # Operating Systems
 - category: Operating Systems
   items:
     - skill: Linux
-      icon:
-        org: fontawesome
-        icon: fa-brands fa-linux
+      icon: icons/skills/linux.svg
       proficiency: 52
       categories:
         - title: General
@@ -682,10 +699,8 @@
                 - Samba
 
     - skill: Windows
-      icon:
-        org: fontawesome
-        icon: fa-brands fa-windows
-      proficiency: 93
+      icon: icons/skills/windows.svg
+      proficiency: 86
       categories:
         - title: General
           topics:

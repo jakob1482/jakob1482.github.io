@@ -1,4 +1,16 @@
 # Jobs
+- company: Aarhus University Hospital
+  department: Department of Molecular Medicine
+  position: Clinical Bioinformatician
+  contract: Limited-term full-time
+  duration: Apr, 2024 &mdash; Present
+  location: Aarhus, Denmark
+  summaries:
+    - Development of bioinformatic pipelines for clinical sequencing data.
+  url: https://www.auh.dk/afdelinger/molekylar-medicinsk-afdeling/
+  urlicon: globe-alt
+  urltext: website
+
 - company: PentaBase
   position: Software Developer
   contract: Freelance
