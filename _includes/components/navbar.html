@@ -1,21 +1,23 @@
 <!-- Main navigation container -->
-<nav
-  class="navbar-header relative flex w-full items-center justify-between bg-neutral-200/80 py-2 shadow-lg backdrop-blur transition duration-300 ease-linear focus:text-neutral-700 aria-expanded:bg-neutral-180 dark:bg-neutral-900/80 dark:focus:text-neutral-700 dark:aria-expanded:bg-neutral-880 xs:aria-expanded:bg-neutral-200/80 xs:dark:aria-expanded:bg-neutral-900/80"
-  aria-expanded="false"
+<header
+  id="header"
+  class="navbar-header fixed top-0 z-50 flex w-full items-center justify-between bg-neutral-200/80 py-2 shadow-lg backdrop-blur transition duration-300 ease-linear focus:text-neutral-700 aria-expanded:bg-neutral-180 dark:bg-neutral-900/80 dark:focus:text-neutral-700 dark:aria-expanded:bg-neutral-880 xs:aria-expanded:bg-neutral-200/80 xs:dark:aria-expanded:bg-neutral-900/80"
 >
-  <div
+  <nav
     class="mx-auto flex w-full max-w-3xl flex-wrap items-center justify-between self-center px-4"
+    aria-expanded="false"
   >
     <a
-      class="[&>svg]:w-[32px] [&>svg]:fill-neutral-900 [&>svg]:dark:fill-neutral-100"
+      class="flex h-10 w-10 items-center justify-center [&>svg]:w-[32px] [&>svg]:fill-neutral-900 [&>svg]:dark:fill-neutral-100"
       href="/"
+      tabindex="-1"
     >
       {% include logos/small.svg %}
     </a>
 
     <!-- Hamburger button for mobile view -->
-    <span
-      class="group flex border-0 bg-transparent px-2 text-neutral-900 hover:no-underline hover:shadow-none focus:no-underline focus:shadow-none focus:outline-none focus:ring-0 dark:text-neutral-100 xs:hidden"
+    <button
+      class="group relative flex h-10 w-10 cursor-pointer select-none items-center justify-center overflow-hidden rounded px-2 py-2 text-neutral-900 outline-none transition duration-150 hover:bg-neutral-250 focus:bg-neutral-250 active:bg-neutral-300 dark:text-neutral-100 dark:hover:bg-neutral-750 dark:focus:bg-neutral-750 dark:active:bg-neutral-700 xs:hidden"
       role="navbar-toggle"
       aria-controls="navbarHeader"
       aria-expanded="false"
@@ -31,52 +33,73 @@
       >
         {% include icons/ui/x.svg %}
       </span>
-    </span>
+    </button>
 
     <!-- Collapsible navbar container -->
     <div
-      class="!visible hidden flex-grow basis-[100%] items-center xs:mt-0 xs:!flex xs:basis-auto"
+      class="!visible hidden flex-grow basis-[100%] flex-col items-center gap-2 xs:!flex xs:basis-auto xs:flex-row"
       id="navbarHeader"
     >
       <!-- Left -->
       <ul
-        class="list-style-none mr-auto flex flex-col pl-0 xs:mt-1 xs:flex-row"
+        class="list-style-none mr-auto mt-6 flex flex-col gap-2 xs:my-0 xs:flex-row xs:gap-0"
       >
+        <!-- About link (index) -->
+        <li
+          class="pl-2 xs:my-0 xs:ml-4 xs:pl-0"
+        >
+          <a
+            class="relative flex cursor-pointer select-none items-center overflow-hidden rounded px-2 py-2 text-neutral-900 outline-none transition duration-150 hover:bg-neutral-250 focus:bg-neutral-250 active:bg-neutral-300 aria-selected:font-bold dark:text-neutral-100 dark:hover:bg-neutral-750 dark:focus:bg-neutral-750 dark:active:bg-neutral-700 dark:aria-selected:font-bold xs:px-4"
+            href="/"
+            {% if page.title == 'About' %}
+              aria-selected="true"
+            {% endif %}
+          >
+            About
+          </a>
+        </li>
         <!-- Resume link -->
         <li
-          class="mb-4 mt-6 pl-2 xs:my-0 xs:ml-4 xs:pl-2 xs:pr-1"
+          class="pl-2 xs:my-0 xs:ml-4 xs:pl-0"
         >
           <a
-            class="p-0 text-[16px] text-neutral-900 transition duration-200 ease-in-out hover:text-neutral-550 active:text-neutral-450 disabled:text-black/30 dark:text-neutral-100 dark:hover:text-neutral-350 dark:active:text-neutral-450"
-            href="/"
-            >Resume</a
+            class="relative flex cursor-pointer select-none items-center overflow-hidden rounded px-2 py-2 text-neutral-900 outline-none transition duration-150 hover:bg-neutral-250 focus:bg-neutral-250 active:bg-neutral-300 aria-selected:font-bold dark:text-neutral-100 dark:hover:bg-neutral-750 dark:focus:bg-neutral-750 dark:active:bg-neutral-700 dark:aria-selected:font-bold xs:px-4"
+            href="/resume/"
+            {% if page.title == 'Resume' %}
+              aria-selected="true"
+            {% endif %}
           >
+            Resume
+          </a>
         </li>
-        <!-- Portfolio link -->
-        <li
-          class="mb-4 pl-2 xs:mb-0 xs:ml-4 xs:pl-0 xs:pr-1"
-        >
-          <a
-            class="p-0 text-neutral-900 transition duration-200 ease-in-out hover:text-neutral-550 active:text-neutral-450 disabled:text-black/30 dark:text-neutral-100 dark:hover:text-neutral-350 dark:active:text-neutral-450"
-            href="/projects/"
-            data-te-nav-link-ref
-            >Portfolio</a
+        <!-- Portfolio link - Disabled until the page is completed -->
+        <!--
+          <li
+            class="pl-2 xs:mb-0 xs:ml-4 xs:pl-0"
           >
-        </li>
+            <a
+              class="relative flex cursor-pointer select-none items-center overflow-hidden rounded px-2 py-2 text-neutral-900 outline-none transition duration-150 hover:bg-neutral-250 focus:bg-neutral-250 active:bg-neutral-300 aria-selected:font-bold dark:text-neutral-100 dark:hover:bg-neutral-750 dark:focus:bg-neutral-750 dark:active:bg-neutral-700 dark:aria-selected:font-bold xs:px-4"
+              href="/projects/"
+              {% if page.title == 'Portfolio' %}
+                aria-selected="true"
+              {% endif %}
+            >
+              Portfolio
+            </a>
+          </li>
+        -->
       </ul>
 
       <!-- Right -->
-      <div class="flex flex-grow-0 items-center">
-        <ul
-          class="list-style-none mr-auto flex flex-grow flex-col pl-0 xs:flex-row"
+      <ul
+        class="list-style-none mb-4 ml-auto mt-4 flex h-auto flex-grow-0 flex-col pl-0 xs:my-0 xs:flex-row xs:gap-0"
+      >
+        <li
+          class="flex h-6 w-full items-center pl-2 xs:my-0 xs:ml-4 xs:w-auto xs:pl-2"
         >
-          <li
-            class="mb-4 flex h-6 w-full items-center pl-2 xs:my-0 xs:ml-4 xs:w-auto xs:pl-2 xs:pr-1"
-          >
-            {% include components/theme-toggle.html %}
-          </li>
-        </ul>
-      </div>
+          {% include components/theme-toggle.html %}
+        </li>
+      </ul>
     </div>
-  </div>
-</nav>
+  </nav>
+</header>
