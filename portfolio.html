@@ -1,0 +1,65 @@
+---
+layout: default
+title: Portfolio
+pagination:
+  enabled: true
+---
+<div class="container mx-auto p-4">
+  <h1 class="mb-4 text-3xl font-bold">Projects</h1>
+
+  <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+    {% for post in paginator.posts %}
+      <div class="rounded border p-4 transition hover:shadow-lg">
+        <h2 class="mb-2 text-xl font-bold">
+          <a
+            class="text-blue-600 hover:underline"
+            href="{{ post.url }}"
+          >
+            {{- post.title -}}
+          </a>
+        </h2>
+        <p class="text-gray-700">
+          {{ post.excerpt | strip_html | truncatewords: 20 }}
+        </p>
+      </div>
+    {% endfor %}
+  </div>
+
+  <!-- Pagination Controls -->
+  {% if paginator.total_pages > 1 %}
+    <div class="mt-8 flex justify-between">
+      <!-- Previous Page -->
+      {% if paginator.previous_page %}
+        <a
+          class="rounded px-4 py-2 text-blue-600 transition hover:bg-blue-100 hover:text-blue-800"
+          href="{{ paginator.previous_page_path }}"
+        >
+          ← Previous
+        </a>
+      {% else %}
+        <span class="cursor-not-allowed rounded px-4 py-2 text-gray-400">
+          ← Previous
+        </span>
+      {% endif %}
+
+      <!-- Page Information -->
+      <span class="text-gray-600">
+        Page {{ paginator.page }} of {{ paginator.total_pages }}
+      </span>
+
+      <!-- Next Page -->
+      {% if paginator.next_page %}
+        <a
+          class="rounded px-4 py-2 text-blue-600 transition hover:bg-blue-100 hover:text-blue-800"
+          href="{{ paginator.next_page_path }}"
+        >
+          Next →
+        </a>
+      {% else %}
+        <span class="cursor-not-allowed rounded px-4 py-2 text-gray-400">
+          Next →
+        </span>
+      {% endif %}
+    </div>
+  {% endif %}
+</div>
