@@ -1,5 +1,5 @@
 <div
-  class="w-[calc(100vw - 274px)] hidden transition-opacity duration-300 ease-in-out aria-selected:block md:w-[433px]"
+  class="hidden transition-opacity duration-300 ease-in-out aria-selected:block data-[sidenav-enabled=true]:w-[calc(100vw-158px)] sm:data-[sidenav-enabled=true]:w-[min(calc(100vw-274px),468px)]"
   role="tabpanel"
   id="{{ id }}"
   aria-labelledby="tab-{{ id }}"
@@ -8,6 +8,11 @@
     {% assign first = false %}
   {% else %}
     aria-selected="false"
+  {% endif %}
+  {% if height == null %}
+    data-sidenav-enabled="false"
+  {% else %}
+    data-sidenav-enabled="true"
   {% endif %}
 >
   {% for topic in topics %}

@@ -1,5 +1,6 @@
 <div
   class="relative left-0 top-0 z-50 w-[84px] sm:w-[200px]"
+  role="sidenav-container"
 >
   <nav
     class="group w-[84px] overflow-hidden bg-white/80 pr-2 backdrop-blur transition-width duration-400 ease-in-out aria-expanded:w-[200px] dark:bg-neutral-800/80 sm:w-[200px] sm:aria-expanded:w-[200px]"
@@ -83,7 +84,7 @@
                   style="height: 0; display: none;"
                   role="tablist"
                   id="tablist-skill-{{ skill_id }}-{{ category_id }}"
-                  data-toggle-height="{{ 34 | times: category.categories.size | plus: 4 }}px"
+                  data-toggle-height="{{ 36 | times: category.categories.size }}px"
                 >
                   {% for subcategory in category.categories %}
                     {% assign subcategory_id = subcategory.title

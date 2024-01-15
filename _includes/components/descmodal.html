@@ -1,5 +1,5 @@
 <dialog
-  class="group/modal backdrop:transition-backdrop fixed inset-0 z-50 origin-center translate-y-0 overflow-y-auto overflow-x-hidden rounded border bg-white bg-clip-padding text-current opacity-100 outline-none transition-[visibility,_transform,_opacity] delay-0 duration-[0ms,_300ms,_300ms] ease-[linear,swing,in-out] backdrop:bg-black/50 backdrop:backdrop-blur backdrop:duration-300 aria-hidden:-translate-y-10 aria-hidden:opacity-0 aria-hidden:delay-[300ms,_0ms,_0ms,_0ms] aria-hidden:backdrop:bg-black/0 aria-hidden:backdrop:backdrop-blur-none dark:border-neutral-750 dark:bg-neutral-800"
+  class="group/modal fixed inset-0 z-50 origin-center translate-y-0 overflow-y-auto overflow-x-hidden rounded border bg-white bg-clip-padding text-current opacity-100 outline-none transition-[visibility,_transform,_opacity] delay-0 duration-[0ms,_300ms,_300ms] ease-[linear,swing,in-out] backdrop:bg-black/50 backdrop:backdrop-blur backdrop:transition-backdrop backdrop:duration-300 aria-hidden:-translate-y-10 aria-hidden:opacity-0 aria-hidden:delay-[300ms,_0ms,_0ms,_0ms] aria-hidden:backdrop:bg-black/0 aria-hidden:backdrop:backdrop-blur-none dark:border-neutral-750 dark:bg-neutral-800"
   role="modal"
   id="modal_skill_{{ skill_id }}"
   tabindex="-1"
@@ -65,6 +65,8 @@
         {% endfor %}
         <!-- Categories navigation -->
         {% include components/descmodal-sidenav.html %}
+      {% else %}
+        {% assign height = null %}
       {% endif %}
 
       <!-- Categories content -->
