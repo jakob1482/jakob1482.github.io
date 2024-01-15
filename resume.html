@@ -1,0 +1,307 @@
+---
+layout: default
+title: Resume
+---
+{% if site.include_section.experience %}
+  <!-- Experience start -->
+  <section
+    class="mb-12 mt-12"
+    id="experience"
+  >
+    <!-- Header -->
+    <div class="border-b-2 border-neutral-350 pb-1 dark:border-neutral-550">
+      <h2 class="text-[24px] font-bold leading-none sm:text-[28px]">
+        Experience
+      </h2>
+    </div>
+
+    <!-- Content -->
+    <div class="mt-6 grid grid-cols-1 gap-4 leading-snug">
+      {% for job in site.data.experience %}
+        <div
+          class="relative rounded border bg-white p-4 shadow-sm dark:border-neutral-700 dark:bg-neutral-750"
+        >
+          {% if job.url %}
+            <!-- Link -->
+            {% assign url = job.url %}
+            {% assign urlicon = job.urlicon %}
+            {% assign urltext = job.urltext %}
+            {% include components/url-icon-expand.html %}
+          {% endif %}
+
+          <!-- Position -->
+          <h3 class="mb-2 text-xl font-normal leading-4">{{ job.position }}</h3>
+
+          <!-- Employer -->
+          <h4 class="mb-2 text-lg font-bold">{{ job.company }}</h4>
+
+          <!-- Details -->
+          <div class="mb-3 grid grid-cols-3 justify-start gap-2 [&>div]:flex [&>div]:flex-row [&>div]:items-center [&>div]:space-x-2 [&>div]:leading-4">
+            {% if job.duration %}
+              <!-- Duration -->
+              <div>
+                {% include icons/ui/calendar.svg %}
+                <p class="-mb-[2px]">{{ job.duration }}</p>
+              </div>
+            {% endif %}
+            {% if job.location %}
+              <!-- Location -->
+              <div>
+                {% include icons/ui/map-pin.svg %}
+                <p class="-mb-[2px]">{{ job.location }}</p>
+              </div>
+            {% endif %}
+          </div>
+
+          {% if job.summaries %}
+            <!-- Summary -->
+            <ul class="grid list-disc grid-cols-1 gap-1 pl-5">
+              {% for summary in job.summaries %}
+                <li class="leading-snug">{{ summary }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+  <!-- Experience end -->
+{% endif %}
+{% if site.include_section.education %}
+  <!-- Education start -->
+  <section
+    class="mb-12"
+    id="education"
+  >
+    <!-- Header -->
+    <div class="border-b-2 border-neutral-350 pb-1 dark:border-neutral-550">
+      <h2 class="text-[24px] font-bold leading-none sm:text-[28px]">
+        Education
+      </h2>
+    </div>
+
+    <!-- Content -->
+    <div class="mt-6 grid grid-cols-1 gap-4 leading-snug">
+      {% for degree in site.data.education %}
+        <div
+          class="relative rounded border bg-white p-4 shadow-sm dark:border-neutral-700 dark:bg-neutral-750"
+        >
+          {% if degree.url %}
+            <!-- Link -->
+            {% assign url = degree.url %}
+            {% assign urlicon = degree.urlicon %}
+            {% assign urltext = degree.urltext %}
+            {% include components/url-icon-expand.html %}
+          {% endif %}
+
+          <!-- Degree -->
+          <h3 class="mb-2 text-xl font-normal leading-4">
+            {{ degree.degree }}
+          </h3>
+
+          <!-- University -->
+          <h4 class="mb-2 text-lg font-bold">{{ degree.uni }}</h4>
+
+          <!-- Details -->
+          <div class="mb-3 grid grid-cols-3 gap-4 [&>div]:flex [&>div]:flex-row [&>div]:items-center [&>div]:space-x-2 [&>div]:leading-4">
+            {% if degree.year %}
+              <!-- Year -->
+              <div class="flex items-center">
+                {% include icons/ui/calendar.svg %}
+                <p class="-mb-[2px]">{{ degree.year }}</p>
+              </div>
+            {% endif %}
+            {% if degree.location %}
+              <!-- Location -->
+              <div class="flex items-center">
+                {% include icons/ui/map-pin.svg %}
+                <p class="-mb-[2px]">{{ degree.location }}</p>
+              </div>
+            {% endif %}
+          </div>
+
+          <!-- Thesis details -->
+          <div class="grid grid-cols-1 2xs:grid-cols-[110px,auto] 2xs:gap-1">
+            {% if degree.thesis.title %}
+              <!-- Thesis title -->
+              <p class="leading-snug"><b>Thesis title:</b></p>
+              <p class="mb-1 leading-snug 2xs:mb-0">
+                "{{ degree.thesis.title }}"
+              </p>
+            {% endif %}
+            {% if degree.thesis.supervisors %}
+              <!-- Thesis supervisors -->
+              <p class="leading-snug"><b>Supervisors:</b></p>
+              <p class="mb-1 leading-snug 2xs:mb-0">
+                {{ degree.thesis.supervisors }}
+              </p>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+  <!-- Education end -->
+{% endif %}
+{% if site.include_section.skills %}
+  <!-- Skills start -->
+  <section
+    class="mb-12 overflow-hidden"
+    id="skills"
+  >
+    <!-- Header -->
+    <div class="border-b-2 border-neutral-350 pb-1 dark:border-neutral-550">
+      <h2 class="text-[24px] font-bold leading-none sm:text-[28px]">Skills</h2>
+    </div>
+
+    <!-- Filtering buttons -->
+    {% assign skill_filters = '' %}
+    {% for category in site.data.skills %}
+      {% for skill in category.items %}
+        {% for skill_filter in skill.filter %}
+          {% assign skill_filters = skill_filters
+            | append: skill_filter
+            | append: ','
+          %}
+        {% endfor %}
+      {% endfor %}
+    {% endfor %}
+    {% assign skill_filters = skill_filters | split: ',' | uniq | sort %}
+    <ul
+      class="mb-3 flex w-full flex-wrap border-b-2 border-neutral-350 py-2 dark:border-neutral-550 [&>*]:mx-auto"
+      role="filterlist"
+    >
+      <li
+        class="relative flex cursor-pointer select-none items-center justify-center overflow-hidden rounded px-4 py-2 text-neutral-900 outline-none transition duration-200 hover:bg-neutral-250 focus:bg-neutral-250 active:bg-neutral-300 aria-selected:font-bold dark:text-neutral-100 dark:hover:bg-neutral-750 dark:focus:bg-neutral-750 dark:active:bg-neutral-700 dark:aria-selected:font-bold"
+        role="filter"
+        data-filter="*"
+        aria-selected="true"
+        tabindex="0"
+      >
+        All
+      </li>
+      {% for skill_filter in skill_filters %}
+        {% assign skill_filter_id = skill_filter
+          | downcase
+          | replace: ' ', '-'
+          | replace: '&', 'and'
+        %}
+        <li
+          class="relative flex cursor-pointer select-none items-center justify-center overflow-hidden rounded px-4 py-2 text-neutral-900 outline-none transition duration-200 hover:bg-neutral-250 focus:bg-neutral-250 active:bg-neutral-300 aria-selected:font-bold dark:text-neutral-100 dark:hover:bg-neutral-750 dark:focus:bg-neutral-750 dark:active:bg-neutral-700 dark:aria-selected:font-bold"
+          role="filter"
+          data-filter=".{{ skill_filter_id }}"
+          tabindex="0"
+        >
+          {{ skill_filter }}
+        </li>
+      {% endfor %}
+    </ul>
+
+    <!-- Content -->
+    <div
+      class="-mb-3 transition-height duration-400 ease-in-out"
+      data-isotope-container
+    >
+      {% for category in site.data.skills %}
+        <!-- Category -->
+        {% assign skill_filters = '' %}
+        {% for skill in category.items %}
+          {% for skill_filter in skill.filter %}
+            {% assign skill_filters = skill_filters
+              | append: skill_filter
+              | append: ','
+            %}
+          {% endfor %}
+        {% endfor %}
+        {% assign skill_filters = skill_filters | split: ',' | uniq | sort %}
+        <div
+          class="z-10 mb-4 mt-3 w-full{% for skill_filter in skill_filters %} {{ skill_filter | downcase | replace: ' ', '-' | replace: '&', 'and' }}{% endfor %}"
+          data-isotope-item
+        >
+          <h3
+            class="text-xl font-normal leading-none"
+          >
+            {{ category.category }}
+          </h3>
+        </div>
+
+        <!-- Skills sorted by proficiency in descending order -->
+        {% assign sorted_skills = category.items
+          | sort: 'proficiency'
+          | reverse
+        %}
+        {% for skill in sorted_skills %}
+          {% assign skill_id = skill.skill | downcase %}
+          <!-- Skill box: {{ skill.skill }} -->
+          <div
+            class="relative mb-3 h-[130px] w-full rounded border bg-white shadow-sm active:scale-95 data-[arrange-completed=true]:transition-transform dark:border-neutral-700 dark:bg-neutral-750 2xs:w-[calc(50%-6px)] md:w-[calc(33.3333%-8px)]{% for skill_filter in skill.filter %} {{ skill_filter | downcase | replace: ' ', '-' | replace: '&', 'and' }}{% endfor %}"
+            data-isotope-item
+            data-arrange-completed="true"
+          >
+            <div class="p-8">
+              <div class="flex h-10 w-auto flex-row items-end justify-between">
+                <!-- Title -->
+                <h4
+                  class="ml-1 text-lg font-bold leading-none"
+                >
+                  {{ skill.skill }}
+                </h4>
+
+                <!-- Icon -->
+                <span class="[&>*]:mr-1 [&>*]:h-auto [&>*]:max-h-10 [&>*]:w-10">
+                  {% include {{ skill.icon }} %}
+                </span>
+              </div>
+
+              <!-- Proficiency bar -->
+              <div class="mt-2 h-4 rounded bg-gray-200 dark:bg-gray-600">
+                <div
+                  class="h-full rounded-l bg-lime-500"
+                  style="width: {{ skill.proficiency }}%;"
+                ></div>
+              </div>
+            </div>
+
+            {% if skill.categories %}
+              <!-- Modal button -->
+              <span
+                class="absolute left-0 top-0 flex h-full w-full select-none items-center justify-center rounded bg-transparent text-transparent outline-none transition-[backdrop-filter,opacity,color,background-color,text-decoration-color] hover:cursor-pointer hover:bg-white/70 hover:text-neutral-900 hover:backdrop-blur-sm focus:bg-white/70 focus:text-neutral-900 focus:backdrop-blur-sm active:text-neutral-900 active:backdrop-blur-[6px] dark:hover:bg-neutral-750/70 dark:hover:text-neutral-100 dark:hover:backdrop-blur-[6px] dark:focus:bg-neutral-750/70 dark:focus:text-neutral-100 dark:active:bg-neutral-750/70 dark:active:text-neutral-100"
+                role="modal-open"
+                aria-controls="modal_skill_{{ skill_id }}"
+                aria-hidden="true"
+                tabindex="0"
+              >
+                View more
+              </span>
+            {% endif %}
+          </div>
+
+          <!-- Modal: {{ skill.skill }} -->
+          {% if skill.categories %}
+            {% include components/descmodal.html %}
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
+    </div>
+    <!--
+      Script for initializing the Isotope grid.
+      Initialized here to avoid transition on page load.
+    -->
+    <script>
+      const $grid = $('[data-isotope-container]').isotope({
+        transitionDuration: 400,
+        resize: false,
+        itemSelector: '[data-isotope-item]',
+        layoutMode: 'fitRows',
+        percentPosition: true,
+        fitRows: {
+          isFitWidth: true,
+          columnWidth: '[data-isotope-item]',
+          gutter: 12,
+        },
+      });
+      const $items = $grid.find('[data-isotope-item]');
+    </script>
+  </section>
+  <!-- Skills end -->
+{% endif %}
