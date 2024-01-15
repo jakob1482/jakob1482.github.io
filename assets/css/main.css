@@ -7,7 +7,7 @@
 .no-transition * {
   transition-property: none !important;
 }
-
+  
 .theme-icon {
   transition-property: transform, opacity, d !important;
 }
