@@ -1,18 +1,20 @@
 ---
 layout: default
-title: About
+title: Resume
 ---
-<!-- About start -->
+<!-- About -->
 <section
   class="my-12"
   id="about"
 >
-  {% if site.include_element.picture %}
-    <!-- Picture -->
+  {% if site.include_element.avatar %}
+    <!-- Avatar -->
     <div class="grid grid-cols-1 justify-items-center">
       <img
-        class="w-80 rounded-full"
-        src="{{ '/assets/img/picture.jpg' | relative_url }}"
+        class="rounded-full"
+        height="320"
+        width="320"
+        src="{{ '/assets/img/avatar.webp' | relative_url }}"
         alt=""
       >
     </div>
@@ -20,7 +22,7 @@ title: About
 
   <!-- Author -->
   <div class="mb-12 mt-8 grid grid-cols-1 justify-items-center">
-    <h1 class="text-4xl font-bold xs:text-5xl">
+    <h1 class="text-4xl font-bold media-550:text-5xl">
       {{ site.author }}
     </h1>
   </div>
@@ -28,20 +30,21 @@ title: About
   {% if site.include_section.about %}
     <!-- Header -->
     <div
-      class="flex flex-col justify-between border-b-2 border-neutral-350 dark:border-neutral-550 xs:flex-row"
+      class="flex flex-col justify-between border-b-2 border-neutral-350 dark:border-neutral-550 media-550:flex-row"
     >
-      <div class="border-b-2 border-neutral-350 pb-1 dark:border-neutral-550 xs:border-none">
-        <h2 class="text-[24px] font-light leading-none sm:text-[28px]">
+      <div class="border-b-2 border-neutral-350 pb-1 dark:border-neutral-550 media-550:border-none">
+        <h2 class="text-2xl font-light leading-none media-640:text-3xl">
           {{ site.data.about.title }}
         </h2>
       </div>
 
-      <ul class="my-[6px] flex justify-center space-x-2 xs:my-0 xs:-translate-y-1 xs:justify-normal sm:translate-y-0">
+      <ul class="my-1.5 flex justify-center space-x-2 media-550:-my-0 media-550:-translate-y-1 media-550:items-end media-550:justify-normal media-640:-translate-y-2">
         {% if site.include_element.contact %}
           <!-- Email -->
           <li>
             {% assign url = 'mailto:' | append: site.email %}
             {% assign icon = 'icons/ui/at-symbol.svg' %}
+            {% assign label = 'email' %}
             {% assign to_color = 'stroke' %}
             {% assign target = null %}
             {% assign rel = null %}
@@ -65,6 +68,7 @@ title: About
                 | append: platform.platform
                 | append: '.svg'
               %}
+              {% assign label = platform.platform %}
               {% assign to_color = 'fill' %}
               {% assign target = '_blank' %}
               {% assign rel = 'noopener noreferrer' %}
@@ -79,4 +83,303 @@ title: About
     <p class="hyphen-auto mt-6 leading-snug">{{ site.data.about.intro }}</p>
   {% endif %}
 </section>
-<!-- About end -->
+{% if site.include_section.experience %}
+  <!-- Experience -->
+  <section
+    class="mb-12"
+    id="experience"
+  >
+    <!-- Header -->
+    <div class="border-b-2 border-neutral-350 pb-1 dark:border-neutral-550">
+      <h2 class="text-2xl font-bold leading-none media-640:text-3xl">
+        Experience
+      </h2>
+    </div>
+
+    <!-- Content -->
+    <div class="mt-6 grid grid-cols-1 gap-4">
+      {% for job in site.data.experience %}
+        <div
+          class="relative rounded border bg-white p-4 shadow-sm dark:border-neutral-700 dark:bg-neutral-750"
+        >
+          {% if job.url %}
+            <!-- Link -->
+            {% assign url = job.url %}
+            {% assign icon = job.urlicon %}
+            {% assign text = job.urltext %}
+            {% assign expandwidth = job.urlexpandwidth %}
+            {% include components/url-icon-expand.html %}
+          {% endif %}
+
+          <!-- Position -->
+          <h3 class="mb-1 text-xl font-bold leading-tight">
+            {{ job.position }}
+          </h3>
+
+          <!-- Employer -->
+          <h4 class="mb-3 text-lg font-medium leading-tight">
+            {% if job.department %}
+              {{ job.department }},<br>
+            {% endif %}
+            {{ job.company }}
+          </h4>
+
+          <!-- Details -->
+          <ul class="-mx-1 mb-3 grid list-none grid-cols-1 justify-start rounded border bg-neutral-100 text-neutral-900 shadow-sm dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100 media-500:grid-cols-2 media-720:grid-cols-3 [&>*:not(:last-child)]:border-b [&>*:nth-last-child(-n+2):nth-child(2n+1)]:media-500:border-none [&>*:nth-last-child(-n+2):nth-child(2n+1)~*]:media-500:border-none [&>*:nth-last-child(-n+3):nth-child(3n+1)]:media-720:border-none [&>*:nth-last-child(-n+3):nth-child(3n+1)~*]:media-720:border-none">
+            {% if job.duration %}
+              <!-- Duration -->
+              <li class="flex h-9 items-center px-3 py-2 dark:border-neutral-700">
+                {% include icons/ui/calendar.svg %}
+                <span class="ml-3 pt-0.5 leading-none">
+                  {{ job.duration }}
+                </span>
+              </li>
+            {% endif %}
+            {% if job.location %}
+              <!-- Location -->
+              <li class="flex h-9 items-center px-3 py-2 dark:border-neutral-700">
+                {% include icons/ui/map-pin.svg %}
+                <span class="ml-3 pt-0.5 leading-none">
+                  {{ job.location }}
+                </span>
+              </li>
+            {% endif %}
+            {% if job.contract %}
+              <!-- Contract -->
+              <li class="flex h-9 items-center px-3 py-2 dark:border-neutral-700">
+                {% include icons/ui/document-text.svg %}
+                <span class="ml-3 pt-0.5 leading-none">
+                  {{ job.contract }}
+                </span>
+              </li>
+            {% endif %}
+          </ul>
+
+          {% if job.summaries %}
+            <!-- Summary -->
+            <ul class="flex list-disc flex-col space-y-1 pl-6">
+              {% for summary in job.summaries %}
+                <li class="leading-tight">{{ summary }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}
+{% if site.include_section.education %}
+  <!-- Education -->
+  <section
+    class="mb-12"
+    id="education"
+  >
+    <!-- Header -->
+    <div class="border-b-2 border-neutral-350 pb-1 dark:border-neutral-550">
+      <h2 class="text-2xl font-bold leading-none media-640:text-3xl">
+        Education
+      </h2>
+    </div>
+
+    <!-- Content -->
+    <div class="mt-6 grid grid-cols-1 gap-4 leading-snug">
+      {% for degree in site.data.education %}
+        <div
+          class="relative rounded border bg-white p-4 shadow-sm dark:border-neutral-700 dark:bg-neutral-750"
+        >
+          {% if degree.url %}
+            <!-- Link -->
+            {% assign url = degree.url %}
+            {% assign icon = degree.urlicon %}
+            {% assign text = degree.urltext %}
+            {% assign expandwidth = degree.urlexpandwidth %}
+            {% include components/url-icon-expand.html %}
+          {% endif %}
+
+          <!-- Degree -->
+          <h3 class="mb-1 text-xl font-bold leading-tight">
+            {{ degree.degree }}
+          </h3>
+
+          <!-- University -->
+          <h4 class="mb-3 text-lg font-medium leading-tight">
+            {{ degree.uni }}
+          </h4>
+
+          <!-- Details -->
+          <ul class="-mx-1 mb-3 grid list-none grid-cols-1 justify-start rounded border bg-neutral-100 text-neutral-900 shadow-sm dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100 media-500:grid-cols-2 media-720:grid-cols-3 [&>*:not(:last-child)]:border-b [&>*:nth-last-child(-n+2):nth-child(2n+1)]:media-500:border-none [&>*:nth-last-child(-n+2):nth-child(2n+1)~*]:media-500:border-none [&>*:nth-last-child(-n+3):nth-child(3n+1)]:media-720:border-none [&>*:nth-last-child(-n+3):nth-child(3n+1)~*]:media-720:border-none">
+            {% if degree.duration %}
+              <!-- Duration -->
+              <li class="flex h-9 items-center px-3 py-2 dark:border-neutral-700">
+                {% include icons/ui/calendar.svg %}
+                <span class="ml-3 pt-0.5 leading-none">
+                  {{ degree.duration }}
+                </span>
+              </li>
+            {% endif %}
+            {% if degree.location %}
+              <!-- Location -->
+              <li class="flex h-9 items-center px-3 py-2 dark:border-neutral-700">
+                {% include icons/ui/map-pin.svg %}
+                <span class="ml-3 pt-0.5 leading-none">
+                  {{ degree.location }}
+                </span>
+              </li>
+            {% endif %}
+          </ul>
+
+          <!-- Summary -->
+          <ul class="flex list-disc flex-col space-y-1 pl-6">
+            {% for summary in degree.summaries %}
+              <li class="leading-tight">{{ summary }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}
+{% if site.include_section.skills %}
+  <!-- Skills -->
+  <section
+    class="mb-12 overflow-hidden"
+    id="skills"
+  >
+    <!-- Header -->
+    <div class="border-b-2 border-neutral-350 pb-1 dark:border-neutral-550">
+      <h2 class="text-2xl font-bold leading-none media-640:text-3xl">Skills</h2>
+    </div>
+
+    <!-- Filtering buttons -->
+    {% assign skill_filters = '' %}
+    {% for category in site.data.skills %}
+      {% for skill in category.items %}
+        {% for skill_filter in skill.filter %}
+          {% assign skill_filters = skill_filters
+            | append: skill_filter
+            | append: ','
+          %}
+        {% endfor %}
+      {% endfor %}
+    {% endfor %}
+    {% assign skill_filters = skill_filters | split: ',' | uniq | sort %}
+    <ul
+      class="mb-3 flex w-full flex-wrap border-b-2 border-neutral-350 py-2 dark:border-neutral-550 [&>*]:mx-auto"
+      role="radiogroup"
+    >
+      <li
+        class="relative flex cursor-pointer select-none items-center justify-center overflow-hidden rounded px-4 py-2 text-neutral-900 outline-none transition duration-200 hover:bg-neutral-250 focus-visible:bg-neutral-250 active:bg-neutral-300 aria-checked:font-bold dark:text-neutral-100 dark:hover:bg-neutral-750 dark:focus-visible:bg-neutral-750 dark:active:bg-neutral-700 dark:aria-checked:font-bold"
+        role="radio"
+        aria-label="filter: all"
+        aria-checked="true"
+        data-filter="*"
+        tabindex="0"
+      >
+        All
+      </li>
+      {% for skill_filter in skill_filters %}
+        {% assign skill_filter_id = skill_filter
+          | downcase
+          | replace: ' ', '-'
+          | replace: '&', 'and'
+        %}
+        <li
+          class="relative flex cursor-pointer select-none items-center justify-center overflow-hidden rounded px-4 py-2 text-neutral-900 outline-none transition duration-200 hover:bg-neutral-250 focus-visible:bg-neutral-250 active:bg-neutral-300 aria-checked:font-bold dark:text-neutral-100 dark:hover:bg-neutral-750 dark:focus-visible:bg-neutral-750 dark:active:bg-neutral-700 dark:aria-checked:font-bold"
+          role="radio"
+          aria-label="filter: {{ skill_filter | downcase }}"
+          aria-checked="false"
+          data-filter=".{{ skill_filter_id }}"
+          tabindex="0"
+        >
+          {{ skill_filter }}
+        </li>
+      {% endfor %}
+    </ul>
+
+    <!-- Content -->
+    <div
+      class="-mb-3 transition-height duration-400 ease-in-out"
+      data-isotope-container
+    >
+      {% for category in site.data.skills %}
+        <!-- Category -->
+        {% assign skill_filters = '' %}
+        {% for skill in category.items %}
+          {% for skill_filter in skill.filter %}
+            {% assign skill_filters = skill_filters
+              | append: skill_filter
+              | append: ','
+            %}
+          {% endfor %}
+        {% endfor %}
+        {% assign skill_filters = skill_filters | split: ',' | uniq | sort %}
+        <div
+          class="z-10 mb-4 mt-3 w-full{% for skill_filter in skill_filters %} {{ skill_filter | downcase | replace: ' ', '-' | replace: '&', 'and' }}{% endfor %}"
+          data-isotope-item
+        >
+          <h3
+            class="text-xl font-normal leading-none"
+          >
+            {{ category.category }}
+          </h3>
+        </div>
+
+        <!-- Skills sorted by proficiency in descending order -->
+        {% assign sorted_skills = category.items
+          | sort: 'proficiency'
+          | reverse
+        %}
+        {% for skill in sorted_skills %}
+          {% assign skill_id = skill.skill | downcase %}
+          <!-- Skill box: {{ skill.skill }} -->
+          <div
+            class="relative mb-3 w-full rounded border bg-white p-8 shadow-sm active:scale-95 data-[arrange-completed=true]:transition-transform dark:border-neutral-700 dark:bg-neutral-750 media-550:w-[calc(50%-6px)] media-768:w-[calc(33.3333%-8px)]{% for skill_filter in skill.filter %} {{ skill_filter | downcase | replace: ' ', '-' | replace: '&', 'and' }}{% endfor %}"
+            data-isotope-item
+            data-arrange-completed="true"
+          >
+            <div class="flex h-10 w-auto flex-row items-end justify-between">
+              <!-- Title -->
+              <h4
+                class="ml-1 text-lg font-bold leading-none"
+              >
+                {{ skill.skill }}
+              </h4>
+
+              <!-- Icon -->
+              <span class="[&>*]:mr-1 [&>*]:h-auto [&>*]:max-h-10 [&>*]:w-10">
+                {% include {{ skill.icon }} %}
+              </span>
+            </div>
+
+            <!-- Proficiency bar -->
+            <div class="mt-2 h-4 rounded bg-gray-200 dark:bg-gray-600">
+              <div
+                class="h-full rounded-l bg-lime-500"
+                style="width: {{ skill.proficiency }}%;"
+              ></div>
+            </div>
+
+            {% if skill.categories %}
+              <!-- Modal button -->
+              <button
+                class="absolute left-0 top-0 flex h-full w-full select-none items-center justify-center rounded bg-transparent text-transparent outline-none transition-btn-overlay hover:cursor-pointer hover:bg-white/70 hover:text-neutral-900 hover:backdrop-blur-sm focus-visible:bg-white/70 focus-visible:text-neutral-900 focus-visible:backdrop-blur-sm active:text-neutral-900 active:backdrop-blur-[6px] dark:hover:bg-neutral-750/70 dark:hover:text-neutral-100 dark:hover:backdrop-blur-[6px] dark:focus-visible:bg-neutral-750/70 dark:focus-visible:text-neutral-100 dark:active:bg-neutral-750/70 dark:active:text-neutral-100"
+                role="button"
+                aria-details="Open modal: {{ skill.skill }}"
+                aria-controls="modal_skill_{{ skill_id }}"
+                aria-hidden="true"
+                tabindex="0"
+              >
+                View more
+              </button>
+            {% endif %}
+          </div>
+
+          <!-- Modal: {{ skill.skill }} -->
+          {% if skill.categories %}
+            {% include components/descmodal.html %}
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}

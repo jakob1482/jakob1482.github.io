@@ -1,5 +1,8 @@
 <!doctype html>
-<html>
+<html
+  lang="en"
+>
+  {% seo %}
   <!-- Head -->
   <head>
     <meta charset="utf-8">
@@ -22,43 +25,10 @@
       href="{{ '/favicon.png' | relative_url }}"
       type="image/png"
     >
-    <!-- JQuery -->
-    <script
-      type="text/javascript"
-      src="{{ 'jquery/dist/jquery.min.js' | node_module_url }}"
-    ></script>
-    <!-- JQuery plugins -->
-    <script
-      type="text/javascript"
-      src="{{ 'jquery-bez/lib/jquery.bez.min.js' | node_module_url }}"
-    ></script>
-    <!-- OverlayScrollbars -->
-    <link
-      rel="stylesheet"
-      href="{{ 'overlayscrollbars/styles/overlayscrollbars.min.css' | node_module_url }}"
-    >
-    <script
-      type="text/javascript"
-      src="{{ 'overlayscrollbars/browser/overlayscrollbars.browser.es6.js' | node_module_url }}"
-    ></script>
-    <!-- Font Awesome -->
-    <link
-      rel="stylesheet"
-      href="{{ '@fortawesome/fontawesome-free/css/all.min.css' | node_module_url }}"
-    >
-    <script
-      type="text/javascript"
-      src="{{ '@fortawesome/fontawesome-free/js/all.min.js' | node_module_url }}"
-    ></script>
-    <!-- Isotope -->
-    <script
-      type="text/javascript"
-      src="{{ 'isotope-layout/dist/isotope.pkgd.min.js' | node_module_url }}"
-    ></script>
     <!-- CSS styles -->
     <link
       rel="stylesheet"
-      href="{{ '/assets/css/main.css' | relative_url }}"
+      href="{{ '/assets/css/bundle.css' | relative_url }}"
     >
     <script type="text/javascript">
       // On page load or when changing themes, best to add inline in `head` to avoid FOUC
@@ -68,7 +38,6 @@
           window.matchMedia('(prefers-color-scheme: dark)').matches)
       ) {
         document.documentElement.classList.add('dark');
-        $('.theme-toggle').prop('checked', true);
       } else {
         document.documentElement.classList.remove('dark');
       }
@@ -76,7 +45,7 @@
   </head>
 
   <body
-    class="relative flex min-h-screen w-full flex-col bg-neutral-100 text-neutral-900 motion-reduce:transition-none dark:bg-neutral-800 dark:text-neutral-100"
+    class="group/body relative flex w-full flex-col bg-neutral-100 text-neutral-900 motion-reduce:transition-none dark:bg-neutral-800 dark:text-neutral-100"
     data-overlayscrollbars-initialize
   >
     <!-- Header -->
@@ -84,7 +53,6 @@
 
     <!-- Content -->
     <main
-      id="main"
       class="os-content mx-auto mt-12 flex max-w-3xl flex-1 flex-col justify-center px-2"
     >
       {{ content }}
@@ -96,7 +64,7 @@
       class="grid grid-cols-1 bg-neutral-180 shadow-inner dark:bg-neutral-880"
     >
       <span
-        class="mt-4 flex items-start justify-center [&>svg]:w-[64px] [&>svg]:fill-neutral-900 [&>svg]:dark:fill-neutral-100"
+        class="mt-4 flex items-center justify-center fill-neutral-900 dark:fill-neutral-100 [&>svg]:w-16"
       >
         {% include logos/large.svg %}
       </span>
@@ -114,15 +82,9 @@
     ></script>
 
     <!-- Scripts -->
-    <!--
-      <script
-        type="text/javascript"
-        src="{{ 'tw-elements/dist/js/tw-elements.umd.min.js' | node_module_url }}"
-      ></script>
-    -->
     <script
       type="module"
-      src="{{ '/assets/js/app.js' | relative_url }}"
+      src="{{ '/assets/js/bundle.js' | relative_url }}"
     ></script>
   </body>
 </html>
