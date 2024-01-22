@@ -1,27 +1,29 @@
-<!-- Main navigation container -->
 <header
   id="header"
-  class="navbar-header fixed top-0 z-50 flex w-full items-center justify-between bg-neutral-200/80 py-2 shadow-lg backdrop-blur transition duration-300 ease-linear focus:text-neutral-700 aria-expanded:bg-neutral-180 dark:bg-neutral-900/80 dark:focus:text-neutral-700 dark:aria-expanded:bg-neutral-880 xs:aria-expanded:bg-neutral-200/80 xs:dark:aria-expanded:bg-neutral-900/80"
+  class="navbar-header fixed top-0 z-50 flex w-full items-center justify-between bg-neutral-200/80 py-2 shadow-lg backdrop-blur transition duration-300 ease-linear focus-visible:text-neutral-700 aria-expanded:bg-neutral-180 dark:bg-neutral-900/80 dark:focus-visible:text-neutral-700 dark:aria-expanded:bg-neutral-880 media-550:aria-expanded:bg-neutral-200/80 media-550:dark:aria-expanded:bg-neutral-900/80"
 >
   <nav
     class="mx-auto flex w-full max-w-3xl flex-wrap items-center justify-between self-center px-4"
     aria-expanded="false"
   >
     <a
-      class="flex h-10 w-10 items-center justify-center [&>svg]:w-[32px] [&>svg]:fill-neutral-900 [&>svg]:dark:fill-neutral-100"
+      class="mr-2 flex h-10 w-10 items-center justify-center [&>svg]:w-[32px] [&>svg]:fill-neutral-900 [&>svg]:dark:fill-neutral-100"
       href="/"
+      aria-label="resume"
       tabindex="-1"
     >
       {% include logos/small.svg %}
     </a>
 
     <!-- Hamburger button for mobile view -->
-    <button
-      class="group relative flex h-10 w-10 cursor-pointer select-none items-center justify-center overflow-hidden rounded px-2 py-2 text-neutral-900 outline-none transition duration-150 hover:bg-neutral-250 focus:bg-neutral-250 active:bg-neutral-300 dark:text-neutral-100 dark:hover:bg-neutral-750 dark:focus:bg-neutral-750 dark:active:bg-neutral-700 xs:hidden"
-      role="navbar-toggle"
+    <span
+      class="group relative flex h-10 w-10 cursor-pointer select-none items-center justify-center overflow-hidden rounded px-2 py-2 text-neutral-900 outline-none transition duration-150 hover:bg-neutral-250 focus-visible:bg-neutral-250 active:bg-neutral-300 dark:text-neutral-100 dark:hover:bg-neutral-750 dark:focus-visible:bg-neutral-750 dark:active:bg-neutral-700 media-550:hidden"
+      role="switch"
+      role="link"
       aria-controls="navbarHeader"
       aria-expanded="false"
-      aria-label="Toggle navigation"
+      aria-label="toggle navigation"
+      tabindex="0"
     >
       <span
         class="my-auto flex h-5 w-5 scale-100 items-center justify-center opacity-100 duration-300 ease-in group-aria-expanded:scale-50 group-aria-expanded:opacity-0 group-aria-expanded:ease-out"
@@ -33,69 +35,59 @@
       >
         {% include icons/ui/x.svg %}
       </span>
-    </button>
+    </span>
 
     <!-- Collapsible navbar container -->
     <div
-      class="!visible hidden flex-grow basis-[100%] flex-col items-center gap-2 xs:!flex xs:basis-auto xs:flex-row"
+      class="!visible hidden flex-grow basis-[100%] flex-col items-center gap-2 media-550:!flex media-550:basis-auto media-550:flex-row"
       id="navbarHeader"
+      role="menubar"
     >
       <!-- Left -->
       <ul
-        class="list-style-none mr-auto mt-6 flex flex-col gap-2 xs:my-0 xs:flex-row xs:gap-0"
+        class="list-style-none mr-auto mt-6 flex flex-col gap-2 media-550:my-0 media-550:flex-row media-550:gap-0"
+        role="menu"
       >
-        <!-- About link (index) -->
+        <!-- Home/Resume link -->
         <li
-          class="pl-2 xs:my-0 xs:ml-4 xs:pl-0"
+          class="m-0 media-550:ml-2"
+          role="menuitem"
         >
           <a
-            class="relative flex cursor-pointer select-none items-center overflow-hidden rounded px-2 py-2 text-neutral-900 outline-none transition duration-150 hover:bg-neutral-250 focus:bg-neutral-250 active:bg-neutral-300 aria-selected:font-bold dark:text-neutral-100 dark:hover:bg-neutral-750 dark:focus:bg-neutral-750 dark:active:bg-neutral-700 dark:aria-selected:font-bold xs:px-4"
+            class="relative flex cursor-pointer select-none items-center overflow-hidden rounded px-4 py-2 text-neutral-900 outline-none transition duration-150 hover:bg-neutral-250 focus-visible:bg-neutral-250 active:bg-neutral-300 aria-selected:font-bold dark:text-neutral-100 dark:hover:bg-neutral-750 dark:focus-visible:bg-neutral-750 dark:active:bg-neutral-700 dark:aria-selected:font-bold"
             href="/"
-            {% if page.title == 'About' %}
-              aria-selected="true"
-            {% endif %}
-          >
-            About
-          </a>
-        </li>
-        <!-- Resume link -->
-        <li
-          class="pl-2 xs:my-0 xs:ml-4 xs:pl-0"
-        >
-          <a
-            class="relative flex cursor-pointer select-none items-center overflow-hidden rounded px-2 py-2 text-neutral-900 outline-none transition duration-150 hover:bg-neutral-250 focus:bg-neutral-250 active:bg-neutral-300 aria-selected:font-bold dark:text-neutral-100 dark:hover:bg-neutral-750 dark:focus:bg-neutral-750 dark:active:bg-neutral-700 dark:aria-selected:font-bold xs:px-4"
-            href="/resume"
-            {% if page.title == 'Resume' %}
-              aria-selected="true"
-            {% endif %}
+            role="link"
+            aria-selected="{% if page.title == 'Resume' %}true{% else %}false{% endif %}"
+            aria-label="resume"
           >
             Resume
           </a>
         </li>
-        <!-- Portfolio link - Disabled until the page is completed -->
-        <!--
-          <li
-            class="pl-2 xs:mb-0 xs:ml-4 xs:pl-0"
+        <!-- Portfolio link -->
+        <li
+          class="m-0 media-550:ml-2"
+          role="menuitem"
+        >
+          <a
+            class="relative flex cursor-pointer select-none items-center overflow-hidden rounded px-4 py-2 text-neutral-900 outline-none transition duration-150 hover:bg-neutral-250 focus-visible:bg-neutral-250 active:bg-neutral-300 aria-selected:font-bold dark:text-neutral-100 dark:hover:bg-neutral-750 dark:focus-visible:bg-neutral-750 dark:active:bg-neutral-700 dark:aria-selected:font-bold"
+            href="/portfolio"
+            role="link"
+            aria-selected="{% if page.title == 'Portfolio' %}true{% else %}false{% endif %}"
+            aria-label="portfolio"
           >
-            <a
-              class="relative flex cursor-pointer select-none items-center overflow-hidden rounded px-2 py-2 text-neutral-900 outline-none transition duration-150 hover:bg-neutral-250 focus:bg-neutral-250 active:bg-neutral-300 aria-selected:font-bold dark:text-neutral-100 dark:hover:bg-neutral-750 dark:focus:bg-neutral-750 dark:active:bg-neutral-700 dark:aria-selected:font-bold xs:px-4"
-              href="/portfolio"
-              {% if page.title == 'Portfolio' %}
-                aria-selected="true"
-              {% endif %}
-            >
-              Portfolio
-            </a>
-          </li>
-        -->
+            Portfolio
+          </a>
+        </li>
       </ul>
 
       <!-- Right -->
       <ul
-        class="list-style-none mb-4 ml-auto mt-4 flex h-auto flex-grow-0 flex-col pl-0 xs:my-0 xs:flex-row xs:gap-0"
+        class="list-style-none mb-4 ml-auto mt-4 flex h-auto flex-grow-0 flex-col pl-0 media-550:my-0 media-550:flex-row media-550:gap-0"
+        role="menu"
       >
         <li
-          class="flex h-6 w-full items-center pl-2 xs:my-0 xs:ml-4 xs:w-auto xs:pl-2"
+          class="flex h-6 w-full items-center media-550:w-full"
+          role="menuitem"
         >
           {% include components/theme-toggle.html %}
         </li>

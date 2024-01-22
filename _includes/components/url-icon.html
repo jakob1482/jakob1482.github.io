@@ -1,11 +1,15 @@
 <a
-  class="flex h-7 w-7 items-center justify-center rounded-full border-none bg-neutral-350 outline-none transition-icon duration-150 hover:bg-neutral-900 focus:bg-neutral-900 active:scale-90 dark:bg-neutral-550 dark:hover:bg-neutral-100 dark:focus:bg-neutral-100 {% case to_color %}{% when 'stroke' %}text-neutral-100 dark:text-neutral-800{% when 'fill' %}fill-neutral-100 dark:fill-neutral-800{% endcase %}"
+  class="flex h-7 w-7 items-center justify-center rounded-full border-none bg-neutral-350 outline-none transition-icon duration-150 hover:bg-neutral-900 focus-visible:bg-neutral-900 active:scale-90 dark:bg-neutral-550 dark:hover:bg-neutral-100 dark:focus-visible:bg-neutral-100 {% case to_color %}{% when 'stroke' %}text-neutral-100 dark:text-neutral-800{% when 'fill' %}fill-neutral-100 dark:fill-neutral-800{% endcase %}"
   href="{{ url | relative_url }}"
   {% unless target == null %}
     target="{{ target }}"
   {% endunless %}
   {% unless rel == null %}
-    target="{{ rel }}"
+    rel="{{ rel }}"
+  {% endunless %}
+  role="link"
+  {% unless label == null %}
+    aria-label="{{ label }}"
   {% endunless %}
   tabindex="0"
 >

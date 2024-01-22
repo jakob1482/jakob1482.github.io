@@ -1,5 +1,5 @@
 <dialog
-  class="group/modal fixed inset-0 z-50 origin-center translate-y-0 overflow-y-auto overflow-x-hidden rounded border bg-white bg-clip-padding text-current opacity-100 outline-none transition-[visibility,_transform,_opacity] delay-0 duration-[0ms,_300ms,_300ms] ease-[linear,swing,in-out] backdrop:bg-black/50 backdrop:backdrop-blur backdrop:transition-backdrop backdrop:duration-300 aria-hidden:-translate-y-10 aria-hidden:opacity-0 aria-hidden:delay-[300ms,_0ms,_0ms,_0ms] aria-hidden:backdrop:bg-black/0 aria-hidden:backdrop:backdrop-blur-none dark:border-neutral-750 dark:bg-neutral-800"
+  class="group/modal fixed inset-0 z-50 origin-center translate-y-0 overflow-hidden rounded border bg-white bg-clip-padding text-current opacity-100 outline-none transition-[visibility,_transform,_opacity] delay-0 duration-[0ms,_300ms,_300ms] ease-[linear,swing,in-out] backdrop:bg-black/50 backdrop:backdrop-blur backdrop:transition-backdrop backdrop:duration-300 aria-hidden:-translate-y-10 aria-hidden:opacity-0 aria-hidden:delay-[300ms,_0ms,_0ms,_0ms] aria-hidden:backdrop:bg-black/0 aria-hidden:backdrop:backdrop-blur-none dark:border-neutral-750 dark:bg-neutral-800"
   role="modal"
   id="modal_skill_{{ skill_id }}"
   tabindex="-1"
@@ -22,14 +22,8 @@
       </h4>
 
       <!-- Icon -->
-      <span class="fill:text-neutral-650 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 fill-neutral-250 text-neutral-250 dark:text-neutral-650 [&>*]:h-auto [&>*]:max-h-10 [&>*]:w-16">
-        {% if skill.icon.org == 'local' %}
-          {% include {{ skill.icon.icon }} %}
-        {% elsif skill.icon.org == 'fontawesome' %}
-          <i
-            class="text-[40px] leading-none {{ skill.icon.icon }}"
-          ></i>
-        {% endif %}
+      <span class="fill:text-neutral-650 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 fill-neutral-250 text-neutral-250 dark:text-neutral-650 [&>svg]:h-auto [&>svg]:max-h-10 [&>svg]:w-16">
+        {% include {{ skill.icon }} %}
       </span>
 
       <!-- Close button -->
@@ -53,13 +47,14 @@
       {% if skill.categories.size > 1 %}
         {% assign height = 0 %}
         {% for category in skill.categories %}
-          {% assign height = height | plus: 48 %}
-          {% unless forloop.first %}
-            {% assign height = height | plus: 4 %}
-          {% endunless %}
+          {% if forloop.first %}
+            {% assign height = height | plus: 48 %}
+          {% else %}
+            {% assign height = height | plus: 52 %}
+          {% endif %}
           {% if category.categories %}
             {% for subcategory in category.categories %}
-              {% assign height = height | plus: 32 | plus: 4 %}
+              {% assign height = height | plus: 36 %}
             {% endfor %}
           {% endif %}
         {% endfor %}
@@ -71,7 +66,10 @@
 
       <!-- Categories content -->
       <div
-        class="relative flex flex-row flex-nowrap"
+        class="relative flex max-h-[calc(100vh-127px)] flex-nowrap overflow-x-hidden"
+        id="tabpanel-container-skill-{{ skill_id }}"
+        role="tabpanel-container"
+        data-overlayscrollbars-initialize
       >
         {% assign first = true %}
         {% for category in skill.categories %}
@@ -87,7 +85,7 @@
               | append: '-'
               | append: category_id
             %}
-            {% include components/descmodal-tab.html %}
+            {% include components/descmodal-tabpanel.html %}
           {% else %}
             {% for subcategory in category.categories %}
               {% assign subcategory_id = subcategory.title
@@ -103,7 +101,7 @@
                 | append: '-'
                 | append: subcategory_id
               %}
-              {% include components/descmodal-tab.html %}
+              {% include components/descmodal-tabpanel.html %}
             {% endfor %}
           {% endunless %}
         {% endfor %}

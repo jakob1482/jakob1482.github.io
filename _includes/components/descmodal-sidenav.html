@@ -1,9 +1,9 @@
 <div
-  class="relative left-0 top-0 z-50 w-[84px] sm:w-[200px]"
+  class="relative left-0 top-0 z-50 w-21 media-640:w-50"
   role="sidenav-container"
 >
   <nav
-    class="group w-[84px] overflow-hidden bg-white/80 pr-2 backdrop-blur transition-width duration-400 ease-in-out aria-expanded:w-[200px] dark:bg-neutral-800/80 sm:w-[200px] sm:aria-expanded:w-[200px]"
+    class="group w-21 overflow-hidden bg-white/80 pr-2 backdrop-blur transition-width duration-400 ease-in-out aria-expanded:w-50 dark:bg-neutral-800/80 media-640:w-50 media-640:aria-expanded:w-50"
     role="sidenav"
     id="sidenav-skill-{{ skill_id }}"
     aria-expanded="false"
@@ -12,7 +12,7 @@
       class="relative m-0 flex list-none flex-col [&>li:not(:last-child)]:mb-1"
     >
       <li
-        class="relative block sm:hidden"
+        class="relative block media-640:hidden"
         role="sidenav-toggle"
         id="sidenav-toggle-skill-{{ skill_id }}"
         aria-controls="tablist-skill-{{ skill_id }}-{{ category_id }}"
@@ -35,10 +35,14 @@
         </span>
       </li>
       <li
-        style="height: {{height}}px;"
+        class="max-h-[calc(100vh-179px)] overflow-y-auto media-640:max-h-[calc(100vh-127px)]"
+        role="sidenav-tablist"
+        id="sidenav-tablist-skill-{{ skill_id }}"
+        data-overlayscrollbars-initialize
+        data-expanded-height="{{ height }}"
       >
         <ul
-          class="relative m-0 hidden list-none flex-col space-y-1 p-0 aria-expanded:flex sm:!flex"
+          class="relative m-0 hidden list-none flex-col space-y-1 p-0 aria-expanded:flex media-640:!flex"
           role="tablist"
           id="tablist-skill-{{ skill_id }}-{{ category_id }}"
         >
@@ -52,7 +56,7 @@
               class="relative"
             >
               <span
-                class="group/tab peer/tab flex h-12 cursor-pointer items-center truncate rounded px-6 py-4 text-[0.875rem] text-neutral-700 outline-none transition duration-300 ease-linear hover:bg-neutral-150 hover:text-inherit hover:text-neutral-700 hover:outline-none focus:text-inherit focus:outline-none active:bg-neutral-150 active:text-inherit active:text-neutral-700 active:outline-none aria-expanded:bg-neutral-200 aria-expanded:hover:bg-neutral-200 aria-selected:bg-neutral-200 aria-selected:hover:bg-neutral-200 motion-reduce:transition-none dark:text-neutral-300 dark:hover:bg-neutral-750 dark:hover:text-neutral-300 dark:active:bg-neutral-750 dark:active:text-neutral-300 aria-expanded:dark:bg-neutral-700 aria-expanded:dark:hover:bg-neutral-700 aria-selected:dark:bg-neutral-700 aria-selected:dark:hover:bg-neutral-700"
+                class="group/tab peer/tab flex h-12 cursor-pointer select-none items-center truncate rounded px-6 py-4 text-sm text-neutral-700 outline-none transition duration-300 ease-linear hover:bg-neutral-150 hover:text-inherit hover:text-neutral-700 hover:outline-none focus:text-inherit focus:outline-none active:bg-neutral-150 active:text-inherit active:text-neutral-700 active:outline-none aria-expanded:bg-neutral-200 aria-expanded:hover:bg-neutral-200 aria-selected:bg-neutral-200 aria-selected:hover:bg-neutral-200 motion-reduce:transition-none dark:text-neutral-300 dark:hover:bg-neutral-750 dark:hover:text-neutral-300 dark:active:bg-neutral-750 dark:active:text-neutral-300 aria-expanded:dark:bg-neutral-700 aria-expanded:dark:hover:bg-neutral-700 aria-selected:dark:bg-neutral-700 aria-selected:dark:hover:bg-neutral-700"
                 id="tab-skill-{{ skill_id }}-{{ category_id }}"
                 {% if category.categories == null %}
                   role="tab"
@@ -72,7 +76,7 @@
                 <span>{{ category.title }}</span>
                 {% if category.categories %}
                   <span
-                    class="absolute right-0 mr-[0.8rem] transition-transform duration-400 group-aria-expanded/tab:rotate-180 motion-reduce:transition-none [&>svg]:text-gray-600 dark:[&>svg]:text-gray-300"
+                    class="absolute right-0 mr-3 transition-transform duration-400 group-aria-expanded/tab:rotate-180 motion-reduce:transition-none [&>svg]:text-gray-600 dark:[&>svg]:text-gray-300"
                   >
                     {% include icons/ui/chevron-down.svg %}
                   </span>
@@ -96,7 +100,7 @@
                       class="relative mt-1"
                     >
                       <span
-                        class="flex h-6 cursor-pointer items-center truncate rounded py-4 pl-[3.4rem] pr-6 text-[0.78rem] text-neutral-700 outline-none transition duration-300 ease-linear hover:bg-neutral-150 hover:text-inherit hover:text-neutral-700 hover:outline-none focus:text-inherit focus:outline-none active:bg-neutral-150 active:text-inherit active:text-neutral-700 active:outline-none aria-selected:bg-neutral-200 aria-selected:hover:bg-neutral-200 motion-reduce:transition-none dark:text-neutral-300 dark:hover:bg-neutral-750 dark:hover:text-neutral-300 dark:active:bg-neutral-750 dark:active:text-neutral-300 aria-selected:dark:bg-neutral-700 aria-selected:dark:hover:bg-neutral-700"
+                        class="flex h-6 cursor-pointer select-none items-center truncate rounded py-4 pl-[3.4rem] pr-6 text-[0.78rem] text-neutral-700 outline-none transition duration-300 ease-linear hover:bg-neutral-150 hover:text-inherit hover:text-neutral-700 hover:outline-none focus:text-inherit focus:outline-none active:bg-neutral-150 active:text-inherit active:text-neutral-700 active:outline-none aria-selected:bg-neutral-200 aria-selected:hover:bg-neutral-200 motion-reduce:transition-none dark:text-neutral-300 dark:hover:bg-neutral-750 dark:hover:text-neutral-300 dark:active:bg-neutral-750 dark:active:text-neutral-300 aria-selected:dark:bg-neutral-700 aria-selected:dark:hover:bg-neutral-700"
                         role="tab"
                         id="tab-skill-{{ skill_id }}-{{ category_id }}-{{ subcategory_id }}"
                         aria-controls="tabpanel-skill-{{ skill_id }}-{{ category_id }}-{{ subcategory_id }}"
