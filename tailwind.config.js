@@ -3,25 +3,29 @@ const plugin = require("tailwindcss/plugin");
 module.exports = {
   mode: "jit",
   content: [
+    "./_data/**/*.yml",
     "./_drafts/**/*.html",
     "./_includes/**/*.html",
     "./_layouts/**/*.html",
     "./_posts/*.md",
     "./*.md",
     "./*.html",
-    "./node_modules/tw-elements/dist/js/**/*.js",
   ],
   darkMode: "class",
   theme: {
     screens: {
-      "3xs": "320px",
-      "2xs": "480px",
-      xs: "550px",
-      sm: "640px",
-      md: "768px",
-      lg: "1024px",
-      xl: "1280px",
-      "2xl": "1536px",
+      "media-320": "320px",
+      "media-400": "400px",
+      "media-480": "480px",
+      "media-500": "500px",
+      "media-550": "550px",
+      "media-640": "640px",
+      "media-680": "680px",
+      "media-720": "720px",
+      "media-768": "768px",
+      "media-1024": "1024px",
+      "media-1280": "1280px",
+      "media-1536": "1536px",
     },
     fontFamily: {
       linkedin:
@@ -44,6 +48,7 @@ module.exports = {
       colors: {
         neutral: {
           75: "#F5F8FB",
+          80: "#F7F7F7",
           125: "#F1F1F1",
           150: "#EDEDED",
           175: "#E9E9E9",
@@ -67,6 +72,9 @@ module.exports = {
           880: "#1A1A1A",
         },
       },
+      flexBasis: {
+        full: "100%",
+      },
       transitionProperty: {
         width: "width",
         height: "height",
@@ -78,6 +86,8 @@ module.exports = {
         visibility: "visibility, opacity",
         path: "d",
         modal: "visibility, transform, opacity",
+        "btn-overlay":
+          "backdrop-filter, opacity, color, background-color, text-decoration-color",
         icon: "transform, color, background-color, border-color, text-decoration-color, fill, stroke",
         "icon-expand":
           "width, padding, opacity, color, border-color, text-decoration-color",
@@ -109,12 +119,18 @@ module.exports = {
       maxWidth: {
         700: "700px",
       },
+      spacing: {
+        21: "5.25rem",
+        34: "8.5rem",
+        42: "10.5rem",
+        50: "12.5rem",
+        dynamic: "var(--tw-dynamic)",
+      },
     },
   },
   variants: {},
   plugins: [
     require("@tailwindcss/typography"),
-    require("tw-elements/dist/plugin.cjs"),
     // Custom plugin for modifying a path's d attribute
     plugin(function ({ addUtilities, theme }) {
       const paths = theme("svgPath");
