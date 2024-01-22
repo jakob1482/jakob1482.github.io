@@ -1,0 +1,18 @@
+@import "overlayscrollbars/styles/overlayscrollbars.css";
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+.no-transition * {
+  transition-property: none !important;
+}
+
+.theme-icon {
+  transition-property: transform, opacity, d !important;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
