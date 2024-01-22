@@ -1,31 +1,38 @@
 # Jobs
-- company: Aarhus University Hospital
+- position: Clinical Bioinformatician
+  company: Aarhus University Hospital
   department: Department of Molecular Medicine
-  position: Clinical Bioinformatician
-  contract: Limited-term full-time
   duration: Apr, 2024 &mdash; Present
   location: Aarhus, Denmark
+  contract: Limited-term, Full-time
   summaries:
     - Development of bioinformatic pipelines for clinical sequencing data.
-  url: https://www.auh.dk/afdelinger/molekylar-medicinsk-afdeling/
-  urlicon: globe-alt
-  urltext: website
+  url: https://www.fagperson.auh.dk/afdelinger/molekylar-medicinsk-afdeling/
+  urlicon: icons/ui/globe-alt.svg
+  urltext: department
+  urlexpandwidth: 176px
 
-- company: PentaBase
-  position: Software Developer
-  contract: Freelance
+- position: Software Developer
+  company: PentaBase
   duration: May, 2020 &mdash; Aug, 2020
   location: Odense, Denmark
+  contract: Freelance
   summaries:
     - Development of software for scanning and organizing PCR samples.
+  url: https://pentabase.com/
+  urlicon: icons/ui/globe-alt.svg
+  urltext: company
+  urlexpandwidth: 160px
 
-- company: iGEM Competition
-  position: Consultant
+- position: Consultant
+  company: iGEM Competition
   duration: Sep, 2019
   location: Odense, Denmark
+  contract: Freelance
   summaries:
     - Guidance for the University of Southern Denmark's 2019 iGEM team in
       mathematical modeling of bacterial conjugation.
   url: https://2019.igem.org/Team:SDU-Denmark
-  urlicon: globe-alt
+  urlicon: icons/ui/globe-alt.svg
   urltext: project
+  urlexpandwidth: 144px
