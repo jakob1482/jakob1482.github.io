@@ -10,7 +10,7 @@ platforms:
   - platform: kaggle
     link: https://www.kaggle.com/jakobjersildnielsen
 include_element:
-  picture: true
+  avatar: true
   contact: true
   platforms: true
 include_section:
@@ -24,21 +24,11 @@ include_section:
 # Build settings
 repository: jakob1482/jakob1482.github.io
 baseurl: ""
+theme: null
 plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
   - jekyll-paginate
-  - jekyll-postcss
-  - jekyll-node-module
-postcss:
-  cache: false
-node_modules:
-  modules_dir: node_modules
-  assets:
-    js: assets/js
-    mjs: assets/js
-    css: assets/css
-  copy:
-    - source: "@fortawesome/fontawesome-free/webfonts/"
-      target: assets/webfonts
 
 ############################################################
 # Site configuration for the Auto-Pages feature
@@ -98,6 +88,8 @@ exclude:
   - tailwind.config.js
   - eslint.config.js
   - prettier.config.js
+  - webpack.config.js
+  - assets/js/index.js
   - node_modules/
   - vendor/bundle/
   - vendor/cache/
